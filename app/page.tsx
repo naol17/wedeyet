@@ -1,33 +1,152 @@
+import dynamic from "next/dynamic"
+import Image from "next/image"
+import Link from "next/link"
+import {
+  Car,
+  ChevronLeft,
+  ChevronRight,
+  Coffee,
+  LucideIcon,
+  MoreHorizontal,
+  MoreVertical,
+  ShoppingBag,
+  TreePine,
+  Utensils,
+} from "lucide-react"
+
+import { Card, CardContent } from "@/components/ui/card"
+import { ScrollArea } from "@/components/ui/scroll-area"
+
+type Category = {
+  name: string
+  icon: LucideIcon
+}
+
+type NearbyPlace = {
+  name: string
+  description: string
+  image: string
+}
+
+const categories: Category[] = [
+  {
+    name: "Transport",
+    icon: Car,
+  },
+  {
+    name: "Shops",
+    icon: ShoppingBag,
+  },
+  {
+    name: "Restaurants",
+    icon: Utensils,
+  },
+  {
+    name: "Cafes",
+    icon: Coffee,
+  },
+  {
+    name: "Parks",
+    icon: TreePine,
+  },
+]
+
+const nearbyPlaces: NearbyPlace[] = [
+  {
+    name: "Birr",
+    description: "Ethiopian Restaurant",
+    image: "https://source.unsplash.com/random/300x300",
+  },
+  {
+    name: "Abyssinia",
+    description: "Ethiopian Restaurant",
+    image: "https://source.unsplash.com/random/300x300",
+  },
+  {
+    name: "Birr",
+    description: "Ethiopian Restaurant",
+    image: "https://source.unsplash.com/random/300x300",
+  },
+  {
+    name: "Abyssinia",
+    description: "Ethiopian Restaurant",
+    image: "https://source.unsplash.com/random/300x300",
+  },
+  {
+    name: "Birr",
+    description: "Ethiopian Restaurant",
+    image: "https://source.unsplash.com/random/300x300",
+  },
+  {
+    name: "Abyssinia",
+    description: "Ethiopian Restaurant",
+    image: "https://source.unsplash.com/random/300x300",
+  },
+  {
+    name: "Birr",
+    description: "Ethiopian Restaurant",
+    image: "https://source.unsplash.com/random/300x300",
+  },
+  {
+    name: "Abyssinia",
+    description: "Ethiopian Restaurant",
+    image: "https://source.unsplash.com/random/300x300",
+  },
+]
+
 export default function IndexPage() {
   return (
     <section className="container grid items-center gap-6 pt-6 pb-8 md:py-10">
-      <div className="flex max-w-[980px] flex-col items-start gap-2">
-        <h1 className="text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl">
-          Beautifully designed components <br className="hidden sm:inline" />
-          built with Radix UI and Tailwind CSS.
-        </h1>
-        <p className="max-w-[700px] text-lg text-muted-foreground">
-          Accessible and customizable components that you can copy and paste
-          into your apps. Free. Open Source. And Next.js 13 Ready.
-        </p>
+      <div className="flex gap-10 pb-2 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max">
+        {categories.map((category, i) => (
+          <Card key={i} className="shadow-md">
+            <Link href="/" className="group ">
+              <CardContent className="flex items-center justify-center gap-4 px-4 py-2 rounded group-hover:bg-primary group-hover:bg-opacity-40">
+                <category.icon className="w-6 h-6 text-primary" />
+                <p className="font-semibold ">{category.name}</p>
+              </CardContent>
+            </Link>
+          </Card>
+        ))}
+        {categories.map((category, i) => (
+          <Card key={i}>
+            <Link href="/" className="group ">
+              <CardContent className="flex items-center justify-center gap-4 px-4 py-2 rounded group-hover:bg-primary group-hover:bg-opacity-40">
+                <category.icon className="w-6 h-6 text-primary" />
+                <p className="font-semibold ">{category.name}</p>
+              </CardContent>
+            </Link>
+          </Card>
+        ))}
       </div>
-      <div className="flex gap-4">
-        {/* <Link
-          href={siteConfig.links.docs}
-          target="_blank"
-          rel="noreferrer"
-          className={buttonVariants()}
-        >
-          Documentation
-        </Link>
-        <Link
-          target="_blank"
-          rel="noreferrer"
-          href={siteConfig.links.github}
-          className={buttonVariants({ variant: "outline" })}
-        >
-          GitHub
-        </Link> */}
+
+      <div className="grid h-[450px] grid-cols-4 gap-5">
+        <div className="col-span-3">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15760.236161626544!2d38.74860638768315!3d9.058379475241788!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b8f350fce1a09%3A0x9b9773a5bb80aa81!2sSheger%20Park!5e0!3m2!1sen!2set!4v1686264906490!5m2!1sen!2set"
+            width="100%"
+            height="100%"
+          ></iframe>
+        </div>
+        <ScrollArea className="flex flex-col gap-4 overflow-x-hidden overflow-y-auto max-h-fit">
+          {nearbyPlaces.map((place, i) => (
+            <Card key={i} className="relative mb-4 bg-white shadow">
+              <Link href="/">
+                <CardContent className="flex items-center gap-4 p-0">
+                  <img
+                    src={place.image}
+                    alt={place.name}
+                    className="h-full w-36 rounded-l-md"
+                  />
+                  <div className="">
+                    <p className="text-lg font-semibold">{place.name}</p>
+                    <p className="text-sm text-gray-500">{place.description}</p>
+                  </div>
+                </CardContent>
+              </Link>
+            </Card>
+          ))}
+        </ScrollArea>
       </div>
     </section>
   )
