@@ -15,7 +15,8 @@ import {
 } from "lucide-react"
 
 import { Badge } from "@/components/ui/badge"
-import { Card, CardContent } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardTitle } from "@/components/ui/card"
 import { ScrollArea } from "@/components/ui/scroll-area"
 
 type Category = {
@@ -132,7 +133,7 @@ export default function IndexPage() {
           </div>
           <ScrollArea className="flex flex-col gap-4 overflow-x-hidden overflow-y-auto max-h-fit">
             {nearbyPlaces.map((place, i) => (
-              <Card key={i} className="relative mb-4 bg-white shadow">
+              <Card key={i} className="relative mb-4 bg-white shadow-lg">
                 <Link href="/">
                   <CardContent className="flex items-center gap-4 p-0">
                     <img
@@ -177,7 +178,7 @@ export default function IndexPage() {
       <section className="bg-gray-100">
         <div className="container flex gap-6 py-6 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max">
           {nearbyPlaces.map((place, i) => (
-            <Card key={i} className="shadow-md group">
+            <Card key={i} className="shadow-lg group">
               <Link href="/" className="group-hover:animate-pulse">
                 <CardContent className="relative p-0">
                   <img
@@ -224,6 +225,32 @@ export default function IndexPage() {
             nisi. Laborum necessitatibus nobis soluta, eum consequatur dolor
             quidem dolore itaque illum possimus quisquam iure.
           </p>
+        </div>
+      </section>
+      <section>
+        <div className="container flex gap-10 py-6 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max">
+          {nearbyPlaces.map((place, i) => (
+            <Card className="max-w-sm shadow-lg">
+              <CardContent className="flex flex-col justify-center p-0">
+                <img
+                  src="https://source.unsplash.com/random/300x300"
+                  className="max-w-sm rounded-md rounded-b-none"
+                  alt="placeholder"
+                />
+                <div className="flex flex-col gap-2 p-4">
+                  <h2 className="text-xl font-semibold">Hello</h2>
+                  <p className="text-sm">
+                    {place.description.length > 50
+                      ? place.description.slice(0, 50) + "..."
+                      : place.description}
+                  </p>
+                </div>
+                <Button className="w-full text-lg rounded-t-none">
+                  Go <ChevronRight />
+                </Button>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </section>
     </>
