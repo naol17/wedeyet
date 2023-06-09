@@ -131,7 +131,7 @@ const Footer = () => {
                   >
                     <Phone className="w-5 h-5 shrink-0" />
 
-                    <span className="flex-1 text-gray-500">+251 92928222</span>
+                    <span className="flex-1 text-gray-500">+251 917846893</span>
                   </Link>
                 </li>
 
