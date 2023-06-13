@@ -1,6 +1,17 @@
 import Image from "next/image"
 import Link from "next/link"
-import { Facebook, Instagram, Mail, MapPin, Phone, Twitter } from "lucide-react"
+import {
+  Facebook,
+  Instagram,
+  LocateFixed,
+  Mail,
+  MapPin,
+  MessageCircle,
+  Phone,
+  Twitter,
+} from "lucide-react"
+
+import { Button } from "./ui/button"
 
 const Footer = () => {
   return (
@@ -56,6 +67,12 @@ const Footer = () => {
                 </Link>
               </li>
             </ul>
+            <div className="px-25 mt-5">
+              <Button>
+                <MessageCircle className="h-6 w-6" />
+                <span className="mr-2"></span> Feedback
+              </Button>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:col-span-2 lg:grid-cols-3">
