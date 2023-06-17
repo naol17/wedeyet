@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
 import {
@@ -12,6 +14,11 @@ import {
 } from "lucide-react"
 
 import { Button } from "./ui/button"
+
+const wayoo = () => {
+  alert("wayooko")
+  console.log("jsd")
+}
 
 const Footer = () => {
   return (
@@ -68,10 +75,14 @@ const Footer = () => {
               </li>
             </ul>
             <div className="px-25 mt-5">
-              <Button>
-                <MessageCircle className="h-6 w-6" />
-                <span className="mr-2"></span> Feedback
-              </Button>
+              <button
+                className="flex flex-row bg-primary ring-2 p-2 marker:selection:"
+                onClick={() => wayoo()}
+                onClickCapture={() => alert("kjhg")}
+              >
+                <MessageCircle className="h-6 w-6 text-white" />
+                <span className="mr-2 text-white"> Feedback</span>
+              </button>
             </div>
           </div>
 
@@ -172,3 +183,15 @@ const Footer = () => {
 }
 
 export default Footer
+function fire(arg0: {
+  title: string
+  text: string
+  icon: string
+  showCancelButton: boolean
+  confirmButtonColor: string
+  cancelButtonColor: string
+  confirmButtonText: string
+  cancelButtonText: string
+}) {
+  throw new Error("Function not implemented.")
+}

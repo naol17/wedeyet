@@ -77,12 +77,12 @@ const Places = () => {
         </div>
       </section>
       {/*  */}
-      <div className="container space-y-5 py-8 lg:space-y-16 sm:space-y-5 sm:grid-cols-1 sm:bg-red-700">
-        <div className="grid grid-cols-2 ml-6 sm:ml-[-20px] sm:bg-green-500">
+      <div className="container space-y-5 py-8 lg:space-y-16 sm:space-y-5 sm:grid-cols-1">
+        <div className="grid grid-cols-2 ml-6 sm:ml-[-20px] ">
           <div>
             <div className="grid grid-cols-2">
               <div className="py-10 lg:space-y-10">
-                <div className="lg:px-25 md:px-10 bg-yellow-500">
+                <div className="lg:px-25 md:px-10">
                   <Button>
                     <LocateFixed className="h-6 w-6" />
                     <span className="mr-2"></span> Direction
@@ -116,7 +116,7 @@ const Places = () => {
                 </Button>
               </div>
               <div>
-                <p className="align-start justify-start">Somebody@Telegram</p>
+                {/* <p className="align-center justify-start">Somebody@Telegram</p> */}
               </div>
             </div>
           </div>
@@ -195,7 +195,7 @@ const Places = () => {
       <section>
         <div className="container flex gap-6 py-6 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max">
           {placeImages.map((place, i) => (
-            <Card key={i} className="shadow-lg group bg-gray-100 w-20%">
+            <Card key={i} className="shadow-lg group bg-gray-100 ">
               <Link href="/" className="group-hover:animate-pulse">
                 <CardContent className="relative p-0">
                   <img
@@ -203,8 +203,31 @@ const Places = () => {
                     className="rounded-md lg:!max-w-[700px] md:!max-w-[500px] sm:!max-w-[500px]"
                     alt={place.name}
                   />
-
-                  <Badge className="absolute left-5 top-3 px-4 text-lg md:top-3 md:left-3 md:text-sm sm:text-xs sm:text-primary sm:left-2 sm:top-1">
+                  <Badge className="absolute left-5 top-3 px-4 text-lg md:top-3 md:left-3 md:text-sm sm:text-xs xsm:left-2 sm:top-1">
+                    Add
+                  </Badge>
+                </CardContent>
+              </Link>
+              <div className="">
+                <h2 className="ml-5 mb-5 mt-5">Description</h2>
+                <p className="ml-5 mb-4">{place.description}</p>
+              </div>
+            </Card>
+          ))}
+        </div>
+      </section>
+      <section>
+        <div className="container flex gap-5 py-5 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max">
+          {placeImages.map((place, i) => (
+            <Card key={i} className="shadow-lg group bg-gray-100 ">
+              <Link href="/" className="group-hover:animate-pulse">
+                <CardContent className="relative p-0">
+                  <img
+                    src={place.image}
+                    className="rounded-md lg:!max-w-[300px] md:!max-w-[250px] sm:!max-w-[200px]"
+                    alt={place.name}
+                  />
+                  <Badge className="absolute left-5 top-3 px-4 text-lg md:top-3 md:left-3 md:text-sm sm:text-xs sm:left-2 sm:top-1">
                     Add
                   </Badge>
                 </CardContent>

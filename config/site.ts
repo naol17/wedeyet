@@ -8,18 +8,22 @@ export const siteConfig = {
     {
       title: "Home",
       href: "/",
+      className: "block mt-4 lg:inline-block lg:mt-0 text-white-200 mr-4",
     },
     {
       title: "Places",
       href: "/places",
+      className: "block mt-4 lg:inline-block lg:mt-0 text-white-200 mr-4",
     },
     {
       title: "About",
       href: "/about",
+      className: "block mt-4 lg:inline-block lg:mt-0 text-white-200 mr-4",
     },
     {
       title: "Contact",
       href: "/contact",
+      className: "block mt-4 lg:inline-block lg:mt-0 text-white-200 mr-4",
     },
   ],
 }
