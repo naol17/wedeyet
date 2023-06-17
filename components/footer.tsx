@@ -76,7 +76,7 @@ const Footer = () => {
             </ul>
             <div className="px-25 mt-5">
               <button
-                className="flex flex-row bg-primary ring-2 p-2 marker:selection:"
+                className="flex flex-row bg-primary  p-2 rounded-md marker:selection:"
                 onClick={() => wayoo()}
                 onClickCapture={() => alert("kjhg")}
               >
