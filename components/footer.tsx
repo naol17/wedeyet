@@ -36,15 +36,11 @@ const Footer = () => {
         setData(`Error: ${error?.message}`)
       })
     console.log(data)
-    alert("submitted submission")
+    alert("Thank you for your feedback! ")
     setText("")
     setFeedback("")
   }
   console.log(feedback, text, followUp)
-
-  // const imojii = () => {
-  //   setFeedback("1")
-  // }
 
   return (
     <>

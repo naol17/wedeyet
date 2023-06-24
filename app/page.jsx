@@ -1,6 +1,11 @@
+"use client"
+
+// import { error } from "console"
+import { useEffect, useState } from "react"
 import dynamic from "next/dynamic"
 import Image from "next/image"
 import Link from "next/link"
+import axios from "axios"
 import {
   Car,
   ChevronLeft,
@@ -19,18 +24,18 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardTitle } from "@/components/ui/card"
 import { ScrollArea } from "@/components/ui/scroll-area"
 
-type Category = {
-  name: string
-  icon: LucideIcon
-}
+// type Category = {
+//   name: string
+//   icon: LucideIcon
+// }
 
-type NearbyPlace = {
-  name: string
-  description: string
-  image: string
-}
+// type NearbyPlace = {
+//   name: string
+//   description: string
+//   image: string
+// }
 
-const categories: Category[] = [
+const categories = [
   {
     name: "Transport",
     icon: Car,
@@ -53,7 +58,7 @@ const categories: Category[] = [
   },
 ]
 
-const nearbyPlaces: NearbyPlace[] = [
+const nearbyPlaces = [
   {
     name: "Birr",
     description: "Ethiopian Restaurant",
@@ -97,8 +102,34 @@ const nearbyPlaces: NearbyPlace[] = [
 ]
 
 export default function IndexPage() {
+  const [posts, setPosts] = useState([])
+
+  useEffect(() => {
+    axios
+      .get("https://wedeyet.herokuapp.com/api/place")
+      .then((result) => {
+        console.log(result.data)
+        setPosts(result.data)
+      })
+      .catch((error) => console.log(error))
+  }, [])
+
   return (
     <>
+      {/*  */}
+      <div className="bg-red-500">
+        {posts &&
+          posts.map((data) => {
+            return (
+              <div key={data.id}>
+                <h4>{data.title}</h4>
+                <p>{data.body}</p>
+              </div>
+            )
+          })}
+      </div>
+
+      {/*  */}
       <section className="container grid items-center gap-6 pt-6 pb-8 md:py-10">
         <div className="flex gap-10 pb-2 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max ">
           {categories.map((category, i) => (
@@ -188,7 +219,7 @@ export default function IndexPage() {
                   />
                   <div className="absolute flex flex-col gap-2 text-white bottom-5 left-4">
                     <h3 className="w-full text-2xl font-semibold ">
-                      {place.name}asas
+                      {place.name}
                     </h3>
                     <p>
                       {place.description.length > 50

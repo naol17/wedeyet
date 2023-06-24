@@ -21,7 +21,7 @@ export function MainNav({ items }: MainNavProps) {
         <button
           onClick={() => setIsOpen(!isOpen)}
           // asi lawxin jiru
-          className="flex items-center px-3 py-2 rounded text-primary mt-1 pt-10 mr-14  "
+          className="mr-14 mt-1 flex items-center rounded px-3 py-2 pt-10 text-primary  "
         >
           <svg
             className={`fill-current h-5 w-5 pt-[-20rem] ${
@@ -48,33 +48,33 @@ export function MainNav({ items }: MainNavProps) {
           isOpen ? "block" : "hidden"
         }`}
       >
-        <div className="text-sm lg:pt-0 lg:mt-0  lg:flex        ml-10 pl-3  mt-[-26rem] pt-[22rem] bg-green-300 lg:bg-inherit  ">
+        <div className="ml-10 mt-[-26rem] bg-green-300  pl-3        pt-[22rem] text-sm  lg:mt-0 lg:flex lg:bg-inherit lg:pt-0  ">
           <a
             href="/"
             className="block mt-1 pt-7 lg:pt-0 lg:inline-block lg:mt-0 text-white-200 mr-4 "
           >
-            Home{" "}
+            Home
           </a>
 
           <a
             href="/places"
-            className="block mt-1lg:inline-block lg:mt-0 text-white-200 mr-4"
+            className="mt-1lg:inline-block text-white-200 mr-4 block lg:mt-0"
           >
-            place{" "}
+            place
           </a>
 
           <a
             href="about"
-            className="block mt-1 lg:inline-block lg:mt-0 text-white-200 mr-4"
+            className="text-white-200 mr-4 mt-1 block lg:mt-0 lg:inline-block"
           >
-            About{" "}
+            About
           </a>
 
           <a
             href="contact"
             className="block mt-1 lg:inline-block lg:mt-0 text-white-200 mr-4"
           >
-            Contact{" "}
+            Contact
           </a>
         </div>
       </div>
