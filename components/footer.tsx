@@ -15,6 +15,37 @@ import {
 
 const Footer = () => {
   const [showModal, setShowModal] = useState(false)
+  const [text, setText] = useState("")
+  const [feedback, setFeedback] = useState("")
+  const [followUp, setFollowUp] = useState(true)
+  const [data, setData] = useState("")
+
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
+    e.preventDefault()
+    const data = { feedback, text, followUp }
+
+    fetch("https://wedeyet.herokuapp.com", {
+      method: "POST",
+      body: JSON.stringify({ data }),
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((res) => res.json())
+      .then((json) => setData(json.data))
+      .catch((error) => {
+        console.log(error?.message)
+        setData(`Error: ${error?.message}`)
+      })
+    console.log(data)
+    alert("submitted submission")
+    setText("")
+    setFeedback("")
+  }
+  console.log(feedback, text, followUp)
+
+  // const imojii = () => {
+  //   setFeedback("1")
+  // }
+
   return (
     <>
       {showModal ? (
@@ -38,25 +69,57 @@ const Footer = () => {
                 <div className="relative p-6 flex-auto">
                   <p className="mt-3">What do you think of our service?</p>
                   <div className="flex flex-row align-middle justify-center space-x-1 m-3">
-                    <button className="p-2 bg-green-200 w-16 h-16 active:bg-primary rounded-full">
+                    <button
+                      className="p-2 bg-green-200 w-16 h-16 active:bg-primary rounded-full"
+                      onClick={() => {
+                        setFeedback("1")
+                      }}
+                      onClickCapture={() => alert(feedback)}
+                    >
                       <img src="/uf.png" alt="" />
                     </button>
-                    <button className="p-2 bg-green-200 w-16 h-16 active:bg-primary rounded-full">
+                    <button
+                      className="p-2 bg-green-200 w-16 h-16 active:bg-primary rounded-full"
+                      onClick={() => {
+                        setFeedback("2")
+                      }}
+                      onClickCapture={() => alert(feedback)}
+                    >
                       <img src="/nf.png" alt="" />
                     </button>
-                    <button className="p-2 bg-green-200 w-16 h-16 active:bg-primary rounded-full">
+                    <button
+                      className="p-2 bg-green-200 w-16 h-16 active:bg-primary rounded-full"
+                      onClick={() => {
+                        setFeedback("3")
+                      }}
+                      onClickCapture={() => alert(feedback)}
+                    >
                       <img src="/sm.png" alt="" />
                     </button>
-                    <button className="p-2 bg-green-200 w-16 h-16 active:bg-primary rounded-full">
+                    <button
+                      className="p-2 bg-green-200 w-16 h-16 active:bg-primary rounded-full"
+                      onClick={() => {
+                        setFeedback("4")
+                      }}
+                      onClickCapture={() => alert(feedback)}
+                    >
                       <img src="/kf.png" alt="" />
                     </button>
-                    <button className="p-2 bg-green-200 w-16 h-16 active:bg-primary rounded-full">
+                    <button
+                      className="p-2 bg-green-200 w-16 h-16 active:bg-primary rounded-full"
+                      onClick={() => {
+                        setFeedback("5")
+                      }}
+                      onClickCapture={() => alert(feedback)}
+                    >
                       <img src="/ss.png" alt="" />
                     </button>
                   </div>
                   <textarea
                     className="border border-primary rounded-md p-3 w-[100%] "
                     placeholder="This is . . ."
+                    value={text}
+                    onChange={(e) => setText(e.target.value)}
                   ></textarea>
                 </div>
                 <div className="ml-5 mb-3">
@@ -76,6 +139,9 @@ const Footer = () => {
                       value="Female"
                       name="gender"
                       className="ml-2 mr-2 h-5 w-5 accent-green-600"
+                      onClick={() => {
+                        setFollowUp(false)
+                      }}
                     />
                     No
                   </div>
@@ -85,6 +151,7 @@ const Footer = () => {
                     className="text-white shadow-md bg-primary active:bg-green-700 font-bold uppercase text-sm px-6 py-3 rounded  hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
                     type="button"
                     onClick={() => setShowModal(false)}
+                    onClickCapture={handleSubmit}
                   >
                     Send
                   </button>
