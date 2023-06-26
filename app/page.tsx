@@ -113,6 +113,11 @@ export default function IndexPage() {
       })
       .catch((error) => console.log(error))
   }, [])
+  useEffect(() => {
+    axios.get("https://restcountries.com/v3.1/all").then(({ data }) => {
+      setPosts(data.slice())
+    })
+  }, [])
 
   return (
     <>
@@ -260,7 +265,7 @@ export default function IndexPage() {
       </section>
       <section>
         <div className="container flex gap-10 py-6 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max">
-          {nearbyPlaces.map((place, i) => (
+          {posts.map((place, i) => (
             <Card className="max-w-sm shadow-lg">
               <CardContent className="flex flex-col justify-center p-0">
                 <img
@@ -276,14 +281,15 @@ export default function IndexPage() {
                       : place.description}
                   </p>
                 </div>
-                <Button
-                  className="w-full text-lg rounded-t-none"
+                <button
+                  className="flex w-full flex-row rounded-t-none rounded-b-md  bg-primary text-lg text-white align-center pl-32 p-3 text-bold "
                   onClick={() => {
-                    alert("go clicked")
+                    alert("ghjk")
                   }}
                 >
-                  Go <ChevronRight />
-                </Button>
+                  Go
+                  <ChevronRight />
+                </button>
               </CardContent>
             </Card>
           ))}

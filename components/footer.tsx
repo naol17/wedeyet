@@ -70,7 +70,6 @@ const Footer = () => {
                       onClick={() => {
                         setFeedback("1")
                       }}
-                      onClickCapture={() => alert(feedback)}
                     >
                       <img src="/uf.png" alt="" />
                     </button>
@@ -79,7 +78,6 @@ const Footer = () => {
                       onClick={() => {
                         setFeedback("2")
                       }}
-                      onClickCapture={() => alert(feedback)}
                     >
                       <img src="/nf.png" alt="" />
                     </button>
@@ -88,7 +86,6 @@ const Footer = () => {
                       onClick={() => {
                         setFeedback("3")
                       }}
-                      onClickCapture={() => alert(feedback)}
                     >
                       <img src="/sm.png" alt="" />
                     </button>
@@ -97,7 +94,6 @@ const Footer = () => {
                       onClick={() => {
                         setFeedback("4")
                       }}
-                      onClickCapture={() => alert(feedback)}
                     >
                       <img src="/kf.png" alt="" />
                     </button>
@@ -106,7 +102,6 @@ const Footer = () => {
                       onClick={() => {
                         setFeedback("5")
                       }}
-                      onClickCapture={() => alert(feedback)}
                     >
                       <img src="/ss.png" alt="" />
                     </button>
