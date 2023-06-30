@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import dynamic from "next/dynamic"
 import Image from "next/image"
 import Link from "next/link"
@@ -53,6 +54,27 @@ const placeImages: PlaceImage[] = [
 ]
 
 const Places = () => {
+  const [users, setUsers] = useState([])
+  const fetchData = () => {
+    const headers = {
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY4Nzk1MzM1NiwiZXhwIjoxNjg4MDM5NzU2fQ.FOobYlZCmZ68RhLEX5vON1OJmb4FHCFqyoqwSsWRC_oeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY4Nzk1MzM1NiwiZXhwIjoxNjg4MDM5NzU2fQ.FOobYlZCmZ68RhLEX5vON1OJmb4FHCFqyoqwSsWRC_oeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY4Nzk1MzM1NiwiZXhwIjoxNjg4MDM5NzU2fQ.FOobYlZCmZ68RhLEX5vON1OJmb4FHCFqyoqwSsWRC_oeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY4Nzk1MzM1NiwiZXhwIjoxNjg4MDM5NzU2fQ.FOobYlZCmZ68RhLEX5vON1OJmb4FHCFqyoqwSsWRC_o",
+    }
+    fetch(" https://wedeyet.herokuapp.com/api/place/all", { headers })
+      .then((response) => {
+        return response.json()
+      })
+
+      .then((data) => {
+        setUsers(data)
+      })
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
+  console.log("the data", users)
+
   return (
     <>
       {" "}
@@ -79,54 +101,46 @@ const Places = () => {
         </div>
       </section>
       {/*  */}
-      <div className="container space-y-5 py-8 lg:space-y-16 sm:space-y-5 sm:grid-cols-1">
-        <div className="grid grid-cols-2 ml-6 sm:ml-[-20px] ">
-          <div className=" ml-[-5rem]">
-            <div className="grid grid-cols-2">
-              <div className="py-10 mr-15  lg:space-y-10  pb-[-5rem]">
-                <div className="lg:pr-25  mt-5 align-middle justify-center">
-                  <button
-                    className="flex flex-row w-20 sm:ml-32 sm:w-auto mr-10 ml-10 bg-primary p-2 text-xs md:text-sm lg:text-base lg:p-3 sm:p-2 rounded-md marker:selection:"
-                    onClickCapture={() => alert("kjhg")}
-                  >
-                    <LocateFixed className="h-4 w-4 sm:h-6 sm:w-6 lg:h-6 lg:w-6 text-white" />
-                    <span className="mr-3  text-white sm:text-sm text-xs lg:text-base ">
-                      Direction
-                    </span>
-                  </button>
-                </div>
-              </div>
-              <div className=" mr-50 ml-5">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15760.236161626544!2d38.74860638768315!3d9.058379475241788!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b8f350fce1a09%3A0x9b9773a5bb80aa81!2sSheger%20Park!5e0!3m2!1sen!2set!4v1686264906490!5m2!1sen!2set"
-                  width="100%"
-                  height="100%"
-                ></iframe>
-              </div>
-              <p className="mt-0 ml-10 sm:ml-32">placename</p>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 m-5 gap-2 lg:w-full">
+        <div className="flex justify-center  ">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 m-5 gap-3 lg:w-full">
+            <div className="flex justify-center h-11 mt-10  ">
+              <button className="flex gap-2 bg-primary hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
+                <LocateFixed className="h-4 w-4 sm:h-6 sm:w-6 lg:h-6 lg:w-6 text-white" />
+                <span className="mr-3  text-white  sm:text-sm text-lg lg:text-base ">
+                  Direction{" "}
+                </span>
+              </button>{" "}
+            </div>
+            <div className="flex flex-col justify-center  ">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15760.236161626544!2d38.74860638768315!3d9.058379475241788!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b8f350fce1a09%3A0x9b9773a5bb80aa81!2sSheger%20Park!5e0!3m2!1sen!2set!4v1686264906490!5m2!1sen!2set"
+                width="100%"
+                height="100%"
+              ></iframe>
+              <p className="mt-5">Place Name</p>
             </div>
           </div>
-
-          <div className=" ml-6 sm:ml-12 lg:ml-13 ">
-            <div className="grid grid-rows-2 sm:grid-cols-2  md:grid-rows-2 lg:grid-col-2">
-              <div className="lg:mr-24 sm:mr-24">
-                <Button>
-                  <Phone className="h-7 w-7" />
-                </Button>
-              </div>
-              <div className="align-start justify-start sm:pr-1 text-sm sm:text-sm lg:text-base sm:ml-[-3rem] pt-2">
+        </div>
+        <div className="flex justify-center  ">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 m-5 gap-6 mt-5 lg:w-full">
+            <div className="flex justify-center  ">
+              <Button>
+                <Phone className="h-7 w-7" />
+              </Button>
+              <p className=" text-sm sm:text-sm lg:text-base ml-5 pt-2">
+                {" "}
                 +251 91784 6893
-              </div>
+              </p>
             </div>
-            <div className="grid grid-rows-2 sm:grid-cols-2  md:grid-rows-2 lg:grid-col-2">
-              <div className="lg:mr-24 sm:mr-24">
-                <Button>
-                  <Send className="h-7 w-7" />
-                </Button>
-              </div>
-              <div className="align-start justify-start sm:pr-1 text-sm sm:text-sm lg:text-base sm:ml-[-3rem] pt-2">
-                someone@Telegram
-              </div>
+            <div className="flex justify-center mr-10 ">
+              <Button>
+                <Phone className="h-7 w-7" />
+              </Button>
+              <p className="  text-sm sm:text-sm lg:text-base ml-5 pt-2">
+                {" "}
+                @Telegram{" "}
+              </p>
             </div>
           </div>
         </div>
