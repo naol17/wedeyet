@@ -1,22 +1,32 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import {
+  JSXElementConstructor,
+  Key,
+  PromiseLikeOfReactNode,
+  ReactElement,
+  ReactFragment,
+  ReactPortal,
+  useEffect,
+  useState,
+} from "react"
 import dynamic from "next/dynamic"
 import Image from "next/image"
 import Link from "next/link"
+import axios from "axios"
 import { ChevronRight, LocateFixed, Phone, Send, Twitter } from "lucide-react"
 
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardTitle } from "@/components/ui/card"
 
-type PlaceImage = {
-  image: string
-  name: string
-  description: string
-}
+// type PlaceImage = {
+//   image: string
+//   name: string
+//   description: string
+// }
 
-const placeImages: PlaceImage[] = [
+const placeImagess = [
   {
     name: "Akko Coffee",
     image: "https://source.unsplash.com/random/300x300",
@@ -58,9 +68,9 @@ const Places = () => {
   const fetchData = () => {
     const headers = {
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY4Nzk1MzM1NiwiZXhwIjoxNjg4MDM5NzU2fQ.FOobYlZCmZ68RhLEX5vON1OJmb4FHCFqyoqwSsWRC_oeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY4Nzk1MzM1NiwiZXhwIjoxNjg4MDM5NzU2fQ.FOobYlZCmZ68RhLEX5vON1OJmb4FHCFqyoqwSsWRC_oeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY4Nzk1MzM1NiwiZXhwIjoxNjg4MDM5NzU2fQ.FOobYlZCmZ68RhLEX5vON1OJmb4FHCFqyoqwSsWRC_oeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY4Nzk1MzM1NiwiZXhwIjoxNjg4MDM5NzU2fQ.FOobYlZCmZ68RhLEX5vON1OJmb4FHCFqyoqwSsWRC_o",
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY4ODA4Njk5OCwiZXhwIjoxNjg4MTczMzk4fQ.v2q-v9SOj6tOSW7HGC2FRxnchY8tO9lyHxiOtqqXsoc",
     }
-    fetch(" https://wedeyet.herokuapp.com/api/place/all", { headers })
+    fetch(" https://wedeyet.herokuapp.com/api/place/all ", { headers })
       .then((response) => {
         return response.json()
       })
@@ -73,8 +83,12 @@ const Places = () => {
   useEffect(() => {
     fetchData()
   }, [])
-  console.log("the data", users)
 
+  console.log("the data", users)
+  const placeResponce = Object.values(users)
+  console.log("placeResponse", placeResponce)
+  const placeImages = placeResponce[1]
+  console.log("inner array", placeImages)
   return (
     <>
       {" "}
@@ -90,7 +104,8 @@ const Places = () => {
               <Link href="/" className="group-hover:animate-pulse">
                 <CardContent className="relative p-0">
                   <img
-                    src={place.image}
+                    src="https://source.unsplash.com/random/300x300"
+                    // src={place.image}
                     className="rounded-md !max-w-[500px]"
                   />
                   <div className="absolute flex flex-col gap-2 text-white bottom-5 left-4"></div>
@@ -176,23 +191,32 @@ const Places = () => {
           </h2>
         </div>
         <div className="container flex gap-10 py-6 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max">
-          {placeImages.map((place, i) => (
-            <Card className="max-w-sm shadow-lg">
-              <CardContent className="flex flex-col justify-center p-0">
-                <img
-                  src="https://source.unsplash.com/random/300x300"
-                  className="max-w-sm rounded-md rounded-b-none"
-                  alt="placeholder"
-                />
-                <div className="flex flex-col gap-2 p-4">
-                  <h2 className="text-xl font-semibold">{place.name}</h2>
-                </div>
-                <Button className="w-full text-lg rounded-t-none">
-                  Go <ChevronRight />
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
+          {placeImages.map(
+            (
+              place: {
+                // category: any
+                name: any
+              },
+              i: any
+            ) => (
+              <Card className="max-w-sm shadow-lg">
+                <CardContent className="flex flex-col justify-center p-0">
+                  <img
+                    src="https://source.unsplash.com/random/300x300"
+                    className="max-w-sm rounded-md rounded-b-none"
+                    alt="placeholder"
+                  />
+                  <div className="flex flex-col gap-2 p-4">
+                    <h2 className="text-xl font-semibold">{place.name}</h2>
+                    {/* <p>{place.category.name}</p> */}
+                  </div>
+                  <Button className="w-full text-lg rounded-t-none mt-6">
+                    Go <ChevronRight />
+                  </Button>
+                </CardContent>
+              </Card>
+            )
+          )}
         </div>
       </section>
       <div className="flex flex-col w-11/12 gap-6 mx-auto">
@@ -216,51 +240,67 @@ const Places = () => {
         </p>
       </div>
       <section>
-        <div className="container flex gap-6 py-6 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max">
-          {placeImages.map((place, i) => (
-            <Card key={i} className="shadow-lg group bg-gray-100 ">
-              <Link href="/" className="group-hover:animate-pulse">
-                <CardContent className="relative p-0">
-                  <img
-                    src={place.image}
-                    className="rounded-md lg:!max-w-[700px] md:!max-w-[500px] sm:!max-w-[500px]"
-                    alt={place.name}
-                  />
-                  <Badge className="absolute left-5 top-3 px-4 text-lg md:top-3 md:left-3 md:text-sm sm:text-xs xsm:left-2 sm:top-1">
-                    Add
-                  </Badge>
-                </CardContent>
-              </Link>
-              <div className="">
-                <h2 className="ml-5 mb-5 mt-5">Description</h2>
-                <p className="ml-5 mb-4">{place.description}</p>
-              </div>
-            </Card>
-          ))}
-        </div>
+        {/* <div className="container flex gap-6 py-6 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max">
+          <div className="grid grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
+            {placeImages.map((place, i) => (
+              <Card key={i} className="shadow-lg group bg-gray-100 ">
+                <Link href="/" className="group-hover:animate-pulse">
+                  <CardContent className="relative p-0">
+                    <img
+                      // src={place.image}
+                      src="https://source.unsplash.com/random/300x300"
+                      className="rounded-md lg:!max-w-[700px] md:!max-w-[500px] sm:!max-w-[500px]"
+                      alt={place.name}
+                    />
+                    <Badge className="absolute left-5 top-3 px-4 text-lg md:top-3 md:left-3 md:text-sm sm:text-xs xsm:left-2 sm:top-1">
+                      Add
+                    </Badge>
+                  </CardContent>
+                </Link>
+                <div className="">
+                  <h2 className="ml-5 mb-5 mt-5">Description</h2>
+                  <p className="ml-5 mb-4">{place.description}</p>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div> */}
       </section>
       <section>
         <div className="container flex gap-5 py-5 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max">
-          {placeImages.map((place, i) => (
-            <Card key={i} className="shadow-lg group bg-gray-100 ">
-              <Link href="/" className="group-hover:animate-pulse">
-                <CardContent className="relative p-0">
-                  <img
-                    src={place.image}
-                    className="rounded-md lg:!max-w-[300px] md:!max-w-[250px] sm:!max-w-[200px]"
-                    alt={place.name}
-                  />
-                  <Badge className="absolute left-5 top-3 px-4 text-lg md:top-3 md:left-3 md:text-sm sm:text-xs sm:left-2 sm:top-1">
-                    Add
-                  </Badge>
-                </CardContent>
-              </Link>
-              <div className="">
-                <h2 className="ml-5 mb-5 mt-5">Description</h2>
-                <p className="ml-5 mb-4">{place.description}</p>
-              </div>
-            </Card>
-          ))}
+          {placeImages.map(
+            (
+              place: {
+                image: string | undefined
+                name: string | undefined
+                description: any
+              },
+              i: Key | null | undefined
+            ) => (
+              <Card key={i} className="shadow-lg group bg-gray-100 ">
+                <Link href="/" className="group-hover:animate-pulse">
+                  <CardContent className="relative p-0">
+                    <img
+                      // src={place.image}
+                      src="https://source.unsplash.com/random/300x300"
+                      className="rounded-md lg:!max-w-[300px] md:!max-w-[250px] sm:!max-w-[200px]"
+                      alt={place.name}
+                    />
+                    <span className="bg-primary text-white p-2">
+                      {place.name}
+                    </span>
+                    <Badge className="absolute left-5 top-3 px-4 text-lg md:top-3 md:left-3 md:text-sm sm:text-xs sm:left-2 sm:top-1">
+                      Add
+                    </Badge>
+                  </CardContent>
+                </Link>
+                <div className="">
+                  <h2 className="ml-5 mb-5 mt-5">Description</h2>
+                  <p className="ml-5 mb-4">{place.description}</p>
+                </div>
+              </Card>
+            )
+          )}
         </div>
       </section>
     </>

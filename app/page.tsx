@@ -1,7 +1,17 @@
 "use client"
 
 // import { error } from "console"
-import { useEffect, useState } from "react"
+import { error } from "console"
+import {
+  JSXElementConstructor,
+  Key,
+  PromiseLikeOfReactNode,
+  ReactElement,
+  ReactFragment,
+  ReactPortal,
+  useEffect,
+  useState,
+} from "react"
 import dynamic from "next/dynamic"
 import Image from "next/image"
 import Link from "next/link"
@@ -58,7 +68,7 @@ const categories = [
   },
 ]
 
-const nearbyPlaces = [
+const nearbyPlacess = [
   {
     name: "Birr",
     description: "Ethiopian Restaurant",
@@ -102,39 +112,34 @@ const nearbyPlaces = [
 ]
 
 export default function IndexPage() {
-  const [posts, setPosts] = useState([])
-
-  useEffect(() => {
-    axios
-      .get("https://wedeyet.herokuapp.com/api/place")
-      .then((result) => {
-        console.log(result.data)
-        setPosts(result.data)
+  const [users, setUsers] = useState([])
+  const fetchData = () => {
+    const headers = {
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY4ODA4Njk5OCwiZXhwIjoxNjg4MTczMzk4fQ.v2q-v9SOj6tOSW7HGC2FRxnchY8tO9lyHxiOtqqXsoc",
+    }
+    fetch(" https://wedeyet.herokuapp.com/api/place/all ", { headers })
+      .then((response) => {
+        return response.json()
       })
-      .catch((error) => console.log(error))
-  }, [])
+
+      .then((data) => {
+        setUsers(data)
+      })
+      .catch((error) => console.log("Error", error))
+  }
+
   useEffect(() => {
-    axios.get("https://restcountries.com/v3.1/all").then(({ data }) => {
-      setPosts(data.slice())
-    })
+    fetchData()
   }, [])
 
+  console.log("the data", users)
+  const placeResponce = Object.values(users)
+  console.log("placeResponse", placeResponce)
+  const nearbyPlaces = placeResponce[1]
+  console.log("inner array", nearbyPlaces)
   return (
     <>
-      {/*  */}
-      {/* <div className="bg-red-500">
-        {posts &&
-          posts.map((data) => {
-            return (
-              <div key={data.id}>
-                <h4>{data.title}</h4>
-                <p>{data.body}</p>
-              </div>
-            )
-          })}
-      </div> */}
-
-      {/*  */}
       <section className="container grid items-center gap-6 pt-6 pb-8 md:py-10">
         <div className="flex gap-10 pb-2 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max mt-3">
           {categories.map((category, i) => (
@@ -168,25 +173,36 @@ export default function IndexPage() {
             ></iframe>
           </div>
           <ScrollArea className="flex lg:flex-col sm:flex-row gap-4 overflow-x-hidden overflow-y-auto max-h-fit">
-            {nearbyPlaces.map((place, i) => (
-              <Card key={i} className="relative mb-4 bg-white shadow-lg">
-                <Link href="/">
-                  <CardContent className="flex items-center gap-4 p-0">
-                    <img
-                      src={place.image}
-                      alt={place.name}
-                      className="h-full w-36 rounded-l-md"
-                    />
-                    <div className="">
-                      <p className="text-lg font-semibold">{place.name}</p>
-                      <p className="text-sm text-gray-500">
-                        {place.description}
-                      </p>
-                    </div>
-                  </CardContent>
-                </Link>
-              </Card>
-            ))}
+            {nearbyPlaces.map(
+              (
+                place: {
+                  name: any
+                  description: any
+                },
+                i: Key | null | undefined
+              ) => (
+                <Card key={i} className="relative mb-4 bg-white shadow-lg">
+                  <Link href="/">
+                    <CardContent className="flex items-center gap-4 p-0">
+                      <img
+                        // src={place.image}
+                        src="https://source.unsplash.com/random/300x300"
+                        alt={place.name}
+                        className="h-full w-36 rounded-l-md"
+                      />
+                      <div className="">
+                        <p className="text-lg font-semibold">{place.name}</p>
+                        <p className="text-sm text-gray-500">
+                          {place.description.length > 25
+                            ? place.description.slice(0, 25) + "..."
+                            : place.description}
+                        </p>
+                      </div>
+                    </CardContent>
+                  </Link>
+                </Card>
+              )
+            )}
           </ScrollArea>
         </div>
 
@@ -213,32 +229,43 @@ export default function IndexPage() {
       </section>
       <section className="bg-gray-100">
         <div className="container flex gap-6 py-6 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max">
-          {nearbyPlaces.map((place, i) => (
-            <Card key={i} className="shadow-lg group ">
-              <Link href="/" className="group-hover:animate-pulse">
-                <CardContent className="relative p-0 ">
-                  <img
-                    src={place.image}
-                    className="rounded-md !max-w-[500px]"
-                    alt={place.name}
-                  />
-                  <div className="absolute flex flex-col gap-2 text-white bottom-5 left-4">
-                    <h3 className="w-full text-2xl font-semibold ">
-                      {place.name}
-                    </h3>
-                    <p>
-                      {place.description.length > 50
-                        ? place.description.slice(0, 50) + "..."
-                        : place.description}
-                    </p>
-                  </div>
-                  <Badge className="absolute px-4 text-lg top-3 left-5">
-                    Add
-                  </Badge>
-                </CardContent>
-              </Link>
-            </Card>
-          ))}
+          {nearbyPlaces.map(
+            (
+              place: {
+                image: string | undefined
+                name: any
+
+                description: any
+              },
+              i: Key | null | undefined
+            ) => (
+              <Card key={i} className="shadow-lg group ">
+                <Link href="/" className="group-hover:animate-pulse">
+                  <CardContent className="relative p-0 ">
+                    <img
+                      // src={place.image}
+                      src="https://source.unsplash.com/random/300x300"
+                      className="rounded-md !max-w-[500px]"
+                      alt={place.name}
+                    />
+                    <div className="absolute flex flex-col gap-2 text-white bottom-5 left-4">
+                      <h3 className="w-full text-xl font-semibold bg-primary p-1 ">
+                        {place.name}
+                      </h3>
+                      <p className="bg-green-500">
+                        {place.description.length > 50
+                          ? place.description.slice(0, 50) + "..."
+                          : place.description}
+                      </p>
+                    </div>
+                    <Badge className="absolute px-4 text-lg top-3 left-5">
+                      Add
+                    </Badge>
+                  </CardContent>
+                </Link>
+              </Card>
+            )
+          )}
         </div>
       </section>
       <section className="container grid items-center gap-6 pt-6 pb-8 md:py-10">
@@ -265,8 +292,8 @@ export default function IndexPage() {
       </section>
       <section>
         <div className="container flex gap-10 py-6 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max">
-          {posts.map((place, i) => (
-            <Card className="max-w-sm shadow-lg">
+          {nearbyPlaces.map((place: any, i: any) => (
+            <Card className="max-w-sm shadow-lg mb-32">
               <CardContent className="flex flex-col justify-center p-0">
                 <img
                   src="https://source.unsplash.com/random/300x300"
@@ -274,15 +301,20 @@ export default function IndexPage() {
                   alt="placeholder"
                 />
                 <div className="flex flex-col gap-2 p-4">
-                  <h2 className="text-xl font-semibold">Hello</h2>
-                  <p className="text-sm">
-                    {place.description.length > 50
-                      ? place.description.slice(0, 50) + "..."
+                  <h3 className="text-xl font-semibold ">
+                    {place.name}{" "}
+                    <span className="text-white invisible">
+                      illum possimus quisquam iure gftr hhsgeep.
+                    </span>
+                  </h3>
+                  <p className="text-sm mt-[-38px]">
+                    {place.description.length > 35
+                      ? place.description.slice(0, 35) + "..."
                       : place.description}
                   </p>
                 </div>
                 <button
-                  className="flex w-full flex-row rounded-t-none rounded-b-md  bg-primary text-lg text-white align-center pl-32 p-3 text-bold "
+                  className="flex w-full flex-row rounded-t-none rounded-b-md  bg-primary text-lg text-white align-center pl-32 p-3  text-bold "
                   onClick={() => {
                     alert("ghjk")
                   }}
