@@ -67,8 +67,7 @@ const Places = () => {
   const [users, setUsers] = useState([])
   const fetchData = () => {
     const headers = {
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY4ODA4Njk5OCwiZXhwIjoxNjg4MTczMzk4fQ.v2q-v9SOj6tOSW7HGC2FRxnchY8tO9lyHxiOtqqXsoc",
+      Authorization: process.env.Api_Token,
     }
     fetch(" https://wedeyet.herokuapp.com/api/place/all ", { headers })
       .then((response) => {
