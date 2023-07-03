@@ -119,32 +119,32 @@ const nearbyPlaces = [
 
 export default function IndexPage() {
   // Fetch api
-  const [users, setUsers] = useState<any[]>([])
-  const fetchData = () => {
-    const headers: any = {
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY4ODM0MDA3NCwiZXhwIjoxNjg4NDI2NDc0fQ.h3CjPlAHMA38vH_5Un_xnq1UZ9hPQKygsylDSH1k-1g",
-    }
-    fetch(" https://wedeyet.herokuapp.com/api/place/all ", { headers })
-      .then((response) => {
-        return response.json()
-      })
+  // const [users, setUsers] = useState<any[]>([])
+  // const fetchData = () => {
+  //   const headers: any = {
+  //     Authorization:
+  //       "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY4ODM0MDA3NCwiZXhwIjoxNjg4NDI2NDc0fQ.h3CjPlAHMA38vH_5Un_xnq1UZ9hPQKygsylDSH1k-1g",
+  //   }
+  //   fetch(" https://wedeyet.herokuapp.com/api/place/all ", { headers })
+  //     .then((response) => {
+  //       return response.json()
+  //     })
 
-      .then((data) => {
-        setUsers(data)
-      })
-      .catch((error) => console.log("Error", error))
-  }
+  //     .then((data) => {
+  //       setUsers(data)
+  //     })
+  //     .catch((error) => console.log("Error", error))
+  // }
 
-  useEffect(() => {
-    fetchData()
-  }, [])
+  // useEffect(() => {
+  //   fetchData()
+  // }, [])
 
-  console.log("the data", users)
-  const placeResponce = Object.values(users)
-  console.log("placeResponse", placeResponce)
-  const nearbyPlaces = placeResponce[1]
-  console.log("inner array", nearbyPlaces)
+  // console.log("the data", users)
+  // const placeResponce = Object.values(users)
+  // console.log("placeResponse", placeResponce)
+  // const nearbyPlaces = placeResponce[1]
+  // console.log("inner array", nearbyPlaces)
 
   // Map rendering
 
