@@ -310,8 +310,8 @@ const Places = () => {
                     <div className="flex flex-col gap-2 p-4">
                       <h2 className="ml-5 mb-5 mt-5">Description</h2>
                       <p className="ml-5 mb-4">
-                        {place.description.length > 80
-                          ? place.description.slice(0, 80) + "..."
+                        {place.description.length > 200
+                          ? place.description.slice(0, 200) + "..."
                           : place.description}
                       </p>
                     </div>
