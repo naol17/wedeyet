@@ -277,27 +277,48 @@ const Places = () => {
               },
               i: Key | null | undefined
             ) => (
-              <Card key={i} className="shadow-lg group bg-gray-100 ">
+              // <Card key={i} className="shadow-lg group bg-gray-100 ">
+              //   <Link href="/" className="group-hover:animate-pulse">
+              //     <CardContent className="relative p-0">
+              //       <img
+              //         // src={place.image}
+              //         src="https://source.unsplash.com/random/300x300"
+              //         className="rounded-md lg:!max-w-[300px] md:!max-w-[250px] sm:!max-w-[200px]"
+              //         alt={place.name}
+              //       />
+              //       <span className="bg-primary text-white p-2">
+              //         {place.name}
+              //       </span>
+              //       <Badge className="absolute left-5 top-3 px-4 text-lg md:top-3 md:left-3 md:text-sm sm:text-xs sm:left-2 sm:top-1">
+              //         Add
+              //       </Badge>
+              //     </CardContent>
+              //   </Link>
+              //   <div className="">
+              //     <h2 className="ml-5 mb-5 mt-5">Description</h2>
+              //     <p className="ml-5 mb-4">{place.description}</p>
+              //   </div>
+              // </Card>
+              <Card key={i} className="max-w-sm shadow-lg">
                 <Link href="/" className="group-hover:animate-pulse">
-                  <CardContent className="relative p-0">
+                  <CardContent className="flex flex-col justify-center p-0">
                     <img
-                      // src={place.image}
                       src="https://source.unsplash.com/random/300x300"
-                      className="rounded-md lg:!max-w-[300px] md:!max-w-[250px] sm:!max-w-[200px]"
-                      alt={place.name}
+                      className="max-w-sm rounded-md rounded-b-none"
+                      alt="placeholder"
                     />
-                    <span className="bg-primary text-white p-2">
-                      {place.name}
-                    </span>
+                    <div className="flex flex-col gap-2 p-4">
+                      <h2>Description</h2>
+                      <p className="text-xl font-semibold">
+                        {place.description}
+                      </p>
+                      {/* <p>{place.category.name}</p> */}
+                    </div>
                     <Badge className="absolute left-5 top-3 px-4 text-lg md:top-3 md:left-3 md:text-sm sm:text-xs sm:left-2 sm:top-1">
                       Add
                     </Badge>
                   </CardContent>
                 </Link>
-                <div className="">
-                  <h2 className="ml-5 mb-5 mt-5">Description</h2>
-                  <p className="ml-5 mb-4">{place.description}</p>
-                </div>
               </Card>
             )
           )}
