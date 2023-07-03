@@ -309,7 +309,11 @@ const Places = () => {
                     />
                     <div className="flex flex-col gap-2 p-4">
                       <h2 className="ml-5 mb-5 mt-5">Description</h2>
-                      <p className="ml-5 mb-4">{place.description}</p>
+                      <p className="ml-5 mb-4">
+                        {place.description.length > 80
+                          ? place.description.slice(0, 80) + "..."
+                          : place.description}
+                      </p>
                     </div>
                     <Badge className="absolute left-5 top-3 px-4 text-lg md:top-3 md:left-3 md:text-sm sm:text-xs sm:left-2 sm:top-1">
                       Add
