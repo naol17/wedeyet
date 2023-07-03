@@ -175,15 +175,6 @@ export default function IndexPage() {
   }
   return (
     <>
-      {/* <div>
-        {nearbyPlace.map((place: any, i: any) => (
-          <li>
-            {place.location.coordinates[0]}lang{place.location.coordinates[1]}
-          </li>
-        ))}
-      </div>
-      <div></div> */}
-
       <section className="container grid items-center gap-6 pt-6 pb-8 md:py-10">
         <div className="flex gap-10 pb-2 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max mt-3">
           {categories.map((category, i) => (
@@ -313,10 +304,10 @@ export default function IndexPage() {
                       alt={place.name}
                     />
                     <div className="absolute flex flex-col gap-2 text-white bottom-5 left-4">
-                      <h3 className="w-full text-xl font-semibold bg-primary p-1 ">
+                      <h3 className="w-full text-xl font-semibold border border-gray-500 p-1 ">
                         {place.name}
                       </h3>
-                      <p className="bg-green-500">
+                      <p className="border-b border-b-gray-700 p-1">
                         {place.description.length > 50
                           ? place.description.slice(0, 50) + "..."
                           : place.description}
