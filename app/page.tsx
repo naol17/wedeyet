@@ -1,7 +1,5 @@
 "use client"
 
-// import { error } from "console"
-import { error, trace } from "console"
 import {
   JSX,
   JSXElementConstructor,
