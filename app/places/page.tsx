@@ -308,11 +308,8 @@ const Places = () => {
                       alt="placeholder"
                     />
                     <div className="flex flex-col gap-2 p-4">
-                      <h2>Description</h2>
-                      <p className="text-xl font-semibold">
-                        {place.description}
-                      </p>
-                      {/* <p>{place.category.name}</p> */}
+                      <h2 className="ml-5 mb-5 mt-5">Description</h2>
+                      <p className="ml-5 mb-4">{place.description}</p>
                     </div>
                     <Badge className="absolute left-5 top-3 px-4 text-lg md:top-3 md:left-3 md:text-sm sm:text-xs sm:left-2 sm:top-1">
                       Add
