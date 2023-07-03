@@ -119,10 +119,7 @@ const nearbyPlaces = [
 
 export default function IndexPage() {
   // Fetch api
-  const [users, setUsers] = useState([])
-  const [location, setLocation] = useState([])
-  const [lat, setLat] = useState([])
-  const [lng, setLng] = useState([])
+  const [users, setUsers] = useState<any[]>([])
   const fetchData = () => {
     const headers: any = {
       Authorization:

@@ -64,7 +64,7 @@ const placeImagess = [
 ]
 
 const Places = () => {
-  const [users, setUsers] = useState([])
+  const [users, setUsers] = useState<any[]>([])
   const fetchData = () => {
     const headers = {
       Authorization:
@@ -99,7 +99,7 @@ const Places = () => {
       </div>
       <section className="bg-gray-100 mt-5">
         <div className="container flex gap-6 py-6 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max">
-          {placeImages.map((place, i) => (
+          {placeImages.map((place: any, i: any) => (
             <Card key={i} className="shadow-lg group">
               <Link href="/" className="group-hover:animate-pulse">
                 <CardContent className="relative p-0">
