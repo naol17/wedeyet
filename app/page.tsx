@@ -197,25 +197,7 @@ export default function IndexPage() {
         {/* <div className="grid h-[450px] grid-cols-4 gap-5 md:bg-red-600 sm:bg-green-500 sm:grid-cols-1 lg:bg-yellow-400 "> */}
         <div className="h-[700px]  md:grid md:grid-cols-4 md:gap-2 md:h-[450px] lg:grid-cols-4">
           <div className="md:col-span-2 pb-2 h-[400px] md:pb-0 lg:col-span-3  ">
-            {nearbyPlaces.map((place: any, i: any) => (
-              <GoogleMap
-                options={mapOptions}
-                zoom={14}
-                center={mapCenter}
-                mapTypeId={google.maps.MapTypeId.ROADMAP}
-                mapContainerStyle={{ width: "100%", height: "100%" }}
-                onLoad={() => console.log("Map Component Loaded...")}
-              >
-                <MarkerF
-                  position={{
-                    lat: place.location.coordinates[0],
-                    lng: place.location.coordinates[1],
-                    // mapCenter
-                  }}
-                  // icon={Car}
-                />
-              </GoogleMap>
-            ))}
+            <h1>map</h1>
           </div>
           <ScrollArea className="h-[300px] md:h-full lg:h-full md:col-span-2 md:p-2 lg:col-span-1 lg:p-3 flex lg:flex-col sm:flex-row gap-4 overflow-x-hidden overflow-y-auto max-h-fit">
             {nearbyPlaces.map(
