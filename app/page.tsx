@@ -197,7 +197,11 @@ export default function IndexPage() {
         {/* <div className="grid h-[450px] grid-cols-4 gap-5 md:bg-red-600 sm:bg-green-500 sm:grid-cols-1 lg:bg-yellow-400 "> */}
         <div className="h-[700px]  md:grid md:grid-cols-4 md:gap-2 md:h-[450px] lg:grid-cols-4">
           <div className="md:col-span-2 pb-2 h-[400px] md:pb-0 lg:col-span-3  ">
-            <h1>map</h1>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15760.236161626544!2d38.74860638768315!3d9.058379475241788!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b8f350fce1a09%3A0x9b9773a5bb80aa81!2sSheger%20Park!5e0!3m2!1sen!2set!4v1686264906490!5m2!1sen!2set"
+              width="100%"
+              height="100%"
+            ></iframe>
           </div>
           <ScrollArea className="h-[300px] md:h-full lg:h-full md:col-span-2 md:p-2 lg:col-span-1 lg:p-3 flex lg:flex-col sm:flex-row gap-4 overflow-x-hidden overflow-y-auto max-h-fit">
             {nearbyPlaces.map(
