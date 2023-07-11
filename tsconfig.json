@@ -24,6 +24,15 @@
     ],
     "strictNullChecks": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/navbar.js", "app/page.tsx", "app/layout.jsx", "app/places/page.jsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "components/navbar.js",
+    "app/page.tsx",
+    "app/layout.jsx",
+    "app/pages/detail/page.jsx"
+  ],
   "exclude": ["node_modules"]
 }

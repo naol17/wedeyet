@@ -32,7 +32,8 @@
     "react-router-dom": "^6.14.0",
     "sharp": "^0.31.3",
     "tailwind-merge": "^1.12.0",
-    "tailwindcss-animate": "^1.0.5"
+    "tailwindcss-animate": "^1.0.5",
+    "use-places-autocomplete": "^4.0.0"
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^3.7.2",

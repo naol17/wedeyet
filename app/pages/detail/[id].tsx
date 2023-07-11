@@ -1,5 +1,6 @@
 "use client"
 
+import { error } from "console"
 import {
   JSXElementConstructor,
   Key,
@@ -13,6 +14,7 @@ import {
 import dynamic from "next/dynamic"
 import Image from "next/image"
 import Link from "next/link"
+import { useRouter } from "next/router"
 import axios from "axios"
 import { ChevronRight, LocateFixed, Phone, Send, Twitter } from "lucide-react"
 
@@ -62,40 +64,46 @@ const placeImages = [
     image: "https://source.unsplash.com/random/300x300",
   },
 ]
+console.log(placeImages[0].name)
 
 const Places = () => {
-  // const [users, setUsers] = useState<any[]>([])
-  // const fetchData = () => {
-  //   const headers = {
-  //     Authorization:
-  //       "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY4ODM0MDA3NCwiZXhwIjoxNjg4NDI2NDc0fQ.h3CjPlAHMA38vH_5Un_xnq1UZ9hPQKygsylDSH1k-1g",
-  //   }
-  //   fetch(" https://wedeyet.herokuapp.com/api/place/all ", { headers })
-  //     .then((response) => {
-  //       return response.json()
-  //     })
+  const router = useRouter()
+  const { id } = router.query
+  console.log(id)
+  // Fetch api
+  const [users, setUsers] = useState<any[]>([])
+  const [detailData, setDetailData] = useState({})
 
-  //     .then((data) => {
-  //       setUsers(data)
-  //     })
-  // }
+  const fetchData = () => {
+    const headers: any = {
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY4ODk3MjM5MCwiZXhwIjoxNjg5MDU4NzkwfQ.wx9ZWih4P1BqjmqRF6EZTWdlDpMlKF4Af0IMz8LmFCw",
+    }
+    fetch(`https://wedeyet.herokuapp.com/api/place/get/${id}`, { headers })
+      .then((response) => response.json())
+      .then((data) => {
+        setDetailData(data)
+      })
+      .catch(
+        (error) => alert("Please check that you are connected to the network.")
+        // console.log(error)
+      )
+  }
 
-  // useEffect(() => {
-  //   fetchData()
-  // }, [])
+  useEffect(() => {
+    fetchData()
+  }, [id])
 
-  // console.log("the data", users)
-  // const placeResponce = Object.values(users)
-  // console.log("placeResponse", placeResponce)
-  // const placeImages = placeResponce[1]
-  // console.log("inner array", placeImages)
+  console.log("the data", detailData)
+  const placeResponce = Object.values(users)
+  console.log("placeResponse", placeResponce)
+  const placeImages = placeResponce[1]
+  console.log("inner array", placeImages)
+
   return (
     <>
-      {" "}
       <div className="flex items-center justify-center w-full h-full">
-        <h1 className="text-5xl mt-2">Shope Name</h1>
-
-        {/* place image slider  */}
+        <h1 className="text-3xl mt-2">{placeImages[0].name}</h1>
       </div>
       <section className="bg-gray-100 mt-5">
         <div className="container flex gap-6 py-6 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max">
@@ -113,6 +121,7 @@ const Places = () => {
               </Link>
             </Card>
           ))}
+          id id
         </div>
       </section>
       {/*  */}
@@ -125,7 +134,7 @@ const Places = () => {
                 <span className="mr-3  text-white  sm:text-sm text-lg lg:text-base ">
                   Direction{" "}
                 </span>
-              </button>{" "}
+              </button>
             </div>
             <div className="flex flex-col justify-center  ">
               <iframe
@@ -133,7 +142,8 @@ const Places = () => {
                 width="100%"
                 height="100%"
               ></iframe>
-              <p className="mt-5">Place Name</p>
+
+              <p className="mt-5">{placeImages[0].name}</p>
             </div>
           </div>
         </div>
@@ -144,8 +154,7 @@ const Places = () => {
                 <Phone className="h-7 w-7" />
               </Button>
               <p className=" text-sm sm:text-sm lg:text-base ml-5 pt-2">
-                {" "}
-                +251 91784 6893
+                {/* {placeImages[0].phoneNumber} */}
               </p>
             </div>
             <div className="flex justify-center mr-10 ">
@@ -154,7 +163,7 @@ const Places = () => {
               </Button>
               <p className="  text-sm sm:text-sm lg:text-base ml-5 pt-2">
                 {" "}
-                @Telegram{" "}
+                {/* {placeImages[0].telegram} */}
               </p>
             </div>
           </div>
@@ -164,24 +173,8 @@ const Places = () => {
         <h2 className="justify-end text-lg text-center font-bold">
           Description
         </h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. A illum
-          soluta optio repellendus ullam aliquam nisi. Laborum necessitatibus
-          nobis soluta, eum consequatur dolor quidem dolore itaque illum
-          possimus quisquam iure. Lorem ipsum dolor sit amet, consectetur
-          adipisicing elit. A illum soluta optio repellendus ullam aliquam nisi.
-          Laborum necessitatibus nobis soluta, eum consequatur dolor quidem
-          dolore itaque illum possimus quisquam iure.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. A illum
-          soluta optio repellendus ullam aliquam nisi. Laborum necessitatibus
-          nobis soluta, eum consequatur dolor quidem dolore itaque illum
-          possimus quisquam iure. Lorem ipsum dolor sit amet, consectetur
-          adipisicing elit. A illum soluta optio repellendus ullam aliquam nisi.
-          Laborum necessitatibus nobis soluta, eum consequatur dolor quidem
-          dolore itaque illum possimus quisquam iure.
-        </p>
+        <p>{placeImages[0].description}</p>
+        <p></p>
       </div>
       <section>
         <div className="mt-4">
@@ -277,28 +270,6 @@ const Places = () => {
               },
               i: Key | null | undefined
             ) => (
-              // <Card key={i} className="shadow-lg group bg-gray-100 ">
-              //   <Link href="/" className="group-hover:animate-pulse">
-              //     <CardContent className="relative p-0">
-              //       <img
-              //         // src={place.image}
-              //         src="https://source.unsplash.com/random/300x300"
-              //         className="rounded-md lg:!max-w-[300px] md:!max-w-[250px] sm:!max-w-[200px]"
-              //         alt={place.name}
-              //       />
-              //       <span className="bg-primary text-white p-2">
-              //         {place.name}
-              //       </span>
-              //       <Badge className="absolute left-5 top-3 px-4 text-lg md:top-3 md:left-3 md:text-sm sm:text-xs sm:left-2 sm:top-1">
-              //         Add
-              //       </Badge>
-              //     </CardContent>
-              //   </Link>
-              //   <div className="">
-              //     <h2 className="ml-5 mb-5 mt-5">Description</h2>
-              //     <p className="ml-5 mb-4">{place.description}</p>
-              //   </div>
-              // </Card>
               <Card key={i} className="max-w-sm shadow-lg">
                 <Link href="/" className="group-hover:animate-pulse">
                   <CardContent className="flex flex-col justify-center p-0">
@@ -310,8 +281,8 @@ const Places = () => {
                     <div className="flex flex-col gap-2 p-4">
                       <h2 className="ml-5 mb-5 mt-5">Description</h2>
                       <p className="ml-5 mb-4">
-                        {place.description.length > 200
-                          ? place.description.slice(0, 200) + "..."
+                        {place.description.length > 300
+                          ? place.description.slice(0, 300) + "..."
                           : place.description}
                       </p>
                     </div>

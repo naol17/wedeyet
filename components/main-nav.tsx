@@ -57,7 +57,7 @@ export function MainNav({ items }: MainNavProps) {
           </a>
 
           <a
-            href="/places"
+            href="/pages/detail/[id]"
             className="mt-1lg:inline-block text-white-200 mr-4 block lg:mt-0"
           >
             place

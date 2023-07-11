@@ -1,5 +1,8 @@
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable react-hooks/rules-of-hooks */
 "use client"
 
+import { error } from "console"
 import {
   JSX,
   JSXElementConstructor,
@@ -15,6 +18,8 @@ import {
 import dynamic from "next/dynamic"
 import Image from "next/image"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { input } from "@material-tailwind/react"
 import {
   GoogleMap,
   Marker,
@@ -34,11 +39,18 @@ import {
   TreePine,
   Utensils,
 } from "lucide-react"
+import usePlacesAutocomplete, {
+  getGeocode,
+  getLatLng,
+} from "use-places-autocomplete"
 
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardTitle } from "@/components/ui/card"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import MapAutoComplete from "@/components/mapAutoComplete"
+
+import Places from "./pages/detail/[id]"
 
 // type Category = {
 //   name: string
@@ -119,32 +131,32 @@ const nearbyPlaces = [
 
 export default function IndexPage() {
   // Fetch api
-  // const [users, setUsers] = useState<any[]>([])
-  // const fetchData = () => {
-  //   const headers: any = {
-  //     Authorization:
-  //       "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY4ODM0MDA3NCwiZXhwIjoxNjg4NDI2NDc0fQ.h3CjPlAHMA38vH_5Un_xnq1UZ9hPQKygsylDSH1k-1g",
-  //   }
-  //   fetch(" https://wedeyet.herokuapp.com/api/place/all ", { headers })
-  //     .then((response) => {
-  //       return response.json()
-  //     })
+  const [users, setUsers] = useState<any[]>([])
+  const fetchData = () => {
+    const headers: any = {
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY4ODk3MjM5MCwiZXhwIjoxNjg5MDU4NzkwfQ.wx9ZWih4P1BqjmqRF6EZTWdlDpMlKF4Af0IMz8LmFCw",
+    }
+    fetch(" https://wedeyet.herokuapp.com/api/place/all ", { headers })
+      .then((response) => {
+        return response.json()
+      })
 
-  //     .then((data) => {
-  //       setUsers(data)
-  //     })
-  //     .catch((error) => console.log("Error", error))
-  // }
+      .then((data) => {
+        setUsers(data)
+      })
+      .catch((error) => alert("Pleas Check That You are Connected to Network"))
+  }
 
-  // useEffect(() => {
-  //   fetchData()
-  // }, [])
+  useEffect(() => {
+    fetchData()
+  }, [])
 
-  // console.log("the data", users)
-  // const placeResponce = Object.values(users)
-  // console.log("placeResponse", placeResponce)
-  // const nearbyPlaces = placeResponce[1]
-  // console.log("inner array", nearbyPlaces)
+  console.log("the data", users)
+  const placeResponce = Object.values(users)
+  console.log("placeResponse", placeResponce)
+  const nearbyPlaces = placeResponce[1]
+  console.log("inner array", nearbyPlaces)
 
   // Map rendering
 
@@ -168,6 +180,9 @@ export default function IndexPage() {
   if (!isLoaded) {
     return <h1 className="align-middle justify-center text-lg">Loading...</h1>
   }
+
+  // map search autoCom
+
   return (
     <>
       <section className="container grid items-center gap-6 pt-6 pb-8 md:py-10">
@@ -197,23 +212,39 @@ export default function IndexPage() {
         {/* <div className="grid h-[450px] grid-cols-4 gap-5 md:bg-red-600 sm:bg-green-500 sm:grid-cols-1 lg:bg-yellow-400 "> */}
         <div className="h-[700px]  md:grid md:grid-cols-4 md:gap-2 md:h-[450px] lg:grid-cols-4">
           <div className="md:col-span-2 pb-2 h-[400px] md:pb-0 lg:col-span-3  ">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15760.236161626544!2d38.74860638768315!3d9.058379475241788!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b8f350fce1a09%3A0x9b9773a5bb80aa81!2sSheger%20Park!5e0!3m2!1sen!2set!4v1686264906490!5m2!1sen!2set"
-              width="100%"
-              height="100%"
-            ></iframe>
+            <GoogleMap
+              options={mapOptions}
+              zoom={14}
+              center={mapCenter}
+              mapTypeId={google.maps.MapTypeId.ROADMAP}
+              mapContainerStyle={{ width: "100%", height: "100%" }}
+              onLoad={() => console.log("Map Component Loaded...")}
+            >
+              {nearbyPlaces.map((place: any, i: any) => (
+                <MarkerF
+                  position={{
+                    lat: place.location.coordinates[0],
+                    lng: place.location.coordinates[1],
+                  }}
+                  label={place.subCategory.name}
+                />
+              ))}
+              <MapAutoComplete />
+            </GoogleMap>
           </div>
-          <ScrollArea className="h-[300px] md:h-full lg:h-full md:col-span-2 md:p-2 lg:col-span-1 lg:p-3 flex lg:flex-col sm:flex-row gap-4 overflow-x-hidden overflow-y-auto max-h-fit">
+          <ScrollArea className="flex h-[300px] max-h-fit gap-4 overflow-y-auto overflow-x-hidden sm:flex-row md:col-span-2 md:h-full md:p-2 lg:col-span-1 lg:h-full lg:flex-col lg:p-3">
             {nearbyPlaces.map(
               (
                 place: {
                   name: any
                   description: any
+                  _id: any
                 },
                 i: Key | null | undefined
               ) => (
                 <Card key={i} className="relative mb-4 bg-white shadow-lg">
-                  <Link href="/">
+                  <Link href={`/detail/${place._id}`}>
+                    <li>{place._id}</li>
                     <CardContent className="flex items-center gap-4 p-0">
                       <img
                         // src={place.image}
@@ -271,7 +302,7 @@ export default function IndexPage() {
               i: Key | null | undefined
             ) => (
               <Card key={i} className="shadow-lg group ">
-                <Link href="/" className="group-hover:animate-pulse">
+                <Link href="/place" className="group-hover:animate-pulse">
                   <CardContent className="relative p-0 ">
                     <img
                       // src={place.image}
@@ -347,7 +378,7 @@ export default function IndexPage() {
                 <button
                   className="flex w-full flex-row rounded-t-none rounded-b-md  bg-primary text-lg text-white align-center pl-32 p-3  text-bold "
                   onClick={() => {
-                    alert("ghjk")
+                    alert("buttoncicked ")
                   }}
                 >
                   Go
