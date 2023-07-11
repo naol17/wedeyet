@@ -251,7 +251,7 @@ const Places = () => {
                   </CardContent>
                 </Link>
                 <div className="">
-                  <h2 className="ml-5 mb-5 mt-5">Description</h2>
+                  <h2 className="ml-5 mb-5 mt-5">Descriptionss</h2>
                   <p className="ml-5 mb-4">{place.description}</p>
                 </div>
               </Card>
