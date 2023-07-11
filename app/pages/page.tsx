@@ -67,38 +67,38 @@ const placeImages = [
 console.log(placeImages[0].name)
 
 const Places = () => {
-  const router = useRouter()
-  const { id } = router.query
-  console.log(id)
-  // Fetch api
-  const [users, setUsers] = useState<any[]>([])
-  const [detailData, setDetailData] = useState({})
+  // const router = useRouter()
+  // const { id } = router.query
+  // console.log(id)
+  // // Fetch api
+  // const [users, setUsers] = useState<any[]>([])
+  // const [detailData, setDetailData] = useState({})
 
-  const fetchData = () => {
-    const headers: any = {
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY4ODk3MjM5MCwiZXhwIjoxNjg5MDU4NzkwfQ.wx9ZWih4P1BqjmqRF6EZTWdlDpMlKF4Af0IMz8LmFCw",
-    }
-    fetch(`https://wedeyet.herokuapp.com/api/place/get/${id}`, { headers })
-      .then((response) => response.json())
-      .then((data) => {
-        setDetailData(data)
-      })
-      .catch(
-        (error) => alert("Please check that you are connected to the network.")
-        // console.log(error)
-      )
-  }
+  // const fetchData = () => {
+  //   const headers: any = {
+  //     Authorization:
+  //       "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY4ODk3MjM5MCwiZXhwIjoxNjg5MDU4NzkwfQ.wx9ZWih4P1BqjmqRF6EZTWdlDpMlKF4Af0IMz8LmFCw",
+  //   }
+  //   fetch(`https://wedeyet.herokuapp.com/api/place/get/${id}`, { headers })
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setDetailData(data)
+  //     })
+  //     .catch(
+  //       (error) => alert("Please check that you are connected to the network.")
+  //       // console.log(error)
+  //     )
+  // }
 
-  useEffect(() => {
-    fetchData()
-  }, [id])
+  // useEffect(() => {
+  //   fetchData()
+  // }, [id])
 
-  console.log("the data", detailData)
-  const placeResponce = Object.values(users)
-  console.log("placeResponse", placeResponce)
-  const placeImages = placeResponce[1]
-  console.log("inner array", placeImages)
+  // console.log("the data", detailData)
+  // const placeResponce = Object.values(users)
+  // console.log("placeResponse", placeResponce)
+  // const placeImages = placeResponce[1]
+  // console.log("inner array", placeImages)
 
   return (
     <>

@@ -50,8 +50,6 @@ import { Card, CardContent, CardTitle } from "@/components/ui/card"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import MapAutoComplete from "@/components/mapAutoComplete"
 
-import Places from "./pages/detail/[id]"
-
 // type Category = {
 //   name: string
 //   icon: LucideIcon
@@ -131,32 +129,32 @@ const nearbyPlaces = [
 
 export default function IndexPage() {
   // Fetch api
-  const [users, setUsers] = useState<any[]>([])
-  const fetchData = () => {
-    const headers: any = {
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY4ODk3MjM5MCwiZXhwIjoxNjg5MDU4NzkwfQ.wx9ZWih4P1BqjmqRF6EZTWdlDpMlKF4Af0IMz8LmFCw",
-    }
-    fetch(" https://wedeyet.herokuapp.com/api/place/all ", { headers })
-      .then((response) => {
-        return response.json()
-      })
+  // const [users, setUsers] = useState<any[]>([])
+  // const fetchData = () => {
+  //   const headers: any = {
+  //     Authorization:
+  //       "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY4ODk3MjM5MCwiZXhwIjoxNjg5MDU4NzkwfQ.wx9ZWih4P1BqjmqRF6EZTWdlDpMlKF4Af0IMz8LmFCw",
+  //   }
+  //   fetch(" https://wedeyet.herokuapp.com/api/place/all ", { headers })
+  //     .then((response) => {
+  //       return response.json()
+  //     })
 
-      .then((data) => {
-        setUsers(data)
-      })
-      .catch((error) => alert("Pleas Check That You are Connected to Network"))
-  }
+  //     .then((data) => {
+  //       setUsers(data)
+  //     })
+  //     .catch((error) => alert("Pleas Check That You are Connected to Network"))
+  // }
 
-  useEffect(() => {
-    fetchData()
-  }, [])
+  // useEffect(() => {
+  //   fetchData()
+  // }, [])
 
-  console.log("the data", users)
-  const placeResponce = Object.values(users)
-  console.log("placeResponse", placeResponce)
-  const nearbyPlaces = placeResponce[1]
-  console.log("inner array", nearbyPlaces)
+  // console.log("the data", users)
+  // const placeResponce = Object.values(users)
+  // console.log("placeResponse", placeResponce)
+  // const nearbyPlaces = placeResponce[1]
+  // console.log("inner array", nearbyPlaces)
 
   // Map rendering
 
@@ -220,7 +218,7 @@ export default function IndexPage() {
               mapContainerStyle={{ width: "100%", height: "100%" }}
               onLoad={() => console.log("Map Component Loaded...")}
             >
-              {nearbyPlaces.map((place: any, i: any) => (
+              {/* {nearbyPlaces.map((place: any, i: any) => (
                 <MarkerF
                   position={{
                     lat: place.location.coordinates[0],
@@ -228,7 +226,7 @@ export default function IndexPage() {
                   }}
                   label={place.subCategory.name}
                 />
-              ))}
+              ))} */}
               <MapAutoComplete />
             </GoogleMap>
           </div>
@@ -238,13 +236,11 @@ export default function IndexPage() {
                 place: {
                   name: any
                   description: any
-                  _id: any
                 },
                 i: Key | null | undefined
               ) => (
                 <Card key={i} className="relative mb-4 bg-white shadow-lg">
-                  <Link href={`/detail/${place._id}`}>
-                    <li>{place._id}</li>
+                  <Link href={`/`}>
                     <CardContent className="flex items-center gap-4 p-0">
                       <img
                         // src={place.image}
