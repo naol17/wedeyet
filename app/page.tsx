@@ -129,28 +129,29 @@ const nearbyPlaces = [
 
 export default function IndexPage() {
   // Fetch api
-  // const [users, setUsers] = useState<any[]>([])
-  // const fetchData = () => {
-  //   const headers: any = {
-  //     Authorization:
-  //       "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY4ODk3MjM5MCwiZXhwIjoxNjg5MDU4NzkwfQ.wx9ZWih4P1BqjmqRF6EZTWdlDpMlKF4Af0IMz8LmFCw",
-  //   }
-  //   fetch(" https://wedeyet.herokuapp.com/api/place/all ", { headers })
-  //     .then((response) => {
-  //       return response.json()
-  //     })
+  const [users, setUsers] = useState<any[]>([])
+  const fetchData = () => {
+    const headers: any = {
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY4OTMyNjMyNCwiZXhwIjoxNjg5NDEyNzI0fQ.ZAZkLOD86mMYRB8D0r-1_0-ZADJdVWNwbJSzhAqDpYM",
+    }
+    axios
+      .get("https://wedeyet.herokuapp.com/api/place/all", { headers })
+      .then((response) => {
+        setUsers(response.data)
+      })
+      .catch((error) => alert("Please Check That You are Connected to Network"))
+  }
 
-  //     .then((data) => {
-  //       setUsers(data)
-  //     })
-  //     .catch((error) => alert("Pleas Check That You are Connected to Network"))
-  // }
+  useEffect(() => {
+    fetchData()
+  }, [])
 
-  // useEffect(() => {
-  //   fetchData()
-  // }, [])
+  console.log("the data", users)
+  const Places = users.Places
+  console.log("the data2", users.Places)
+  // console.log("the data3", users.Places[0].name)
 
-  // console.log("the data", users)
   // const placeResponce = Object.values(users)
   // console.log("placeResponse", placeResponce)
   // const nearbyPlaces = placeResponce[1]
@@ -218,7 +219,7 @@ export default function IndexPage() {
               mapContainerStyle={{ width: "100%", height: "100%" }}
               onLoad={() => console.log("Map Component Loaded...")}
             >
-              {/* {nearbyPlaces.map((place: any, i: any) => (
+              {Places.map((place: any, i: any) => (
                 <MarkerF
                   position={{
                     lat: place.location.coordinates[0],
@@ -226,12 +227,12 @@ export default function IndexPage() {
                   }}
                   label={place.subCategory.name}
                 />
-              ))} */}
+              ))}
               <MapAutoComplete />
             </GoogleMap>
           </div>
           <ScrollArea className="flex h-[300px] max-h-fit gap-4 overflow-y-auto overflow-x-hidden sm:flex-row md:col-span-2 md:h-full md:p-2 lg:col-span-1 lg:h-full lg:flex-col lg:p-3">
-            {nearbyPlaces.map(
+            {Places.map(
               (
                 place: {
                   name: any
@@ -287,7 +288,7 @@ export default function IndexPage() {
       </section>
       <section className="bg-gray-100">
         <div className="container flex gap-6 py-6 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max">
-          {nearbyPlaces.map(
+          {Places.map(
             (
               place: {
                 image: string | undefined
@@ -350,7 +351,7 @@ export default function IndexPage() {
       </section>
       <section>
         <div className="container flex gap-10 py-6 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max">
-          {nearbyPlaces.map((place: any, i: any) => (
+          {Places.map((place: any, i: any) => (
             <Card className="max-w-sm shadow-lg mb-32">
               <CardContent className="flex flex-col justify-center p-0">
                 <img
