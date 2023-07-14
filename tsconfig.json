@@ -30,7 +30,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "components/navbar.js",
-    "app/page.tsx",
+    "app/page.jsx",
     "app/layout.jsx",
     "app/pages/detail/page.jsx"
   ],
