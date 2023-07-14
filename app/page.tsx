@@ -130,6 +130,8 @@ const nearbyPlaces = [
 export default function IndexPage() {
   // Fetch api
   const [users, setUsers] = useState<any[]>([])
+  const [places, setPlaces] = useState<any[]>([])
+
   const fetchData = () => {
     const headers: any = {
       Authorization:
@@ -139,6 +141,7 @@ export default function IndexPage() {
       .get("https://wedeyet.herokuapp.com/api/place/all", { headers })
       .then((response) => {
         setUsers(response.data)
+        setPlaces(response.data.Places)
       })
       .catch((error) => alert("Please Check That You are Connected to Network"))
   }
@@ -148,8 +151,10 @@ export default function IndexPage() {
   }, [])
 
   console.log("the data", users)
-  const Places = users.Places
-  console.log("the data2", users.Places)
+  // const Places = users && users[0] && users[0].Places;
+  console.log("the data", users)
+  console.log("the Places", places)
+  // console.log("the data2", users.Pla)
   // console.log("the data3", users.Places[0].name)
 
   // const placeResponce = Object.values(users)
@@ -219,7 +224,7 @@ export default function IndexPage() {
               mapContainerStyle={{ width: "100%", height: "100%" }}
               onLoad={() => console.log("Map Component Loaded...")}
             >
-              {Places.map((place: any, i: any) => (
+              {places.map((place: any, i: any) => (
                 <MarkerF
                   position={{
                     lat: place.location.coordinates[0],
@@ -232,7 +237,7 @@ export default function IndexPage() {
             </GoogleMap>
           </div>
           <ScrollArea className="flex h-[300px] max-h-fit gap-4 overflow-y-auto overflow-x-hidden sm:flex-row md:col-span-2 md:h-full md:p-2 lg:col-span-1 lg:h-full lg:flex-col lg:p-3">
-            {Places.map(
+            {places.map(
               (
                 place: {
                   name: any
@@ -288,7 +293,7 @@ export default function IndexPage() {
       </section>
       <section className="bg-gray-100">
         <div className="container flex gap-6 py-6 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max">
-          {Places.map(
+          {places.map(
             (
               place: {
                 image: string | undefined
@@ -351,7 +356,7 @@ export default function IndexPage() {
       </section>
       <section>
         <div className="container flex gap-10 py-6 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max">
-          {Places.map((place: any, i: any) => (
+          {places.map((place: any, i: any) => (
             <Card className="max-w-sm shadow-lg mb-32">
               <CardContent className="flex flex-col justify-center p-0">
                 <img
