@@ -1,6 +1,7 @@
 "use client"
 
 import { error } from "console"
+import { ParsedUrlQuery } from "querystring"
 import {
   JSXElementConstructor,
   Key,
@@ -11,6 +12,7 @@ import {
   useEffect,
   useState,
 } from "react"
+import { GetServerSideProps } from "next"
 import dynamic from "next/dynamic"
 import Image from "next/image"
 import Link from "next/link"
@@ -65,40 +67,25 @@ const placeImages = [
   },
 ]
 console.log(placeImages[0].name)
+type Place = {
+  name: string
+  description: string
+}
 
-const Places = () => {
+type DetailPageProps = {
+  place: Place
+}
+
+type DetailProps = {
+  data: any // Define the type of your data
+}
+
+const page = () => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   // const router = useRouter()
-  // const { id } = router.query
-  // console.log(id)
-  // // Fetch api
-  // const [users, setUsers] = useState<any[]>([])
-  // const [detailData, setDetailData] = useState({})
-
-  // const fetchData = () => {
-  //   const headers: any = {
-  //     Authorization:
-  //       "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY4ODk3MjM5MCwiZXhwIjoxNjg5MDU4NzkwfQ.wx9ZWih4P1BqjmqRF6EZTWdlDpMlKF4Af0IMz8LmFCw",
-  //   }
-  //   fetch(`https://wedeyet.herokuapp.com/api/place/get/${id}`, { headers })
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setDetailData(data)
-  //     })
-  //     .catch(
-  //       (error) => alert("Please check that you are connected to the network.")
-  //       // console.log(error)
-  //     )
-  // }
-
-  // useEffect(() => {
-  //   fetchData()
-  // }, [id])
-
-  // console.log("the data", detailData)
-  // const placeResponce = Object.values(users)
-  // console.log("placeResponse", placeResponce)
-  // const placeImages = placeResponce[1]
-  // console.log("inner array", placeImages)
+  // const { id } = router.query as { id: string }
+  // console.log("pathname id", router.pathname)
+  // console.log("incoming id", id)
 
   return (
     <>
@@ -300,4 +287,4 @@ const Places = () => {
   )
 }
 
-export default Places
+export default page

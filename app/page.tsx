@@ -50,17 +50,6 @@ import { Card, CardContent, CardTitle } from "@/components/ui/card"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import MapAutoComplete from "@/components/mapAutoComplete"
 
-// type Category = {
-//   name: string
-//   icon: LucideIcon
-// }
-
-// type NearbyPlace = {
-//   name: string
-//   description: string
-//   image: string
-// }
-
 const categories = [
   {
     name: "Transport",
@@ -135,7 +124,7 @@ export default function IndexPage() {
   const fetchData = () => {
     const headers: any = {
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY4OTMyNjMyNCwiZXhwIjoxNjg5NDEyNzI0fQ.ZAZkLOD86mMYRB8D0r-1_0-ZADJdVWNwbJSzhAqDpYM",
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY4OTQwMDE3NywiZXhwIjoxNjg5NDg2NTc3fQ.uetMuHR6cJvNQlfo5u8v3WN8mfzJ15TC3cn0qgUtQg8",
     }
     axios
       .get("https://wedeyet.herokuapp.com/api/place/all", { headers })
@@ -149,18 +138,6 @@ export default function IndexPage() {
   useEffect(() => {
     fetchData()
   }, [])
-
-  console.log("the data", users)
-  // const Places = users && users[0] && users[0].Places;
-  console.log("the data", users)
-  console.log("the Places", places)
-  // console.log("the data2", users.Pla)
-  // console.log("the data3", users.Places[0].name)
-
-  // const placeResponce = Object.values(users)
-  // console.log("placeResponse", placeResponce)
-  // const nearbyPlaces = placeResponce[1]
-  // console.log("inner array", nearbyPlaces)
 
   // Map rendering
 
@@ -182,7 +159,7 @@ export default function IndexPage() {
   )
 
   if (!isLoaded) {
-    return <h1 className="align-middle justify-center text-lg">Loading...</h1>
+    return <h1 className="align-middl text-lg justify-center">Loading...</h1>
   }
 
   // map search autoCom
@@ -242,11 +219,12 @@ export default function IndexPage() {
                 place: {
                   name: any
                   description: any
+                  _id: any
                 },
                 i: Key | null | undefined
               ) => (
                 <Card key={i} className="relative mb-4 bg-white shadow-lg">
-                  <Link href={`/`}>
+                  <Link href={`/pages?${place._id}`}>
                     <CardContent className="flex items-center gap-4 p-0">
                       <img
                         // src={place.image}
@@ -368,7 +346,7 @@ export default function IndexPage() {
                   <h3 className="text-xl font-semibold ">
                     {place.name}{" "}
                     <span className="text-white invisible">
-                      illum possimus quisquam iure gftr hhsgeep.
+                      illum possimus quisquam iure gftr hhsgeep hhsgeep hhsgeep.
                     </span>
                   </h3>
                   <p className="text-sm mt-[-38px]">
