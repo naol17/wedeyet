@@ -139,7 +139,7 @@ export default function IndexPage() {
     fetchData()
   }, [])
 
-  // Map rendering
+  // Map renderingg
 
   const libraries = useMemo(() => ["places"], [])
   const mapCenter = useMemo(() => ({ lat: 9.0567, lng: 38.739 }), [])
