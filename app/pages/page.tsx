@@ -149,7 +149,6 @@ const page = () => {
                 <Phone className="h-7 w-7" />
               </Button>
               <p className="  text-sm sm:text-sm lg:text-base ml-5 pt-2">
-                {" "}
                 {/* {placeImages[0].telegram} */}
               </p>
             </div>
@@ -190,7 +189,7 @@ const page = () => {
                     <h2 className="text-xl font-semibold">{place.name}</h2>
                     {/* <p>{place.category.name}</p> */}
                   </div>
-                  <Button className="w-full text-lg rounded-t-none mt-6">
+                  <Button className="mt-6 w-full rounded-t-none text-lg">
                     Go <ChevronRight />
                   </Button>
                 </CardContent>

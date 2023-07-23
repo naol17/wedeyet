@@ -30,9 +30,11 @@ interface RootLayoutProps {
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
+  const defaultLocale = "en"
+
   return (
     <>
-      <html lang="en" suppressHydrationWarning>
+      <html lang={defaultLocale} suppressHydrationWarning>
         <head />
         <body
           className={cn(

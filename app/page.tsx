@@ -124,7 +124,7 @@ export default function IndexPage() {
   const fetchData = () => {
     const headers: any = {
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY4OTQwMDE3NywiZXhwIjoxNjg5NDg2NTc3fQ.uetMuHR6cJvNQlfo5u8v3WN8mfzJ15TC3cn0qgUtQg8",
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY5MDEwNjk5MSwiZXhwIjoxNjkwMTkzMzkxfQ.EMWp_Lbfe61MmR0COVz8E9opjEUZJchTjt2nE9YhWfQ",
     }
     axios
       .get("https://wedeyet.herokuapp.com/api/place/all", { headers })
@@ -157,7 +157,7 @@ export default function IndexPage() {
   )
 
   if (!isLoaded) {
-    return <h1 className="align-middl text-lg justify-center">Loading...</h1>
+    return <h1 className="align-middle text-lg justify-center">Loading...</h1>
   }
 
   // map search autoCom
