@@ -1,7 +1,5 @@
 "use client"
 
-import { error } from "console"
-import { ParsedUrlQuery } from "querystring"
 import {
   JSXElementConstructor,
   Key,
@@ -67,25 +65,25 @@ const placeImages = [
   },
 ]
 console.log(placeImages[0].name)
-type Place = {
-  name: string
-  description: string
-}
+// type Place = {
+//   name: string
+//   description: string
+// }
 
-type DetailPageProps = {
-  place: Place
-}
+// type DetailPageProps = {
+//   place: Place
+// }
 
-type DetailProps = {
-  data: any // Define the type of your data
-}
+// type DetailProps = {
+//   data: any // Define the type of your data
+// }
 
 const page = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  // const router = useRouter()
-  // const { id } = router.query as { id: string }
-  // console.log("pathname id", router.pathname)
-  // console.log("incoming id", id)
+  const router = useRouter()
+  const { id } = router.query()
+  console.log("pathname id", router.pathname)
+  console.log("incoming id", id)
 
   return (
     <>
@@ -94,7 +92,7 @@ const page = () => {
       </div>
       <section className="bg-gray-100 mt-5">
         <div className="container flex gap-6 py-6 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max">
-          {placeImages.map((place: any, i: any) => (
+          {placeImages.map((place, i) => (
             <Card key={i} className="shadow-lg group">
               <Link href="/" className="group-hover:animate-pulse">
                 <CardContent className="relative p-0">
@@ -172,11 +170,12 @@ const page = () => {
         <div className="container flex gap-10 py-6 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max">
           {placeImages.map(
             (
-              place: {
-                // category: any
-                name: any
-              },
-              i: any
+              place,
+              //  {
+              //   // category: any
+              //   name: any
+              // },
+              i
             ) => (
               <Card className="max-w-sm shadow-lg">
                 <CardContent className="flex flex-col justify-center p-0">
@@ -249,12 +248,14 @@ const page = () => {
         <div className="container flex gap-5 py-5 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max">
           {placeImages.map(
             (
-              place: {
-                image: string | undefined
-                name: string | undefined
-                description: any
-              },
-              i: Key | null | undefined
+              place,
+              //  {
+              //   image: string | undefined
+              //   name: string | undefined
+              //   description: any
+              // },
+              i
+              //  Key | null | undefined
             ) => (
               <Card key={i} className="max-w-sm shadow-lg">
                 <Link href="/" className="group-hover:animate-pulse">

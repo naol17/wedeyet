@@ -33,6 +33,6 @@
     "app/page.jsx",
     "app/layout.jsx",
     "app/pages/detail/page.jsx"
-  ],
+, "app/pages/page.jsx"  ],
   "exclude": ["node_modules"]
 }
