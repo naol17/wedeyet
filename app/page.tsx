@@ -2,7 +2,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client"
 
-import { error } from "console"
 import {
   JSX,
   JSXElementConstructor,
@@ -19,7 +18,6 @@ import dynamic from "next/dynamic"
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { input } from "@material-tailwind/react"
 import {
   GoogleMap,
   Marker,
@@ -124,7 +122,7 @@ export default function IndexPage() {
   const fetchData = () => {
     const headers: any = {
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY5MDEwNjk5MSwiZXhwIjoxNjkwMTkzMzkxfQ.EMWp_Lbfe61MmR0COVz8E9opjEUZJchTjt2nE9YhWfQ",
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY5MDI1MTA2MSwiZXhwIjoxNjkwMzM3NDYxfQ.HLru9oSZiYr1BCs8gpbtrK1U8UzunW24sCkRX6igHzc",
     }
     axios
       .get("https://wedeyet.herokuapp.com/api/place/all", { headers })
@@ -161,6 +159,7 @@ export default function IndexPage() {
   }
 
   // map search autoCom
+  const router = useRouter()
 
   return (
     <>
@@ -222,7 +221,7 @@ export default function IndexPage() {
                 i: Key | null | undefined
               ) => (
                 <Card key={i} className="relative mb-4 bg-white shadow-lg">
-                  <Link href={`/pages?${place._id}`}>
+                  <Link href={`/pages?id=${place._id}`}>
                     <CardContent className="flex items-center gap-4 p-0">
                       <img
                         // src={place.image}
@@ -274,13 +273,14 @@ export default function IndexPage() {
               place: {
                 image: string | undefined
                 name: any
+                _id: any
 
                 description: any
               },
               i: Key | null | undefined
             ) => (
               <Card key={i} className="shadow-lg group ">
-                <Link href="/place" className="group-hover:animate-pulse">
+                <Link href={`/pages?id=${place._id}`}>
                   <CardContent className="relative p-0 ">
                     <img
                       // src={place.image}
@@ -334,35 +334,38 @@ export default function IndexPage() {
         <div className="container flex gap-10 py-6 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max">
           {places.map((place: any, i: any) => (
             <Card className="max-w-sm shadow-lg mb-32">
-              <CardContent className="flex flex-col justify-center p-0">
-                <img
-                  src="https://source.unsplash.com/random/300x300"
-                  className="max-w-sm rounded-md rounded-b-none"
-                  alt="placeholder"
-                />
-                <div className="flex flex-col gap-2 p-4">
-                  <h3 className="text-xl font-semibold ">
-                    {place.name}{" "}
-                    <span className="text-white invisible">
-                      illum possimus quisquam iure gftr hhsgeep hhsgeep hhsgeep.
-                    </span>
-                  </h3>
-                  <p className="text-sm mt-[-38px]">
-                    {place.description.length > 35
-                      ? place.description.slice(0, 35) + "..."
-                      : place.description}
-                  </p>
-                </div>
-                <button
-                  className="flex w-full flex-row rounded-t-none rounded-b-md  bg-primary text-lg text-white align-center pl-32 p-3  text-bold "
-                  onClick={() => {
-                    alert("buttoncicked ")
-                  }}
-                >
-                  Go
-                  <ChevronRight />
-                </button>
-              </CardContent>
+              <Link href={`/pages?id=${place._id}`}>
+                <CardContent className="flex flex-col justify-center p-0">
+                  <img
+                    src="https://source.unsplash.com/random/300x300"
+                    className="max-w-sm rounded-md rounded-b-none"
+                    alt="placeholder"
+                  />
+                  <div className="flex flex-col gap-2 p-4">
+                    <h3 className="text-xl font-semibold ">
+                      {place.name}{" "}
+                      <span className="text-white invisible">
+                        illum possimus quisquam iure gftr hhsgeep hhsgeep
+                        hhsgeep.
+                      </span>
+                    </h3>
+                    <p className="text-sm mt-[-38px]">
+                      {place.description.length > 35
+                        ? place.description.slice(0, 35) + "..."
+                        : place.description}
+                    </p>
+                  </div>
+                  <button
+                    className="flex w-full flex-row rounded-t-none rounded-b-md  bg-primary text-lg text-white align-center pl-32 p-3  text-bold "
+                    onClick={() => {
+                      alert("buttoncicked ")
+                    }}
+                  >
+                    Go
+                    <ChevronRight />
+                  </button>
+                </CardContent>
+              </Link>
             </Card>
           ))}
         </div>
