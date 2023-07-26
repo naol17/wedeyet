@@ -16,13 +16,14 @@ import {
 const Footer = () => {
   const [showModal, setShowModal] = useState(false)
   const [text, setText] = useState("")
+  const [email, setEmail] = useState("")
   const [feedback, setFeedback] = useState("")
   const [followUp, setFollowUp] = useState(true)
   const [data, setData] = useState("")
 
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault()
-    const data = { feedback, text, followUp }
+    const data = { feedback, text, email, followUp }
 
     fetch("https://wedeyet.herokuapp.com", {
       method: "POST",
@@ -39,6 +40,7 @@ const Footer = () => {
     alert("Thank you for your feedback! ")
     setText("")
     setFeedback("")
+    setEmail("")
   }
   console.log(feedback, text, followUp)
 
@@ -112,6 +114,15 @@ const Footer = () => {
                     value={text}
                     onChange={(e) => setText(e.target.value)}
                   ></textarea>
+                </div>
+                <div className="mb-2 ">
+                  <input
+                    className="ml-5 ml-5 p-3 border border-primary rounded-md  w-[90%] "
+                    type="text"
+                    placeholder="Enter Your Email address "
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
                 </div>
                 <div className="ml-5 mb-3">
                   <p>May we follow you up on your feedback?</p>
