@@ -122,7 +122,7 @@ export default function IndexPage() {
   const fetchData = () => {
     const headers: any = {
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY5MDI1MTA2MSwiZXhwIjoxNjkwMzM3NDYxfQ.HLru9oSZiYr1BCs8gpbtrK1U8UzunW24sCkRX6igHzc",
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY5MDMyMTcxNSwiZXhwIjoxNjkwNDA4MTE1fQ.6-GQEIX0ZahyW4YgEbA_j9IOOkvdkveFp2By6jHzwK0",
     }
     axios
       .get("https://wedeyet.herokuapp.com/api/place/all", { headers })
