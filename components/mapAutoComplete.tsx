@@ -21,7 +21,11 @@ export default function MapAutoComplete() {
       setValue,
       clearSuggestions,
     } = usePlacesAutocomplete({
-      // requestOptions: { componentRestrictions: { country: "Ethiopia" } },
+      requestOptions: {
+        componentRestrictions: { country: "ET" }, // Restrict to Ethiopia
+        location: new google.maps.LatLng(8.9806, 38.7578), // Coordinates for Addis Ababa
+        radius: 50000,
+      },
       debounce: 300,
       cache: 86400,
     })

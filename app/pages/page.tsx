@@ -125,6 +125,25 @@ const page = () => {
   }, [])
 
   // Similar place
+  // const [similarplace, setSimilarPlaces] = useState<any[]>([])
+  // const SimilarfetchData = () => {
+  //   const headers: any = {
+  //     Authorization:
+  //       "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY5MDQzNDkyNCwiZXhwIjoxNjkwNTIxMzI0fQ.y9pdUTF3QMtg0ZnCP_tEYgElyNI9MkldasslI_gEVY4",
+  //   }
+  //   axios
+  //     .get("https://wedeyet.herokuapp.com/api/place/all", { headers })
+  //     .then((response) => {
+  //       setSimilarPlaces(response.data.Places)
+  //     })
+  //     .catch((error) => alert("Please Check That You are Connected to Network"))
+  // }
+
+  // useEffect(() => {
+  //   SimilarfetchData()
+  // }, [])
+
+  //
   const [similarplace, setSimilarPlaces] = useState<any[]>([])
   const SimilarfetchData = () => {
     const headers: any = {
@@ -132,7 +151,10 @@ const page = () => {
         "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY5MDQzNDkyNCwiZXhwIjoxNjkwNTIxMzI0fQ.y9pdUTF3QMtg0ZnCP_tEYgElyNI9MkldasslI_gEVY4",
     }
     axios
-      .get("https://wedeyet.herokuapp.com/api/place/all", { headers })
+      .get(
+        "https://wedeyet.herokuapp.com/api/place/?category=Education&subCategory=School",
+        { headers }
+      )
       .then((response) => {
         setSimilarPlaces(response.data.Places)
       })
@@ -143,9 +165,8 @@ const page = () => {
     SimilarfetchData()
   }, [])
 
-  //
-
   console.log("place", place)
+  console.log("similarplace", similarplace)
 
   if (!place) {
     return <p>Loading...</p>

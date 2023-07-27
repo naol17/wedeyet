@@ -73,7 +73,7 @@ export function SiteHeader() {
           </div>
         </div>
       </header>
-      {searched && (
+      {searchQuery !== "" ? (
         <div>
           {filteredPlaces.map((place) => (
             <a href={`/pages?id=${place._id}`}>
@@ -85,7 +85,7 @@ export function SiteHeader() {
             </a>
           ))}
         </div>
-      )}
+      ) : null}
     </>
   )
 }
