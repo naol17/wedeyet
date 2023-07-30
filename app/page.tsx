@@ -122,7 +122,7 @@ export default function IndexPage() {
   const fetchData = () => {
     const headers: any = {
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY5MDU4MzUzMywiZXhwIjoxNjkxMDE1NTMzfQ.DGiBdX-V9xgsi1f3pfC45I8UiwSe5EmrDapPUDxf6YM ",
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY5MDYzOTE0MywiZXhwIjoxNjkxMDcxMTQzfQ.iqbBUYLlvP2jWTHVvlp6dJwnPd9nsEjImhobEb8L0oI ",
     }
     axios
       .get("https://wedeyet.herokuapp.com/api/place/all", { headers })
@@ -249,8 +249,8 @@ export default function IndexPage() {
           </ScrollArea>
         </div>
 
-        <div className="flex flex-col w-11/12 gap-6 mx-auto">
-          <p>
+        <div className="gap-10">
+          <p className="mb-6">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. A illum
             soluta optio repellendus ullam aliquam nisi. Laborum necessitatibus
             nobis soluta, eum consequatur dolor quidem dolore itaque illum
@@ -315,9 +315,9 @@ export default function IndexPage() {
           )}
         </div>
       </section>
-      <section className="container grid items-center gap-6 pt-6 pb-8 md:py-10">
-        <div className="flex flex-col w-11/12 gap-6 mx-auto">
-          <p>
+      <section className="container grid  gap-6 pt-6 pb-8 md:py-10">
+        <div className=" gap-6 mx-auto">
+          <p className="mb-6">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. A illum
             soluta optio repellendus ullam aliquam nisi. Laborum necessitatibus
             nobis soluta, eum consequatur dolor quidem dolore itaque illum
@@ -340,7 +340,7 @@ export default function IndexPage() {
       <section>
         <div className="container flex gap-10 py-6 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max">
           {places.map((place: any, i: any) => (
-            <Card className="max-w-sm shadow-lg mb-32">
+            <Card className="max-w-sm shadow-lg mb-5">
               <Link
                 href={`/pages?id=${place._id}&subCategory=${place.subCategory.name}`}
               >

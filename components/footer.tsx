@@ -171,7 +171,7 @@ const Footer = () => {
         </>
       ) : null}
       <footer>
-        <div className="container space-y-8 py-16 lg:space-y-16">
+        <div className="container space-y-8 py-8 lg:space-y-8">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
             <div className="lg:col-span-2">
               <div className="flex items-center text-primary">

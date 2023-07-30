@@ -80,36 +80,13 @@ const page = () => {
   }
   const [users, setUsers] = useState<any[]>([])
   const [place, setPlaces] = useState<any[]>([])
-
-  // useEffect(() => {
-  //   if (id) {
-  //     const fetchData = async () => {
-  //       try {
-  //         const headers: any = {
-  //           Authorization:
-  //             "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY5MDIzNDcwNiwiZXhwIjoxNjkwMzIxMTA2fQ.J6hyA1ncQnADYcIQg9rnK-CkUWVvfA8AZjLaMhbot-w",
-  //         }
-  //         const response = await axios.get(
-  //           `https://wedeyet.herokuapp.com/api/place/${id}`,
-  //           { headers }
-  //         )
-  //         setDetailData(response.data)
-  //         setPlaces(response.data.Places)
-  //       } catch (error) {
-  //         console.error(error)
-  //       }
-  //     }
-
-  //     fetchData()
-  //   }
-  // }, [id])
   const fetchData = () => {
     const params = new URLSearchParams(window.location.search)
     const id = params.get("id")
     console.log("inside fetch", id)
     const headers: any = {
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY5MDU4MzUzMywiZXhwIjoxNjkxMDE1NTMzfQ.DGiBdX-V9xgsi1f3pfC45I8UiwSe5EmrDapPUDxf6YM",
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY5MDYzOTE0MywiZXhwIjoxNjkxMDcxMTQzfQ.iqbBUYLlvP2jWTHVvlp6dJwnPd9nsEjImhobEb8L0oI ",
     }
     axios
       .get(`https://wedeyet.herokuapp.com/api/place/get/${id}`, { headers })
@@ -152,7 +129,7 @@ const page = () => {
     console.log("inside subCategory", subCategory)
     const headers: any = {
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY5MDU4MzUzMywiZXhwIjoxNjkxMDE1NTMzfQ.DGiBdX-V9xgsi1f3pfC45I8UiwSe5EmrDapPUDxf6YM",
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY5MDYzOTE0MywiZXhwIjoxNjkxMDcxMTQzfQ.iqbBUYLlvP2jWTHVvlp6dJwnPd9nsEjImhobEb8L0oI ",
     }
     axios
       .get(
@@ -209,35 +186,7 @@ const page = () => {
           )
         )}
       </div>
-      {/* <section className="bg-gray-100 mt-5">
-        <div
-          className="slider container flex gap-6 py-6 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max"
-          ref={sliderRef}
-        >
-          <button className="slider-button" onClick={slideLeft}>
-            {"<"}
-          </button>
-          {placeImages.map((place, i) => (
-            <Card key={i} className=" shadow-lg group">
-              <Link href="/" className="group-hover:animate-pulse">
-                <div key={i} className="slider-card shadow-lg group">
-                  <CardContent className="relative p-0">
-                    <img
-                      src="https://source.unsplash.com/random/300x300"
-                      // src={place.image}
-                      className="rounded-md !max-w-[500px]"
-                    />
-                    <div className="absolute flex flex-col gap-2 text-white bottom-5 left-4"></div>
-                  </CardContent>
-                </div>
-              </Link>
-            </Card>
-          ))}
-          <button className="slider-button" onClick={slideRight}>
-            {">"}
-          </button>
-        </div>
-      </section> */}
+
       <section className="bg-gray-100 mt-5">
         <div className="flex items-center justify-center">
           <div
@@ -279,29 +228,6 @@ const page = () => {
           </button>{" "}
         </div>
       </section>
-
-      {/* <button
-          className="px-4 py-2 bg-gray-300 rounded-l"
-          onClick={scrollLeft}
-        >
-          &lt;
-        </button>
-       
-          <div className="flex gap-4">
-            <div className="w-64 h-40 bg-gray-200">Card 1</div>
-            <div className="w-64 h-40 bg-gray-200">Card 2</div>
-            <div className="w-64 h-40 bg-gray-200">Card 3</div>
-            <div className="w-64 h-40 bg-gray-200">Card 4</div>
-            <div className="w-64 h-40 bg-gray-200">Card 5</div>
-          </div>
-        </div>
-        <button
-          className="px-4 py-2 bg-gray-300 rounded-r"
-          onClick={scrollRight}
-        >
-          &gt;
-        </button>
-      </div> */}
 
       {place.map(
         (
