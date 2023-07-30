@@ -11,6 +11,7 @@ import {
   ReactFragment,
   ReactPortal,
   useEffect,
+  useRef,
   useState,
 } from "react"
 import { GetServerSideProps } from "next"
@@ -67,7 +68,6 @@ const placeImages = [
     image: "https://source.unsplash.com/random/300x300",
   },
 ]
-console.log(placeImages[0].name)
 
 const page = () => {
   const router = useRouter()
@@ -75,6 +75,7 @@ const page = () => {
   if (typeof window !== "undefined") {
     const params = new URLSearchParams(window.location.search)
     const id = params.get("id")
+
     // console.log("wayoo", id)
   }
   const [users, setUsers] = useState<any[]>([])
@@ -108,7 +109,7 @@ const page = () => {
     console.log("inside fetch", id)
     const headers: any = {
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY5MDQzNDkyNCwiZXhwIjoxNjkwNTIxMzI0fQ.y9pdUTF3QMtg0ZnCP_tEYgElyNI9MkldasslI_gEVY4",
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY5MDU4MzUzMywiZXhwIjoxNjkxMDE1NTMzfQ.DGiBdX-V9xgsi1f3pfC45I8UiwSe5EmrDapPUDxf6YM",
     }
     axios
       .get(`https://wedeyet.herokuapp.com/api/place/get/${id}`, { headers })
@@ -146,17 +147,23 @@ const page = () => {
   //
   const [similarplace, setSimilarPlaces] = useState<any[]>([])
   const SimilarfetchData = () => {
+    const params = new URLSearchParams(window.location.search)
+    const subCategory = params.get("subCategory")
+    console.log("inside subCategory", subCategory)
     const headers: any = {
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY5MDQzNDkyNCwiZXhwIjoxNjkwNTIxMzI0fQ.y9pdUTF3QMtg0ZnCP_tEYgElyNI9MkldasslI_gEVY4",
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY5MDU4MzUzMywiZXhwIjoxNjkxMDE1NTMzfQ.DGiBdX-V9xgsi1f3pfC45I8UiwSe5EmrDapPUDxf6YM",
     }
     axios
       .get(
-        "https://wedeyet.herokuapp.com/api/place/?category=Education&subCategory=School",
-        { headers }
+        `https://wedeyet.herokuapp.com/api/place/search?subCategory=${subCategory}`,
+        {
+          headers,
+        }
       )
       .then((response) => {
-        setSimilarPlaces(response.data.Places)
+        setSimilarPlaces(response.data.Place)
+        console.log(response.data)
       })
       .catch((error) => alert("Please Check That You are Connected to Network"))
   }
@@ -164,13 +171,28 @@ const page = () => {
   useEffect(() => {
     SimilarfetchData()
   }, [])
-
-  console.log("place", place)
-  console.log("similarplace", similarplace)
-
+  console.log("similar", similarplace)
   if (!place) {
     return <p>Loading...</p>
   }
+
+  // image slider
+  const sliderRef = useRef<HTMLDivElement>(null)
+
+  const scrollLeft = () => {
+    if (sliderRef.current) {
+      sliderRef.current.scrollLeft -= 200 // Adjust the scroll distance as needed
+    }
+  }
+
+  const scrollRight = () => {
+    if (sliderRef.current) {
+      sliderRef.current.scrollLeft += 200 // Adjust the scroll distance as needed
+    }
+  }
+
+  //
+
   return (
     <>
       <div className="flex items-center justify-center w-full h-full">
@@ -187,24 +209,99 @@ const page = () => {
           )
         )}
       </div>
-      <section className="bg-gray-100 mt-5">
-        <div className="container flex gap-6 py-6 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max">
+      {/* <section className="bg-gray-100 mt-5">
+        <div
+          className="slider container flex gap-6 py-6 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max"
+          ref={sliderRef}
+        >
+          <button className="slider-button" onClick={slideLeft}>
+            {"<"}
+          </button>
           {placeImages.map((place, i) => (
-            <Card key={i} className="shadow-lg group">
+            <Card key={i} className=" shadow-lg group">
               <Link href="/" className="group-hover:animate-pulse">
-                <CardContent className="relative p-0">
-                  <img
-                    src="https://source.unsplash.com/random/300x300"
-                    // src={place.image}
-                    className="rounded-md !max-w-[500px]"
-                  />
-                  <div className="absolute flex flex-col gap-2 text-white bottom-5 left-4"></div>
-                </CardContent>
+                <div key={i} className="slider-card shadow-lg group">
+                  <CardContent className="relative p-0">
+                    <img
+                      src="https://source.unsplash.com/random/300x300"
+                      // src={place.image}
+                      className="rounded-md !max-w-[500px]"
+                    />
+                    <div className="absolute flex flex-col gap-2 text-white bottom-5 left-4"></div>
+                  </CardContent>
+                </div>
               </Link>
             </Card>
           ))}
+          <button className="slider-button" onClick={slideRight}>
+            {">"}
+          </button>
+        </div>
+      </section> */}
+      <section className="bg-gray-100 mt-5">
+        <div className="flex items-center justify-center">
+          <div
+            className="flex overflow-x-auto hide-scroll-bar  py-6  gap-5"
+            ref={sliderRef}
+            style={{ scrollBehavior: "smooth" }}
+          >
+            {placeImages.map((place, i) => (
+              <Card key={i} className=" shadow-lg group">
+                <Link href="/" className="group-hover:animate-pulse">
+                  <div key={i} className="slider-card shadow-lg group">
+                    <CardContent className="relative p-0">
+                      <img
+                        src="https://source.unsplash.com/random/250x250"
+                        // src={place.image}
+                        className="rounded-md !max-w-[500px]"
+                      />
+                      <div className="absolute flex flex-col gap-2 text-white bottom-5 left-4"></div>
+                    </CardContent>
+                  </div>
+                </Link>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        <div className=" align-middle justify-center flex gap-10">
+          <button
+            className="px-4 py-2 bg-green-500 rounded-full text-white"
+            onClick={scrollLeft}
+          >
+            &lt;
+          </button>{" "}
+          <button
+            className="px-4 py-2 bg-green-500 rounded-full text-white"
+            onClick={scrollRight}
+          >
+            &gt;
+          </button>{" "}
         </div>
       </section>
+
+      {/* <button
+          className="px-4 py-2 bg-gray-300 rounded-l"
+          onClick={scrollLeft}
+        >
+          &lt;
+        </button>
+       
+          <div className="flex gap-4">
+            <div className="w-64 h-40 bg-gray-200">Card 1</div>
+            <div className="w-64 h-40 bg-gray-200">Card 2</div>
+            <div className="w-64 h-40 bg-gray-200">Card 3</div>
+            <div className="w-64 h-40 bg-gray-200">Card 4</div>
+            <div className="w-64 h-40 bg-gray-200">Card 5</div>
+          </div>
+        </div>
+        <button
+          className="px-4 py-2 bg-gray-300 rounded-r"
+          onClick={scrollRight}
+        >
+          &gt;
+        </button>
+      </div> */}
 
       {place.map(
         (
@@ -296,7 +393,9 @@ const page = () => {
               i: any
             ) => (
               <Card key={i} className="max-w-sm shadow-lg">
-                <Link href={`/pages?id=${place._id}`}>
+                <Link
+                  href={`/pages?id=${place._id}&subCategory=${place.subCategory.name}`}
+                >
                   <CardContent className="flex flex-col justify-center p-0">
                     <img
                       src="https://source.unsplash.com/random/300x300"
@@ -305,7 +404,7 @@ const page = () => {
                     />
                     <div className="flex flex-col gap-2 p-4">
                       <h2 className="text-xl font-semibold">{place.name}</h2>
-                      {/* <p>{place.category.name}</p> */}
+                      <p>{place.category.name}</p>
                     </div>
                     <Button className="mt-6 w-full rounded-t-none text-lg">
                       Go <ChevronRight />
@@ -374,7 +473,7 @@ const page = () => {
             ) => (
               <Card key={i} className="max-w-sm shadow-lg">
                 <Link
-                  href={`/pages?id=${place._id}`}
+                  href={`/pages?id=${place._id}&subCategory=${place.subCategory.name}`}
                   className="group-hover:animate-pulse"
                 >
                   <CardContent className="flex flex-col justify-center p-0">

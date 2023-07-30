@@ -122,7 +122,7 @@ export default function IndexPage() {
   const fetchData = () => {
     const headers: any = {
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY5MDQzNDkyNCwiZXhwIjoxNjkwNTIxMzI0fQ.y9pdUTF3QMtg0ZnCP_tEYgElyNI9MkldasslI_gEVY4 ",
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY5MDU4MzUzMywiZXhwIjoxNjkxMDE1NTMzfQ.DGiBdX-V9xgsi1f3pfC45I8UiwSe5EmrDapPUDxf6YM ",
     }
     axios
       .get("https://wedeyet.herokuapp.com/api/place/all", { headers })
@@ -136,7 +136,7 @@ export default function IndexPage() {
   useEffect(() => {
     fetchData()
   }, [])
-
+  console.log(places)
   const libraries = useMemo(() => ["places"], [])
   const mapCenter = useMemo(() => ({ lat: 9.0567, lng: 38.739 }), [])
 
@@ -215,6 +215,7 @@ export default function IndexPage() {
             {places.map(
               (
                 place: {
+                  [x: string]: any
                   name: any
                   description: any
                   _id: any
@@ -222,7 +223,9 @@ export default function IndexPage() {
                 i: Key | null | undefined
               ) => (
                 <Card key={i} className="relative mb-4 bg-white shadow-lg">
-                  <Link href={`/pages?id=${place._id}`}>
+                  <Link
+                    href={`/pages?id=${place._id}&subCategory=${place.subCategory.name}`}
+                  >
                     <CardContent className="flex items-center gap-4 p-0">
                       <img
                         // src={place.image}
@@ -272,6 +275,7 @@ export default function IndexPage() {
           {places.map(
             (
               place: {
+                [x: string]: any
                 image: string | undefined
                 name: any
                 _id: any
@@ -281,7 +285,9 @@ export default function IndexPage() {
               i: Key | null | undefined
             ) => (
               <Card key={i} className="shadow-lg group ">
-                <Link href={`/pages?id=${place._id}`}>
+                <Link
+                  href={`/pages?id=${place._id}&subCategory=${place.subCategory.name}`}
+                >
                   <CardContent className="relative p-0 ">
                     <img
                       // src={place.image}
@@ -335,7 +341,9 @@ export default function IndexPage() {
         <div className="container flex gap-10 py-6 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max">
           {places.map((place: any, i: any) => (
             <Card className="max-w-sm shadow-lg mb-32">
-              <Link href={`/pages?id=${place._id}`}>
+              <Link
+                href={`/pages?id=${place._id}&subCategory=${place.subCategory.name}`}
+              >
                 <CardContent className="flex flex-col justify-center p-0">
                   <img
                     src="https://source.unsplash.com/random/300x300"
