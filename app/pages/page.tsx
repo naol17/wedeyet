@@ -102,26 +102,6 @@ const page = () => {
     fetchData()
   }, [])
 
-  // Similar place
-  // const [similarplace, setSimilarPlaces] = useState<any[]>([])
-  // const SimilarfetchData = () => {
-  //   const headers: any = {
-  //     Authorization:
-  //       "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY5MDQzNDkyNCwiZXhwIjoxNjkwNTIxMzI0fQ.y9pdUTF3QMtg0ZnCP_tEYgElyNI9MkldasslI_gEVY4",
-  //   }
-  //   axios
-  //     .get("https://wedeyet.herokuapp.com/api/place/all", { headers })
-  //     .then((response) => {
-  //       setSimilarPlaces(response.data.Places)
-  //     })
-  //     .catch((error) => alert("Please Check That You are Connected to Network"))
-  // }
-
-  // useEffect(() => {
-  //   SimilarfetchData()
-  // }, [])
-
-  //
   const [similarplace, setSimilarPlaces] = useState<any[]>([])
   const SimilarfetchData = () => {
     const params = new URLSearchParams(window.location.search)
@@ -241,7 +221,7 @@ const page = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 m-5 gap-2 lg:w-full">
             <div className="flex justify-center  ">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 m-5 gap-3 lg:w-full">
-                <div className="flex justify-center h-11 mt-10  ">
+                <div className="flex justify-center h-11 md:mt-14 lg:mt-14  ">
                   <button className="flex gap-2 bg-primary hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
                     <LocateFixed className="h-4 w-4 sm:h-6 sm:w-6 lg:h-6 lg:w-6 text-white" />
                     <span className="mr-3  text-white  sm:text-sm text-lg lg:text-base ">
@@ -262,7 +242,7 @@ const page = () => {
             </div>
             <div className="flex justify-center  ">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 m-5 gap-6 mt-5 lg:w-full">
-                <div className="flex justify-center  ">
+                <div className="flex justify-center  mr-28 md:mr-10 lg:mr-16">
                   <Button>
                     <Phone className="h-7 w-7" />
                   </Button>
@@ -270,7 +250,7 @@ const page = () => {
                     {place.phoneNumber}
                   </p>
                 </div>
-                <div className="flex justify-center mr-10 ">
+                <div className="flex justify-center mr-28 md:mr-10 lg:mr-16 ">
                   <Button>
                     <Send className="h-7 w-7" />
                   </Button>
@@ -324,7 +304,7 @@ const page = () => {
                 >
                   <CardContent className="flex flex-col justify-center p-0">
                     <img
-                      src="https://source.unsplash.com/random/300x300"
+                      src="https://source.unsplash.com/random/250x250"
                       className="max-w-sm rounded-md rounded-b-none"
                       alt="placeholder"
                     />
@@ -404,7 +384,7 @@ const page = () => {
                 >
                   <CardContent className="flex flex-col justify-center p-0">
                     <img
-                      src="https://source.unsplash.com/random/300x300"
+                      src="https://source.unsplash.com/random/250x250"
                       className="max-w-sm rounded-md rounded-b-none"
                       alt="placeholder"
                     />

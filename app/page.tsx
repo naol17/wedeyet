@@ -229,7 +229,7 @@ export default function IndexPage() {
                     <CardContent className="flex items-center gap-4 p-0">
                       <img
                         // src={place.image}
-                        src="https://source.unsplash.com/random/300x300"
+                        src="https://source.unsplash.com/random/250x250"
                         alt={place.name}
                         className="h-full w-36 rounded-l-md"
                       />
@@ -291,7 +291,7 @@ export default function IndexPage() {
                   <CardContent className="relative p-0 ">
                     <img
                       // src={place.image}
-                      src="https://source.unsplash.com/random/300x300"
+                      src="https://source.unsplash.com/random/250x250"
                       className="rounded-md !max-w-[500px]"
                       alt={place.name}
                     />
@@ -346,7 +346,7 @@ export default function IndexPage() {
               >
                 <CardContent className="flex flex-col justify-center p-0">
                   <img
-                    src="https://source.unsplash.com/random/300x300"
+                    src="https://source.unsplash.com/random/250x250"
                     className="max-w-sm rounded-md rounded-b-none"
                     alt="placeholder"
                   />

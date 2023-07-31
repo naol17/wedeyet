@@ -76,7 +76,9 @@ export function SiteHeader() {
       {searchQuery !== "" ? (
         <div>
           {filteredPlaces.map((place) => (
-            <a href={`/pages?id=${place._id}`}>
+            <a
+              href={`/pages?id=${place._id}&subCategory=${place.subCategory.name}`}
+            >
               <Card className="shadow-lg relative m-2">
                 <CardContent className="items-center gap-4 mt-2">
                   {place.name}
