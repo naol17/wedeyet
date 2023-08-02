@@ -135,16 +135,28 @@ const page = () => {
 
   // image slider
   const sliderRef = useRef<HTMLDivElement>(null)
+  const [currentCard, setCurrentCard] = useState(0)
 
   const scrollLeft = () => {
     if (sliderRef.current) {
-      sliderRef.current.scrollLeft -= 200 // Adjust the scroll distance as needed
+      sliderRef.current.scrollLeft -= 300 // Adjust the scroll distance
     }
   }
 
   const scrollRight = () => {
     if (sliderRef.current) {
-      sliderRef.current.scrollLeft += 200 // Adjust the scroll distance as needed
+      sliderRef.current.scrollLeft += 300 // Adjust the scroll distance
+    }
+  }
+  const scrollLef = () => {
+    if (currentCard > 0) {
+      setCurrentCard(currentCard - 1)
+    }
+  }
+
+  const scrollRigh = () => {
+    if (currentCard < 4) {
+      setCurrentCard(currentCard + 1)
     }
   }
 
@@ -220,10 +232,10 @@ const page = () => {
         ) => (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 m-5 gap-2 lg:w-full">
             <div className="flex justify-center  ">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 m-5 gap-3 lg:w-full">
-                <div className="flex justify-center h-11 md:mt-14 lg:mt-14  ">
-                  <button className="flex gap-2 bg-primary hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
-                    <LocateFixed className="h-4 w-4 sm:h-6 sm:w-6 lg:h-6 lg:w-6 text-white" />
+              <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 m-5 gap-3 lg:w-full">
+                <div className="flex justify-center h-11 md:mt-14 lg:mt-14 lg:mr-8 ">
+                  <button className="flex gap-2 bg-primary hover:bg-green-600 text-white font-bold py-2 px-2 rounded">
+                    <LocateFixed className="h-4 w-4 sm:h-6 sm:w-6 lg:h-6 lg:w-6 text-white mt-2" />
                     <span className="mr-3  text-white  sm:text-sm text-lg lg:text-base ">
                       Direction{" "}
                     </span>
@@ -235,26 +247,26 @@ const page = () => {
                     width="100%"
                     height="100%"
                   ></iframe>
-
-                  <p className="mt-5">{place.name}</p>
                 </div>
+                <p className="mt-5 ml-8">{place.name}</p>
               </div>
             </div>
+
             <div className="flex justify-center  ">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 m-5 gap-6 mt-5 lg:w-full">
-                <div className="flex justify-center  mr-28 md:mr-10 lg:mr-16">
+              <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-1 m-5 gap-6 mt-5 lg:w-full">
+                <div className="flex justify-center  mr-11 md:mr-1 ml-3 lg:mr-8">
                   <Button>
                     <Phone className="h-7 w-7" />
                   </Button>
-                  <p className=" text-sm sm:text-sm lg:text-base ml-5 pt-2">
+                  <p className=" text-sm sm:text-sm lg:text-base ml-1 pt-2">
                     {place.phoneNumber}
                   </p>
                 </div>
-                <div className="flex justify-center mr-28 md:mr-10 lg:mr-16 ">
+                <div className="flex justify-center mr-3 md:mr-10 lg:mr-8 ">
                   <Button>
                     <Send className="h-7 w-7" />
                   </Button>
-                  <p className="  text-sm sm:text-sm lg:text-base ml-5 pt-2">
+                  <p className="  text-sm sm:text-sm lg:text-base ml-1 pt-2">
                     {place.telegram}
                   </p>
                 </div>
