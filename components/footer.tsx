@@ -187,7 +187,7 @@ const Footer = () => {
               <ul className="mt-8 flex gap-6">
                 <li>
                   <Link
-                    href="/"
+                    href="https://www.facebook.com/"
                     rel="noreferrer"
                     target="_blank"
                     className="text-gray-500 transition hover:opacity-75"
@@ -199,7 +199,7 @@ const Footer = () => {
 
                 <li>
                   <Link
-                    href="/"
+                    href="https://www.instagram.com/"
                     rel="noreferrer"
                     target="_blank"
                     className="text-gray-500 transition hover:opacity-75"
@@ -211,7 +211,7 @@ const Footer = () => {
 
                 <li>
                   <Link
-                    href="/"
+                    href="https://twitter.com/"
                     rel="noreferrer"
                     target="_blank"
                     className="text-gray-500 transition hover:opacity-75"

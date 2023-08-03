@@ -86,7 +86,7 @@ const page = () => {
     console.log("inside fetch", id)
     const headers: any = {
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY5MDYzOTE0MywiZXhwIjoxNjkxMDcxMTQzfQ.iqbBUYLlvP2jWTHVvlp6dJwnPd9nsEjImhobEb8L0oI ",
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY5MTA4ODUxNiwiZXhwIjoxNjkxNTIwNTE2fQ.uQQfKlvdTzE3YcWH3PPTj2cCJ7-JmP55UCM2SnrhRbQ ",
     }
     axios
       .get(`https://wedeyet.herokuapp.com/api/place/get/${id}`, { headers })
@@ -109,7 +109,7 @@ const page = () => {
     console.log("inside subCategory", subCategory)
     const headers: any = {
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY5MDYzOTE0MywiZXhwIjoxNjkxMDcxMTQzfQ.iqbBUYLlvP2jWTHVvlp6dJwnPd9nsEjImhobEb8L0oI ",
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY5MTA4ODUxNiwiZXhwIjoxNjkxNTIwNTE2fQ.uQQfKlvdTzE3YcWH3PPTj2cCJ7-JmP55UCM2SnrhRbQ ",
     }
     axios
       .get(
@@ -139,13 +139,13 @@ const page = () => {
 
   const scrollLeft = () => {
     if (sliderRef.current) {
-      sliderRef.current.scrollLeft -= 300 // Adjust the scroll distance
+      sliderRef.current.scrollLeft -= 250 // Adjust the scroll distance
     }
   }
 
   const scrollRight = () => {
     if (sliderRef.current) {
-      sliderRef.current.scrollLeft += 300 // Adjust the scroll distance
+      sliderRef.current.scrollLeft += 250 // Adjust the scroll distance
     }
   }
   const scrollLef = () => {
@@ -164,6 +164,7 @@ const page = () => {
 
   return (
     <>
+      {/*  */}
       <div className="flex items-center justify-center w-full h-full">
         {place.map(
           (
@@ -182,7 +183,7 @@ const page = () => {
       <section className="bg-gray-100 mt-5">
         <div className="flex items-center justify-center">
           <div
-            className="flex overflow-x-auto hide-scroll-bar  py-6  gap-5"
+            className="flex overflow-x-auto hide-scroll-bar  py-6  gap-5 w-"
             ref={sliderRef}
             style={{ scrollBehavior: "smooth" }}
           >
@@ -194,7 +195,7 @@ const page = () => {
                       <img
                         src="https://source.unsplash.com/random/250x250"
                         // src={place.image}
-                        className="rounded-md !max-w-[500px]"
+                        className="rounded-md !max-w-[1000px]"
                       />
                       <div className="absolute flex flex-col gap-2 text-white bottom-5 left-4"></div>
                     </CardContent>
@@ -211,7 +212,7 @@ const page = () => {
             onClick={scrollLeft}
           >
             &lt;
-          </button>{" "}
+          </button>
           <button
             className="px-4 py-2 bg-green-500 rounded-full text-white"
             onClick={scrollRight}
@@ -233,7 +234,7 @@ const page = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 m-5 gap-2 lg:w-full">
             <div className="flex justify-center  ">
               <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 m-5 gap-3 lg:w-full">
-                <div className="flex justify-center h-11 md:mt-14 lg:mt-14 lg:mr-8 ">
+                <div className="flex justify-center h-11 md:mt-14 lg:mt-14 ">
                   <button className="flex gap-2 bg-primary hover:bg-green-600 text-white font-bold py-2 px-2 rounded">
                     <LocateFixed className="h-4 w-4 sm:h-6 sm:w-6 lg:h-6 lg:w-6 text-white mt-2" />
                     <span className="mr-3  text-white  sm:text-sm text-lg lg:text-base ">
@@ -241,20 +242,20 @@ const page = () => {
                     </span>
                   </button>
                 </div>
-                <div className="flex flex-col justify-center  ">
+                <div className="flex flex-col justify-center   ">
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15760.236161626544!2d38.74860638768315!3d9.058379475241788!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b8f350fce1a09%3A0x9b9773a5bb80aa81!2sSheger%20Park!5e0!3m2!1sen!2set!4v1686264906490!5m2!1sen!2set"
                     width="100%"
                     height="100%"
                   ></iframe>
                 </div>
-                <p className="mt-5 ml-8">{place.name}</p>
+                <p className="mt-5 ml-14">{place.name}</p>
               </div>
             </div>
 
             <div className="flex justify-center  ">
-              <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-1 m-5 gap-6 mt-5 lg:w-full">
-                <div className="flex justify-center  mr-11 md:mr-1 ml-3 lg:mr-8">
+              <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-1  m-5 gap-6 mt-5 lg:w-full md:ml">
+                <div className="flex justify-center md:justify-start  mr-11 md:mr-1 ml-3 lg:mr-8">
                   <Button>
                     <Phone className="h-7 w-7" />
                   </Button>
@@ -262,7 +263,7 @@ const page = () => {
                     {place.phoneNumber}
                   </p>
                 </div>
-                <div className="flex justify-center mr-3 md:mr-10 lg:mr-8 ">
+                <div className="flex justify-center md:justify-start mr-3 md:mr-10 lg:mr-8 ">
                   <Button>
                     <Send className="h-7 w-7" />
                   </Button>

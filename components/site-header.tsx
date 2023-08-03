@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button"
 import { MainNav } from "@/components/main-nav"
 import { ThemeToggle } from "@/components/theme-toggle"
 
-import { Card, CardContent } from "./ui/card"
+import { Card, CardContent, CardDescription } from "./ui/card"
 import { Input } from "./ui/input"
 
 export function SiteHeader() {
@@ -23,7 +23,7 @@ export function SiteHeader() {
   const fetchData = () => {
     const headers: any = {
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY5MDYzOTE0MywiZXhwIjoxNjkxMDcxMTQzfQ.iqbBUYLlvP2jWTHVvlp6dJwnPd9nsEjImhobEb8L0oI ",
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY5MTA4ODUxNiwiZXhwIjoxNjkxNTIwNTE2fQ.uQQfKlvdTzE3YcWH3PPTj2cCJ7-JmP55UCM2SnrhRbQ ",
     }
     axios
       .get("https://wedeyet.herokuapp.com/api/place/all", { headers })
@@ -74,15 +74,20 @@ export function SiteHeader() {
         </div>
       </header>
       {searchQuery !== "" ? (
-        <div>
+        <div className=" ml-8 mr-10">
           {filteredPlaces.map((place) => (
             <a
               href={`/pages?id=${place._id}&subCategory=${place.subCategory.name}`}
             >
-              <Card className="shadow-lg relative m-2">
+              <Card className="shadow-lg relative m-2   mr-16 hover:bg-slate-200">
                 <CardContent className="items-center gap-4 mt-2">
                   {place.name}
                 </CardContent>
+                <CardDescription className="ml-6 mb-2 -mt-5">
+                  {place.description.length > 50
+                    ? place.description.slice(0, 50) + "..."
+                    : place.description}
+                </CardDescription>
               </Card>
             </a>
           ))}
