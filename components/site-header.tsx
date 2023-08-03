@@ -74,12 +74,12 @@ export function SiteHeader() {
         </div>
       </header>
       {searchQuery !== "" ? (
-        <div className=" ml-8 mr-10">
+        <div className=" ml-8 md:mr-10 lg:mr-10 mr-4">
           {filteredPlaces.map((place) => (
             <a
               href={`/pages?id=${place._id}&subCategory=${place.subCategory.name}`}
             >
-              <Card className="shadow-lg relative m-2   mr-16 hover:bg-slate-200">
+              <Card className="shadow-lg relative m-2 lg:mr-16  md:mr-16 hover:bg-slate-200">
                 <CardContent className="items-center gap-4 mt-2">
                   {place.name}
                 </CardContent>
