@@ -249,7 +249,7 @@ const page = () => {
                     height="100%"
                   ></iframe>
                 </div>
-                <p className="mt-5 ml-14">{place.name}</p>
+                <p className="mt-2 ml-7 w-fit">{place.name}</p>
               </div>
             </div>
 
