@@ -86,7 +86,7 @@ const page = () => {
     console.log("inside fetch", id)
     const headers: any = {
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY5MTA4ODUxNiwiZXhwIjoxNjkxNTIwNTE2fQ.uQQfKlvdTzE3YcWH3PPTj2cCJ7-JmP55UCM2SnrhRbQ ",
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY5MTI2Nzg3MCwiZXhwIjoxNjkxNjk5ODcwfQ.cCC-Ok9qdZthR8QoNCez8NO4Z9UnC6fknAbj_7Kw86s ",
     }
     axios
       .get(`https://wedeyet.herokuapp.com/api/place/get/${id}`, { headers })
@@ -109,7 +109,7 @@ const page = () => {
     console.log("inside subCategory", subCategory)
     const headers: any = {
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY5MTA4ODUxNiwiZXhwIjoxNjkxNTIwNTE2fQ.uQQfKlvdTzE3YcWH3PPTj2cCJ7-JmP55UCM2SnrhRbQ ",
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY5MTI2Nzg3MCwiZXhwIjoxNjkxNjk5ODcwfQ.cCC-Ok9qdZthR8QoNCez8NO4Z9UnC6fknAbj_7Kw86s ",
     }
     axios
       .get(
@@ -405,8 +405,8 @@ const page = () => {
                       <h3>{place.name}</h3>
                       <h2 className="ml-5 mb-5 mt-5">Description</h2>
                       <p className="ml-5 mb-4">
-                        {place.description.length > 300
-                          ? place.description.slice(0, 300) + "..."
+                        {place.description.length > 30
+                          ? place.description.slice(0, 30) + "..."
                           : place.description}
                       </p>
                     </div>

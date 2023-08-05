@@ -115,6 +115,16 @@ const nearbyPlaces = [
 ]
 
 export default function IndexPage() {
+  const [selectedPlace, setSelectedPlace] = useState("")
+  const [selectedCoordinates, setSelectedCoordinates] = useState<null | {
+    lat: number
+    lng: number
+  }>(null)
+
+  // const [selectedCoordinates, setSelectedCoordinates] = useState({
+  //   lat: null,
+  //   lng: null,
+  // })
   // Fetch api
   const [users, setUsers] = useState<any[]>([])
   const [places, setPlaces] = useState<any[]>([])
@@ -122,7 +132,7 @@ export default function IndexPage() {
   const fetchData = () => {
     const headers: any = {
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY5MTA4ODUxNiwiZXhwIjoxNjkxNTIwNTE2fQ.uQQfKlvdTzE3YcWH3PPTj2cCJ7-JmP55UCM2SnrhRbQ ",
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY5MTI2Nzg3MCwiZXhwIjoxNjkxNjk5ODcwfQ.cCC-Ok9qdZthR8QoNCez8NO4Z9UnC6fknAbj_7Kw86s ",
     }
     axios
       .get("https://wedeyet.herokuapp.com/api/place/all", { headers })
@@ -137,6 +147,7 @@ export default function IndexPage() {
     fetchData()
   }, [])
   console.log(places)
+  // google map
   const libraries = useMemo(() => ["places"], [])
   const mapCenter = useMemo(() => ({ lat: 9.0567, lng: 38.739 }), [])
 
@@ -159,6 +170,11 @@ export default function IndexPage() {
   }
 
   const router = useRouter()
+  const handleAddressSelect = (address: string, lat: number, lng: number) => {
+    setSelectedPlace(address)
+    setSelectedCoordinates({ lat, lng })
+    setSelectedPlace("")
+  }
 
   // search
 
@@ -194,7 +210,8 @@ export default function IndexPage() {
             <GoogleMap
               options={mapOptions}
               zoom={14}
-              center={mapCenter}
+              // center={mapCenter}
+              center={selectedCoordinates || mapCenter}
               mapTypeId={google.maps.MapTypeId.ROADMAP}
               mapContainerStyle={{ width: "100%", height: "100%" }}
               onLoad={() => console.log("Map Component Loaded...")}
@@ -208,7 +225,10 @@ export default function IndexPage() {
                   label={place.subCategory.name}
                 />
               ))}
-              <MapAutoComplete />
+              {selectedCoordinates && (
+                <Marker position={selectedCoordinates} label={selectedPlace} />
+              )}
+              <MapAutoComplete onAddressSelect={handleAddressSelect} />
             </GoogleMap>
           </div>
           <ScrollArea className="flex h-[300px] max-h-fit gap-4 overflow-y-auto overflow-x-hidden sm:flex-row md:col-span-2 md:h-full md:p-2 lg:col-span-1 lg:h-full lg:flex-col lg:p-3">

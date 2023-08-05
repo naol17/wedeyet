@@ -5,14 +5,21 @@ import usePlacesAutocomplete, {
   getLatLng,
 } from "use-places-autocomplete"
 
-export default function MapAutoComplete() {
+interface MapAutoCompleteProps {
+  onAddressSelect?: (address: string, lat: number, lng: number) => void
+}
+// export default function MapAutoComplete() {
+export default function MapAutoComplete({
+  onAddressSelect,
+}: MapAutoCompleteProps) {
   const [lat, setLat] = useState(9.0567)
   const [lng, setLng] = useState(38.739)
+  const [selectedPlace, setSelectedPlace] = useState("")
 
   const PlacesAutocomplete = ({
     onAddressSelect,
   }: {
-    onAddressSelect?: (address: string) => void
+    onAddressSelect?: (address: string, lat: number, lng: number) => void
   }) => {
     const {
       ready,
@@ -44,9 +51,18 @@ export default function MapAutoComplete() {
             onClick={() => {
               setValue(description, false)
               clearSuggestions()
-              onAddressSelect && onAddressSelect(description)
+              if (onAddressSelect) {
+                getGeocode({ address: description }).then((results) => {
+                  const { lat, lng } = getLatLng(results[0])
+                  onAddressSelect(description, lat, lng)
+                  setSelectedPlace(description)
+                  setLat(lat)
+                  setLng(lng)
+                  setSelectedPlace("")
+                })
+              }
             }}
-            className="bg-white p-4 border"
+            className="bg-white p-4 border hover:bg-slate-300"
           >
             <strong>{main_text}</strong> <small>{secondary_text}</small>
           </li>
@@ -63,7 +79,7 @@ export default function MapAutoComplete() {
           <div className="relative pt-10 pr-12 pl-12">
             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
               <svg
-                className="w-4 h-4 text-gray-500 dark:text-gray-400 ml-12 mt-10"
+                className="absolute  w-4 h-4 text-gray-500 dark:text-gray-400 ml-12 mt-10"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -71,15 +87,15 @@ export default function MapAutoComplete() {
               >
                 <path
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
                 />
               </svg>
             </div>
             <input
-              value={value}
+              value={selectedPlace || value}
               disabled={!ready}
               onChange={(e) => setValue(e.target.value)}
               type="search"
@@ -92,8 +108,8 @@ export default function MapAutoComplete() {
           </div>
         </div>{" "}
         <button
-          type="submit"
-          className="mb-[18.5rem] pt-[-20rem] mr-12 p-2 text-white absolute right-2.5 bottom-2.5 bg-primary hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          className="mb-[18.5rem] lg:mb-[19rem] md:mb-[19rem] pt-[-20rem] mr-12 p-2 text-white absolute right-2.5 bottom-2.5 bg-primary hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          onClick={() => renderSuggestions()}
         >
           Search
         </button>
@@ -104,15 +120,24 @@ export default function MapAutoComplete() {
   return (
     <>
       <PlacesAutocomplete
-        onAddressSelect={(address) => {
-          getGeocode({ address: address }).then((results) => {
-            const { lat, lng } = getLatLng(results[0])
-
-            setLat(lat)
-            setLng(lng)
-          })
+        onAddressSelect={(address, lat, lng) => {
+          setSelectedPlace(address)
+          setLat(lat)
+          setLng(lng)
+          if (onAddressSelect) {
+            onAddressSelect(address, lat, lng)
+          }
         }}
       />
+      {lat && lng && (
+        <div>
+          <p>Selected Place: {selectedPlace}</p>
+          <p>Latitude: {lat}</p>
+          <p>Longitude: {lng}</p>
+
+          {/* Render your map component here using lat and lng */}
+        </div>
+      )}
     </>
   )
 }
