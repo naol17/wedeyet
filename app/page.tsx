@@ -176,6 +176,16 @@ export default function IndexPage() {
     setSelectedPlace("")
   }
 
+  const handleMarker = () => {
+    if (selectedCoordinates) {
+      const { lat, lng } = selectedCoordinates
+      window.open(
+        `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`,
+        "_blank"
+      )
+    }
+  }
+
   // search
 
   return (
@@ -226,7 +236,11 @@ export default function IndexPage() {
                 />
               ))}
               {selectedCoordinates && (
-                <Marker position={selectedCoordinates} label={selectedPlace} />
+                <Marker
+                  position={selectedCoordinates}
+                  label={selectedPlace}
+                  onClick={handleMarker}
+                />
               )}
               <MapAutoComplete onAddressSelect={handleAddressSelect} />
             </GoogleMap>

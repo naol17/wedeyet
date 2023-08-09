@@ -11,6 +11,7 @@ import {
   ReactFragment,
   ReactPortal,
   useEffect,
+  useMemo,
   useRef,
   useState,
 } from "react"
@@ -19,12 +20,19 @@ import dynamic from "next/dynamic"
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import {
+  GoogleMap,
+  Marker,
+  MarkerF,
+  useLoadScript,
+} from "@react-google-maps/api"
 import axios from "axios"
 import { ChevronRight, LocateFixed, Phone, Send, Twitter } from "lucide-react"
 
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardTitle } from "@/components/ui/card"
+import MapAutoComplete from "@/components/mapAutoComplete"
 
 // type PlaceImage = {
 //   image: string
@@ -70,7 +78,6 @@ const placeImages = [
 ]
 
 const page = () => {
-  const router = useRouter()
   // eslint-disable-next-line react-hooks/rules-of-hooks
   if (typeof window !== "undefined") {
     const params = new URLSearchParams(window.location.search)
@@ -148,16 +155,28 @@ const page = () => {
       sliderRef.current.scrollLeft += 250 // Adjust the scroll distance
     }
   }
-  const scrollLef = () => {
-    if (currentCard > 0) {
-      setCurrentCard(currentCard - 1)
-    }
-  }
 
-  const scrollRigh = () => {
-    if (currentCard < 4) {
-      setCurrentCard(currentCard + 1)
-    }
+  //
+  // map
+
+  const libraries = useMemo(() => ["places"], [])
+
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: "AIzaSyAWoIkWZaUYa3hIw2HgaOn2XLEoBL09Efo",
+    libraries: libraries as any,
+  })
+
+  const mapOptions = useMemo<google.maps.MapOptions>(
+    () => ({
+      disableDefaultUI: true,
+      clickableIcons: true,
+      scrollwheel: false,
+    }),
+    []
+  )
+
+  if (!isLoaded) {
+    return <h1 className="align-middle text-lg justify-center">Loading...</h1>
   }
 
   //
@@ -189,18 +208,19 @@ const page = () => {
           >
             {placeImages.map((place, i) => (
               <Card key={i} className=" shadow-lg group">
-                <Link href="/" className="group-hover:animate-pulse">
-                  <div key={i} className="slider-card shadow-lg group">
-                    <CardContent className="relative p-0">
-                      <img
-                        src="https://source.unsplash.com/random/250x250"
-                        // src={place.image}
-                        className="rounded-md !max-w-[1000px]"
-                      />
-                      <div className="absolute flex flex-col gap-2 text-white bottom-5 left-4"></div>
-                    </CardContent>
-                  </div>
-                </Link>
+                <div
+                  key={i}
+                  className="slider-card shadow-lg group group-hover:animate-pulse"
+                >
+                  <CardContent className="relative p-0">
+                    <img
+                      src="https://source.unsplash.com/random/250x250"
+                      // src={place.image}
+                      className="rounded-md !max-w-[1000px]"
+                    />
+                    <div className="absolute flex flex-col gap-2 text-white bottom-5 left-4"></div>
+                  </CardContent>
+                </div>
               </Card>
             ))}
           </div>
@@ -235,19 +255,47 @@ const page = () => {
             <div className="flex justify-center  ">
               <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 m-5 gap-3 lg:w-full">
                 <div className="flex justify-center h-11 md:mt-14 lg:mt-14 ">
-                  <button className="flex gap-2 bg-primary hover:bg-green-600 text-white font-bold py-2 px-2 rounded">
+                  <button
+                    className="flex gap-2 bg-primary hover:bg-green-600 text-white font-bold py-2 px-2 rounded"
+                    onClick={() => {
+                      const lat = place.location.coordinates[0]
+                      const lng = place.location.coordinates[1]
+                      window.open(
+                        `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`,
+                        "_blank"
+                      )
+                    }}
+                  >
                     <LocateFixed className="h-4 w-4 sm:h-6 sm:w-6 lg:h-6 lg:w-6 text-white mt-2" />
                     <span className="mr-3  text-white  sm:text-sm text-lg lg:text-base ">
                       Direction{" "}
                     </span>
                   </button>
                 </div>
-                <div className="flex flex-col justify-center   ">
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15760.236161626544!2d38.74860638768315!3d9.058379475241788!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b8f350fce1a09%3A0x9b9773a5bb80aa81!2sSheger%20Park!5e0!3m2!1sen!2set!4v1686264906490!5m2!1sen!2set"
-                    width="100%"
-                    height="100%"
-                  ></iframe>
+                <div className="flex flex-col justify-center h-48 w-48  ">
+                  <GoogleMap
+                    options={mapOptions}
+                    zoom={14}
+                    center={{
+                      lat: place.location.coordinates[0],
+                      lng: place.location.coordinates[1],
+                    }}
+                    mapTypeId={google.maps.MapTypeId.ROADMAP}
+                    mapContainerStyle={{ width: "100%", height: "100%" }}
+                    onLoad={() => console.log("Map Component Loaded...")}
+                  >
+                    <MarkerF
+                      position={{
+                        lat: place.location.coordinates[0],
+                        lng: place.location.coordinates[1],
+                      }}
+                      icon={{
+                        url: place.category.image,
+                        size: new window.google.maps.Size(50, 50),
+                      }}
+                      label={place.subCategory.name}
+                    />
+                  </GoogleMap>
                 </div>
                 <p className="mt-2 ml-7 w-fit">{place.name}</p>
               </div>
@@ -263,7 +311,7 @@ const page = () => {
                     {place.phoneNumber}
                   </p>
                 </div>
-                <div className="flex justify-center md:justify-start mr-3 md:mr-10 lg:mr-8 ">
+                <div className="flex justify-center md:justify-start  mr-11 md:mr-1 ml-3 lg:mr-8">
                   <Button>
                     <Send className="h-7 w-7" />
                   </Button>
