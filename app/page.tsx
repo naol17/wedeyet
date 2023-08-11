@@ -26,7 +26,7 @@ import {
 } from "@react-google-maps/api"
 import axios from "axios"
 import {
-  Car,
+  BookOpen,
   ChevronLeft,
   ChevronRight,
   Coffee,
@@ -50,15 +50,15 @@ import MapAutoComplete from "@/components/mapAutoComplete"
 
 const categories = [
   {
-    name: "Transport",
-    icon: Car,
+    name: "Universities",
+    icon: BookOpen,
   },
   {
     name: "Shops",
     icon: ShoppingBag,
   },
   {
-    name: "Restaurants",
+    name: "Hotels",
     icon: Utensils,
   },
   {
@@ -126,27 +126,52 @@ export default function IndexPage() {
   //   lng: null,
   // })
   // Fetch api
-  const [users, setUsers] = useState<any[]>([])
   const [places, setPlaces] = useState<any[]>([])
+  const [caplaces, setCaPlaces] = useState<any[]>([])
 
   const fetchData = () => {
     const headers: any = {
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY5MTI2Nzg3MCwiZXhwIjoxNjkxNjk5ODcwfQ.cCC-Ok9qdZthR8QoNCez8NO4Z9UnC6fknAbj_7Kw86s ",
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjRkNmFhZmZiODkwMDE2YjRiZmQzOTY2IiwiZW1haWwiOiJyZWRAZ21haWwuY29tIiwiaWF0IjoxNjkxNzkxMzczLCJleHAiOjE2OTIyMjMzNzN9.Ylb9eMrdckMJCzhG4f_PWz01haMzOQvuNj-Iem7XGnE ",
     }
     axios
       .get("https://wedeyet.herokuapp.com/api/place/all", { headers })
       .then((response) => {
-        setUsers(response.data)
         setPlaces(response.data.Places)
       })
       .catch((error) => alert("Please Check That You are Connected to Network"))
   }
 
+  const handleCategoryClick = (categoryName: any) => {
+    const headers: any = {
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjRkNmFhZmZiODkwMDE2YjRiZmQzOTY2IiwiZW1haWwiOiJyZWRAZ21haWwuY29tIiwiaWF0IjoxNjkxNzkxMzczLCJleHAiOjE2OTIyMjMzNzN9.Ylb9eMrdckMJCzhG4f_PWz01haMzOQvuNj-Iem7XGnE ",
+    }
+    axios
+      .get(
+        `https://wedeyet.herokuapp.com/api/place/search?subCategory=${categoryName}`,
+        {
+          headers,
+        }
+      )
+      .then((response) => {
+        setPlaces(response.data.Place)
+        console.log("caplace", response.data)
+      })
+      .catch((error) => alert("Please Check That You are Connected to Network"))
+    console.log("inside handler ", places)
+    console.log("heaf", categoryName)
+  }
+
   useEffect(() => {
     fetchData()
   }, [])
-  console.log(places)
+
+  useEffect(() => {
+    console.log(places)
+  }, [places])
+  console.log("fuck", places)
+  console.log("shabsteferkoale", places)
   // google map
   const libraries = useMemo(() => ["places"], [])
   const mapCenter = useMemo(() => ({ lat: 9.0567, lng: 38.739 }), [])
@@ -194,22 +219,24 @@ export default function IndexPage() {
         <div className="flex gap-10 pb-2 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max mt-3">
           {categories.map((category, i) => (
             <Card key={i} className="shadow-md">
-              <Link href="/" className="group ">
-                <CardContent className="flex items-center justify-center gap-4 px-4 py-2 rounded group-hover:bg-primary group-hover:bg-opacity-40">
-                  <category.icon className="w-6 h-6 text-primary" />
-                  <p className="font-semibold ">{category.name}</p>
-                </CardContent>
-              </Link>
+              <CardContent
+                className="flex items-center justify-center gap-4 px-4 py-2 rounded group-hover:bg-primary group-hover:bg-opacity-40"
+                onClick={() => handleCategoryClick(category.name)}
+              >
+                <category.icon className="w-6 h-6 text-primary" />
+                <p className="font-semibold ">{category.name}</p>
+              </CardContent>
             </Card>
           ))}
           {categories.map((category, i) => (
             <Card key={i}>
-              <Link href="/" className="group ">
-                <CardContent className="flex items-center justify-center gap-4 px-4 py-2 rounded group-hover:bg-primary group-hover:bg-opacity-40">
-                  <category.icon className="w-6 h-6 text-primary" />
-                  <p className="font-semibold ">{category.name}</p>
-                </CardContent>
-              </Link>
+              <CardContent
+                className="flex items-center justify-center gap-4 px-4 py-2 rounded group-hover:bg-primary group-hover:bg-opacity-40"
+                onClick={() => handleCategoryClick(category.name)}
+              >
+                <category.icon className="w-6 h-6 text-primary" />
+                <p className="font-semibold ">{category.name}</p>
+              </CardContent>
             </Card>
           ))}
         </div>
