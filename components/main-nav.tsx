@@ -48,10 +48,10 @@ export function MainNav({ items }: MainNavProps) {
           isOpen ? "block" : "hidden"
         }`}
       >
-        <div className="ml-10 mt-[-26rem] bg-green-300  pl-3        pt-[22rem] text-sm  lg:mt-0 lg:flex lg:bg-inherit lg:pt-0  ">
+        <div className="ml-10 mt-[-26rem] bg-green-300  pl-3  pt-[22rem] text-sm  lg:mt-0 lg:flex lg:bg-inherit lg:pt-0 dark:bg-slate-800 dark:text-white ">
           <a
             href="/"
-            className="block mt-1 pt-7 lg:pt-0 lg:inline-block lg:mt-0 text-white-200 mr-4 "
+            className="block mt-1 pt-7 lg:pt-0 lg:inline-block lg:mt-0 text-white-200 mr-4 border-white "
           >
             Home
           </a>
