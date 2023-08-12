@@ -44,7 +44,12 @@ import usePlacesAutocomplete, {
 
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardTitle } from "@/components/ui/card"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardTitle,
+} from "@/components/ui/card"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import MapAutoComplete from "@/components/mapAutoComplete"
 
@@ -158,7 +163,7 @@ export default function IndexPage() {
         setPlaces(response.data.Place)
         console.log("caplace", response.data)
       })
-      .catch((error) => alert("Please Check That You are Connected to Network"))
+      .catch((error) => alert("Sorry! Can't find place for that Category"))
     console.log("inside handler ", places)
     console.log("heaf", categoryName)
   }
@@ -220,7 +225,7 @@ export default function IndexPage() {
           {categories.map((category, i) => (
             <Card key={i} className="shadow-md">
               <CardContent
-                className="flex items-center justify-center gap-4 px-4 py-2 rounded group-hover:bg-primary group-hover:bg-opacity-40"
+                className="flex items-center justify-center gap-4 px-4 py-2 rounded group-hover:bg-primary group-hover:bg-opacity-40 "
                 onClick={() => handleCategoryClick(category.name)}
               >
                 <category.icon className="w-6 h-6 text-primary" />
@@ -287,7 +292,7 @@ export default function IndexPage() {
                   <Link
                     href={`/pages?id=${place._id}&subCategory=${place.subCategory.name}`}
                   >
-                    <CardContent className="flex items-center gap-4 p-0">
+                    <CardContent className="flex items-center gap-4 p-0 dark:bg-slate-950 dark:border-white">
                       <img
                         // src={place.image}
                         src="https://source.unsplash.com/random/250x250"
@@ -295,8 +300,10 @@ export default function IndexPage() {
                         className="h-full w-36 rounded-l-md"
                       />
                       <div className="">
-                        <p className="text-lg font-semibold">{place.name}</p>
-                        <p className="text-sm text-gray-500">
+                        <p className="text-lg font-semibold dark:text-white">
+                          {place.name}
+                        </p>
+                        <p className="text-sm text-gray-500 dark:text-white">
                           {place.description.length > 25
                             ? place.description.slice(0, 25) + "..."
                             : place.description}
@@ -331,7 +338,7 @@ export default function IndexPage() {
           </p>
         </div>
       </section>
-      <section className="bg-gray-100">
+      <section className="bg-gray-100 dark:bg-slate-900">
         <div className="container flex gap-6 py-6 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max">
           {places.map(
             (
@@ -366,7 +373,7 @@ export default function IndexPage() {
                           : place.description}
                       </p>
                     </div>
-                    <Badge className="absolute px-4 text-lg top-3 left-5">
+                    <Badge className="absolute px-4 text-lg top-3 left-5 dark:text-white">
                       Add
                     </Badge>
                   </CardContent>
@@ -401,7 +408,7 @@ export default function IndexPage() {
       <section>
         <div className="container flex gap-10 py-6 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max">
           {places.map((place: any, i: any) => (
-            <Card className="max-w-sm shadow-lg mb-5">
+            <Card className="max-w-sm shadow-lg mb-5 lg:max-w-sm">
               <Link
                 href={`/pages?id=${place._id}&subCategory=${place.subCategory.name}`}
               >
@@ -412,21 +419,19 @@ export default function IndexPage() {
                     alt="placeholder"
                   />
                   <div className="flex flex-col gap-2 p-4">
-                    <h3 className="text-xl font-semibold ">
-                      {place.name}{" "}
-                      <span className="text-white invisible">
-                        illum possimus quisquam iure gftr hhsgeep hhsgeep
-                        hhsgeep.
-                      </span>
-                    </h3>
-                    <p className="text-sm mt-[-38px]">
-                      {place.description.length > 35
-                        ? place.description.slice(0, 35) + "..."
-                        : place.description}
-                    </p>
+                    <h3 className="text-xl font-semibold ">{place.name} </h3>
+                    <div className="text-base mt-10">
+                      {" "}
+                      <p className="text-sm mt-[-38px]">
+                        {place.description.length > 35
+                          ? place.description.slice(0, 35) + "..."
+                          : place.description}
+                      </p>
+                    </div>
                   </div>
+
                   <button
-                    className="flex w-full flex-row rounded-t-none rounded-b-md  bg-primary text-lg text-white align-center pl-32 p-3  text-bold "
+                    className="flex w-full flex-row rounded-t-none rounded-b-md  bg-primary text-lg text-white align-center pl-24 p-3  text-bold "
                     onClick={() => {
                       alert("buttoncicked ")
                     }}
