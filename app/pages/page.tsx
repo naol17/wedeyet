@@ -199,7 +199,7 @@ const page = () => {
         )}
       </div>
 
-      <section className="bg-gray-100 mt-5">
+      <section className="bg-gray-100 mt-5 dark:bg-slate-900">
         <div className="flex items-center justify-center">
           <div
             className="flex overflow-x-auto hide-scroll-bar  py-6  gap-5 w-"
@@ -289,10 +289,7 @@ const page = () => {
                         lat: place.location.coordinates[0],
                         lng: place.location.coordinates[1],
                       }}
-                      icon={{
-                        url: place.category.image,
-                        size: new window.google.maps.Size(50, 50),
-                      }}
+                      // 
                       label={place.subCategory.name}
                     />
                   </GoogleMap>
@@ -305,7 +302,7 @@ const page = () => {
               <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-1  m-5 gap-6 mt-5 lg:w-full md:ml">
                 <div className="flex justify-center md:justify-start  mr-11 md:mr-1 ml-3 lg:mr-8">
                   <Button>
-                    <Phone className="h-7 w-7" />
+                    <Phone className="h-7 w-7 dark:text-white" />
                   </Button>
                   <p className=" text-sm sm:text-sm lg:text-base ml-1 pt-2">
                     {place.phoneNumber}
@@ -313,7 +310,7 @@ const page = () => {
                 </div>
                 <div className="flex justify-center md:justify-start  mr-11 md:mr-1 ml-3 lg:mr-8">
                   <Button>
-                    <Send className="h-7 w-7" />
+                    <Send className="h-7 w-7 dark:text-white" />
                   </Button>
                   <p className="  text-sm sm:text-sm lg:text-base ml-1 pt-2">
                     {place.telegram}
