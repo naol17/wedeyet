@@ -48,9 +48,9 @@ const Footer = () => {
     <>
       {showModal ? (
         <>
-          <div className="flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none shadow-2xl focus:outline-none bg-zinc-950 bg-opacity-20">
+          <div className="flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none shadow-2xl focus:outline-none bg-zinc-950 bg-opacity-25 dark:bg-gray-400 dark:bg-opacity-25">
             <div className="relative w-auto my-6 mx-auto max-w-3xl ">
-              <div className="border-0 rounded-lg pr-8 shadow-lg relative flex flex-col w-full bg-white p-10 outline-none focus:outline-none">
+              <div className="border-0 rounded-lg pr-8 shadow-lg relative flex flex-col w-full bg-white p-10 outline-none focus:outline-none dark:bg-slate-950">
                 <div className="flex items-start justify-between p-5 border-b border-solid border-gray-300 rounded-t ">
                   <h3 className="text-3xl font=semibold mt-3">
                     Give us feedback
@@ -140,7 +140,7 @@ const Footer = () => {
                       type="radio"
                       value="Female"
                       name="gender"
-                      className="ml-2 mr-2 h-5 w-5 accent-green-600"
+                      className="ml-2 mr-2 h-5 w-5 accent-green-600 dark:bg-white"
                       onClick={() => {
                         setFollowUp(false)
                       }}
@@ -158,7 +158,7 @@ const Footer = () => {
                     Send
                   </button>
                   <button
-                    className="text-black background-transparent border rounded-md border-primary font-semibold uppercase px-6 py-3 text-sm outline-none focus:outline-none mr-1 mb-1"
+                    className="text-black background-transparent border rounded-md border-primary font-semibold uppercase px-6 py-3 text-sm outline-none focus:outline-none mr-1 mb-1 dark:text-white"
                     type="button"
                     onClick={() => setShowModal(false)}
                   >
@@ -178,7 +178,7 @@ const Footer = () => {
                 <Image src="/logo.png" height={50} width={50} alt="logo" />
               </div>
 
-              <p className="mt-4 max-w-xs text-gray-500">
+              <p className="mt-4 max-w-xs text-gray-500 dark:text-white">
                 Simplifying Addis Ababa&apos;s navigation with ease. Discover,
                 explore, and navigate the city hassle-free. Your go-to app for
                 finding shops, cafes, hospitals, and more.
