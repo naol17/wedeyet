@@ -62,7 +62,7 @@ export default function MapAutoComplete({
                 })
               }
             }}
-            className="bg-white p-4 border hover:bg-slate-300"
+            className="bg-white p-4 border hover:bg-slate-300 dark:bg-slate-900 dark:hover:bg-slate-800 dark"
           >
             <strong>{main_text}</strong> <small>{secondary_text}</small>
           </li>
@@ -72,7 +72,7 @@ export default function MapAutoComplete({
 
     return (
       <form>
-        <label className="mt-10 text-sm font-medium text-gray-900 sr-only dark:text-white">
+        <label className="mt-10 text-sm font-medium text-gray-900 sr-only dark:text-white dark:bg-primary ">
           Search
         </label>
         <div className="flex flex-col">
@@ -100,7 +100,7 @@ export default function MapAutoComplete({
               onChange={(e) => setValue(e.target.value)}
               type="search"
               id="default-search"
-              className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
               placeholder="Search Hotels, Shops..."
               required
             />
@@ -108,7 +108,7 @@ export default function MapAutoComplete({
           </div>
         </div>{" "}
         <button
-          className="mb-[18.5rem] lg:mb-[19rem] md:mb-[19rem] pt-[-20rem] mr-12 p-2 text-white absolute right-2.5 bottom-2.5 bg-primary hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          className="mb-[18.5rem] lg:mb-[19rem] md:mb-[19rem] pt-[-20rem] mr-12 p-2 text-white absolute right-2.5 bottom-2.5 bg-primary hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2  dark:bg-primary dark:hover:bg-green-700 dark:focus:ring-green-800"
           onClick={() => renderSuggestions()}
         >
           Search
