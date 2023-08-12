@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 
-export default function feedbackModal() {
+export default function FeedbackModal() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [showModal, setShowModal] = useState(false)
 
@@ -10,11 +10,11 @@ export default function feedbackModal() {
     <>
       {showModal ? (
         <>
-          <div className="flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none shadow-2xl focus:outline-none bg-zinc-950 bg-opacity-20">
+          <div className=" flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none shadow-2xl focus:outline-none bg-zinc-950 bg-opacity-20">
             <div className="relative w-auto my-6 mx-auto max-w-3xl ">
-              <div className="border-0 rounded-lg pr-8 shadow-lg relative flex flex-col w-full bg-white p-10 outline-none focus:outline-none">
+              <div className="border-0 rounded-lg pr-8 shadow-lg relative flex flex-col w-full  bg-yellow-600 p-10 outline-none focus:outline-none">
                 <div className="flex items-start justify-between p-5 border-b border-solid border-gray-300 rounded-t ">
-                  <h3 className="text-3xl font=semibold mt-3">
+                  <h3 className="text-3xl font=semibold mt-3 bg-green-800">
                     Give us feedback
                   </h3>
                   <button

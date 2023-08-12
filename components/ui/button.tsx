@@ -43,10 +43,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     {
       className,
       variant,
-      onClickCapture,
       size,
       asChild = false,
-      onClick,
+
       ...props
     },
     ref
