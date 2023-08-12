@@ -79,7 +79,7 @@ export function SiteHeader() {
             <a
               href={`/pages?id=${place._id}&subCategory=${place.subCategory.name}`}
             >
-              <Card className="shadow-lg relative m-2 lg:mr-16  md:mr-16 hover:bg-slate-200">
+              <Card className="shadow-lg relative m-2 lg:mr-16  md:mr-16 hover:bg-slate-200 dark:hover:bg-slate-800 dark:hover:text-white">
                 <CardContent className="items-center gap-4 mt-2">
                   {place.name}
                 </CardContent>
