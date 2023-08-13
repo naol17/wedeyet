@@ -16,7 +16,7 @@ interface MainNavProps {
 export function MainNav({ items }: MainNavProps) {
   const [isOpen, setIsOpen] = useState(false)
   return (
-    <nav className="flex flex-wrap items-center justify-between lg:pr-10 lg:pt-0  sm:mr-6  sm:mt-7 lg:bg-inherit ">
+    <nav className="flex flex-wrap items-center justify-between lg:pr-10 lg:pt-0  sm:mr-6  sm:mt-7 lg:bg-inherit lg:mr-40 ">
       <div className="block lg:hidden">
         <button
           onClick={() => setIsOpen(!isOpen)}
