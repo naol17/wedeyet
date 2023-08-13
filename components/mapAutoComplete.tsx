@@ -108,7 +108,7 @@ export default function MapAutoComplete({
           </div>
         </div>{" "}
         <button
-          className="mb-[18.5rem] lg:mb-[19rem] md:mb-[19rem] pt-[-20rem] mr-12 p-2 text-white absolute right-2.5 bottom-2.5 bg-primary hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2  dark:bg-primary dark:hover:bg-green-700 dark:focus:ring-green-800"
+          className="mb-[20.5rem] lg:mb-[21rem] md:mb-[21rem] pt-[-20rem] mr-12 p-2 text-white absolute right-2.5 bottom-2.5 bg-primary hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2  dark:bg-primary dark:hover:bg-green-700 dark:focus:ring-green-800"
           onClick={() => renderSuggestions()}
         >
           Search

@@ -221,7 +221,7 @@ export default function IndexPage() {
   return (
     <>
       <section className="container grid items-center gap-6 pt-6 pb-8 md:py-10">
-        <div className="flex gap-10 pb-2 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max mt-3">
+        <div className="flex gap-10 pb-2 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max mt-3 lg:ml-24 lg:mr-10">
           {categories.map((category, i) => (
             <Card key={i} className="shadow-md">
               <CardContent
@@ -247,8 +247,8 @@ export default function IndexPage() {
         </div>
 
         {/* <div className="grid h-[450px] grid-cols-4 gap-5 md:bg-red-600 sm:bg-green-500 sm:grid-cols-1 lg:bg-yellow-400 "> */}
-        <div className="h-[700px]  md:grid md:grid-cols-4 md:gap-2 md:h-[450px] lg:grid-cols-4">
-          <div className="md:col-span-2 pb-2 h-[400px] md:pb-0 lg:col-span-3  ">
+        <div className="h-[700px]  md:grid md:grid-cols-4 md:gap-2 md:h-[450px] lg:grid-cols-4 lg:ml-24 lg:mr-10">
+          <div className="md:col-span-2 pb-2 h-[430px] md:pb-0 lg:col-span-3 lg:pb-0  ">
             <GoogleMap
               options={mapOptions}
               zoom={14}
@@ -277,7 +277,7 @@ export default function IndexPage() {
               <MapAutoComplete onAddressSelect={handleAddressSelect} />
             </GoogleMap>
           </div>
-          <ScrollArea className="flex h-[300px] max-h-fit gap-4 overflow-y-auto overflow-x-hidden sm:flex-row md:col-span-2 md:h-full md:p-2 lg:col-span-1 lg:h-full lg:flex-col lg:p-3">
+          <ScrollArea className="flex h-[300px] max-h-fit md:pt-0 gap-4 overflow-y-auto overflow-x-hidden sm:flex-row md:col-span-2 md:h-full md:p-2 lg:col-span-1 lg:h-full lg:flex-col lg:p-3  lg:pt-0">
             {places.map(
               (
                 place: {
@@ -318,7 +318,7 @@ export default function IndexPage() {
         </div>
 
         <div className="gap-10">
-          <p className="mb-6">
+          <p className="mb-6 lg:ml-24 lg:mr-14">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. A illum
             soluta optio repellendus ullam aliquam nisi. Laborum necessitatibus
             nobis soluta, eum consequatur dolor quidem dolore itaque illum
@@ -327,7 +327,7 @@ export default function IndexPage() {
             nisi. Laborum necessitatibus nobis soluta, eum consequatur dolor
             quidem dolore itaque illum possimus quisquam iure.
           </p>
-          <p>
+          <p className="lg:ml-24 lg:mr-14">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. A illum
             soluta optio repellendus ullam aliquam nisi. Laborum necessitatibus
             nobis soluta, eum consequatur dolor quidem dolore itaque illum
@@ -385,7 +385,7 @@ export default function IndexPage() {
       </section>
       <section className="container grid  gap-6 pt-6 pb-8 md:py-10">
         <div className=" gap-6 mx-auto">
-          <p className="mb-6">
+          <p className="mb-6 lg:ml-24 lg:mr-14">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. A illum
             soluta optio repellendus ullam aliquam nisi. Laborum necessitatibus
             nobis soluta, eum consequatur dolor quidem dolore itaque illum
@@ -394,7 +394,7 @@ export default function IndexPage() {
             nisi. Laborum necessitatibus nobis soluta, eum consequatur dolor
             quidem dolore itaque illum possimus quisquam iure.
           </p>
-          <p>
+          <p className="lg:ml-24 lg:mr-14">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. A illum
             soluta optio repellendus ullam aliquam nisi. Laborum necessitatibus
             nobis soluta, eum consequatur dolor quidem dolore itaque illum
