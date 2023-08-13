@@ -173,7 +173,7 @@ const Footer = () => {
       <footer>
         <div className="container space-y-8 py-8 lg:space-y-8">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
-            <div className="lg:col-span-2">
+            <div className="lg:col-span-2 lg:ml-24">
               <div className="flex items-center text-primary">
                 <Image src="/logo.png" height={50} width={50} alt="logo" />
               </div>

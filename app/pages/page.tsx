@@ -188,10 +188,7 @@ const page = () => {
         {place.map(
           (
             place,
-            //  {
-            //   // category: any
-            //   name: any
-            // },
+
             i
           ) => (
             <h1 className="text-3xl mt-2">{place.name}</h1>
@@ -199,8 +196,8 @@ const page = () => {
         )}
       </div>
 
-      <section className="bg-gray-100 mt-5 dark:bg-slate-900">
-        <div className="flex items-center justify-center">
+      <section className="bg-gray-100 mt-5 dark:bg-slate-900 ">
+        <div className="flex items-center justify-center lg:ml-40 lg:mr-14">
           <div
             className="flex overflow-x-auto hide-scroll-bar  py-6  gap-5 w-"
             ref={sliderRef}
@@ -252,9 +249,9 @@ const page = () => {
           i
         ) => (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 m-5 gap-2 lg:w-full">
-            <div className="flex justify-center  ">
-              <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 m-5 gap-3 lg:w-full">
-                <div className="flex justify-center h-11 md:mt-14 lg:mt-14 ">
+            <div className="flex justify-center lg:ml-36 lg:mr-14 ">
+              <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 m-5 lg:ml-0 gap-3 lg:w-full">
+                <div className="flex justify-center h-11 md:mt-14 lg:mt-14 lg:ml-0">
                   <button
                     className="flex gap-2 bg-primary hover:bg-green-600 text-white font-bold py-2 px-2 rounded"
                     onClick={() => {
@@ -266,7 +263,7 @@ const page = () => {
                       )
                     }}
                   >
-                    <LocateFixed className="h-4 w-4 sm:h-6 sm:w-6 lg:h-6 lg:w-6 text-white mt-2" />
+                    <LocateFixed className="h-4 w-4 sm:h-6 sm:w-6 lg:h-6 lg:w-6 lg:mt-1 text-white mt-2" />
                     <span className="mr-3  text-white  sm:text-sm text-lg lg:text-base ">
                       Direction{" "}
                     </span>
@@ -289,7 +286,7 @@ const page = () => {
                         lat: place.location.coordinates[0],
                         lng: place.location.coordinates[1],
                       }}
-                      // 
+                      //
                       label={place.subCategory.name}
                     />
                   </GoogleMap>
@@ -298,9 +295,9 @@ const page = () => {
               </div>
             </div>
 
-            <div className="flex justify-center  ">
-              <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-1  m-5 gap-6 mt-5 lg:w-full md:ml">
-                <div className="flex justify-center md:justify-start  mr-11 md:mr-1 ml-3 lg:mr-8">
+            <div className="flex justify-center lg:mt-14 ">
+              <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 lg:gap-1  m-5 gap-6 mt-5 lg:w-full ">
+                <div className="flex justify-center md:justify-start  mr-11 md:mr-1 ml-3 lg:mr-0">
                   <Button>
                     <Phone className="h-7 w-7 dark:text-white" />
                   </Button>
@@ -322,20 +319,17 @@ const page = () => {
         )
       )}
 
-      <div className="mx-auto flex w-11/12 flex-col gap-6">
-        <h2 className="justify-end text-lg text-center font-bold">
+      <div className="mx-auto flex w-11/12 flex-col gap-6 ">
+        <h2 className="justify-end text-lg text-center font-bold ">
           Description
         </h2>
         {place.map(
           (
             place,
-            //  {
-            //   // category: any
-            //   name: any
-            // },
+
             i
           ) => (
-            <p>{place.description}</p>
+            <p className="lg:ml-32 lg:mr-14">{place.description}</p>
           )
         )}
       </div>
@@ -350,10 +344,7 @@ const page = () => {
           {similarplace.map(
             (
               place,
-              //  {
-              //   // category: any
-              //   name: any
-              // },
+
               i: any
             ) => (
               <Card key={i} className="max-w-sm shadow-lg">
@@ -381,7 +372,7 @@ const page = () => {
         </div>
       </section>
       <div className="flex flex-col w-11/12 gap-6 mx-auto">
-        <p>
+        <p className="lg:ml-36 lg:mr-14">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. A illum
           soluta optio repellendus ullam aliquam nisi. Laborum necessitatibus
           nobis soluta, eum consequatur dolor quidem dolore itaque illum
@@ -390,7 +381,7 @@ const page = () => {
           Laborum necessitatibus nobis soluta, eum consequatur dolor quidem
           dolore itaque illum possimus quisquam iure.
         </p>
-        <p>
+        <p className="lg:ml-36 lg:mr-14">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. A illum
           soluta optio repellendus ullam aliquam nisi. Laborum necessitatibus
           nobis soluta, eum consequatur dolor quidem dolore itaque illum
@@ -428,7 +419,7 @@ const page = () => {
         </div> */}
       </section>
       <section>
-        <div className="container flex gap-5 py-5 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max">
+        <div className="container  flex gap-5 py-5 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max">
           {similarplace.map(
             (
               place,
