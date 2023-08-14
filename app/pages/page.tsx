@@ -196,7 +196,7 @@ const page = () => {
         )}
       </div>
 
-      <section className="bg-gray-100 mt-5 dark:bg-slate-900 ">
+      <section className=" mt-5 dark:bg-slate-950 ">
         <div className="flex items-center justify-center lg:ml-40 lg:mr-14">
           <div
             className="flex overflow-x-auto hide-scroll-bar  py-6  gap-5 w-"
@@ -242,77 +242,64 @@ const page = () => {
       {place.map(
         (
           place,
-          //  {
-          //   // category: any
-          //   name: any
-          // },
+
           i
         ) => (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 m-5 gap-2 lg:w-full">
-            <div className="flex justify-center lg:ml-36 lg:mr-14 ">
-              <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 m-5 lg:ml-0 gap-3 lg:w-full">
-                <div className="flex justify-center h-11 md:mt-14 lg:mt-14 lg:ml-0">
-                  <button
-                    className="flex gap-2 bg-primary hover:bg-green-600 text-white font-bold py-2 px-2 rounded"
-                    onClick={() => {
-                      const lat = place.location.coordinates[0]
-                      const lng = place.location.coordinates[1]
-                      window.open(
-                        `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`,
-                        "_blank"
-                      )
-                    }}
-                  >
-                    <LocateFixed className="h-4 w-4 sm:h-6 sm:w-6 lg:h-6 lg:w-6 lg:mt-1 text-white mt-2" />
-                    <span className="mr-3  text-white  sm:text-sm text-lg lg:text-base ">
-                      Direction{" "}
-                    </span>
-                  </button>
-                </div>
-                <div className="flex flex-col justify-center h-48 w-48  ">
-                  <GoogleMap
-                    options={mapOptions}
-                    zoom={14}
-                    center={{
-                      lat: place.location.coordinates[0],
-                      lng: place.location.coordinates[1],
-                    }}
-                    mapTypeId={google.maps.MapTypeId.ROADMAP}
-                    mapContainerStyle={{ width: "100%", height: "100%" }}
-                    onLoad={() => console.log("Map Component Loaded...")}
-                  >
-                    <MarkerF
-                      position={{
-                        lat: place.location.coordinates[0],
-                        lng: place.location.coordinates[1],
-                      }}
-                      //
-                      label={place.subCategory.name}
-                    />
-                  </GoogleMap>
-                </div>
-                <p className="mt-2 ml-7 w-fit">{place.name}</p>
-              </div>
+          <div className="grid grid-cols-2 md:grid md:grid-cols-3 md:ml-20   lg:gap-5 md:gap-5 m-5 lg:ml-40 lg:mr-14       md:grid md:grid-cols-3  md:gap-5">
+            <div className="col-span-1 lg:col-span-2 md:col-span-2 lg:pl-10 lg:pr-10 ">
+              <GoogleMap
+                options={mapOptions}
+                zoom={14}
+                center={{
+                  lat: place.location.coordinates[0],
+                  lng: place.location.coordinates[1],
+                }}
+                mapTypeId={google.maps.MapTypeId.ROADMAP}
+                mapContainerStyle={{ width: "100%", height: "100%" }}
+                onLoad={() => console.log("Map Component Loaded...")}
+              >
+                <MarkerF
+                  position={{
+                    lat: place.location.coordinates[0],
+                    lng: place.location.coordinates[1],
+                  }}
+                  //
+                  label={place.subCategory.name}
+                />
+              </GoogleMap>{" "}
             </div>
-
-            <div className="flex justify-center lg:mt-14 ">
-              <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 lg:gap-1  m-5 gap-6 mt-5 lg:w-full ">
-                <div className="flex justify-center md:justify-start  mr-11 md:mr-1 ml-3 lg:mr-0">
-                  <Button>
-                    <Phone className="h-7 w-7 dark:text-white" />
-                  </Button>
-                  <p className=" text-sm sm:text-sm lg:text-base ml-1 pt-2">
-                    {place.phoneNumber}
-                  </p>
-                </div>
-                <div className="flex justify-center md:justify-start  mr-11 md:mr-1 ml-3 lg:mr-8">
-                  <Button>
-                    <Send className="h-7 w-7 dark:text-white" />
-                  </Button>
-                  <p className="  text-sm sm:text-sm lg:text-base ml-1 pt-2">
-                    {place.telegram}
-                  </p>
-                </div>
+            <div className="col-span-1 lg:col-span-1 md:col-span-1  ml-5 p-2">
+              <button
+                className="flex gap-2 bg-primary hover:bg-green-600 text-white font-bold py-2 px-2 rounded"
+                onClick={() => {
+                  const lat = place.location.coordinates[0]
+                  const lng = place.location.coordinates[1]
+                  window.open(
+                    `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`,
+                    "_blank"
+                  )
+                }}
+              >
+                <LocateFixed className="h-4 w-4 sm:h-6 sm:w-6 lg:h-6 lg:w-6 lg:mt-1 text-white mt-2" />
+                <span className="mr-3  text-white  sm:text-sm text-lg lg:text-base ">
+                  Direction{" "}
+                </span>
+              </button>
+              <div className="flex mt-3 ">
+                <Button>
+                  <Phone className="h-7 w-7 dark:text-white" />
+                </Button>
+                <p className=" text-sm sm:text-sm lg:text-base ml-2 pt-2">
+                  {place.phoneNumber}
+                </p>
+              </div>
+              <div className="flex mt-3 ">
+                <Button>
+                  <Send className="h-7 w-7 dark:text-white" />
+                </Button>
+                <p className="  text-sm sm:text-sm lg:text-base ml-2 pt-2">
+                  {place.telegram}
+                </p>
               </div>
             </div>
           </div>
