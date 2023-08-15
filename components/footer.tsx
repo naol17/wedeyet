@@ -277,6 +277,7 @@ const Footer = () => {
                     <Link
                       href="#"
                       className="text-gray-500 transition hover:opacity-75"
+                      onClick={() => setShowModal(true)}
                     >
                       FAQs
                     </Link>

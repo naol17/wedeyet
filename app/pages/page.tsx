@@ -291,7 +291,19 @@ const page = () => {
                     lng: place.location.coordinates[1],
                   }}
                   //
-                  label={place.subCategory.name}
+                />
+                <MarkerF
+                  position={{
+                    lat: place.location.coordinates[0] - 0.0001, // Adjust the latitude slightly
+                    lng: place.location.coordinates[1] - 0.0001, // Adjust the longitude slightly
+                  }}
+                  //
+                  icon={{
+                    url: place.category.image || place.subCategory.name, // Use the API image if available, otherwise use a default marker image
+                    scaledSize: new google.maps.Size(20, 20), // Set the size of the image
+                    anchor: new google.maps.Point(7, 38), // Adjust the anchor point to move the marker upward
+                  }}
+                  // label={place.subCategory.name}
                 />
               </GoogleMap>{" "}
             </div>
