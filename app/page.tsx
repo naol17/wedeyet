@@ -219,7 +219,7 @@ export default function IndexPage() {
   }
   if (!isLoaded) {
     return (
-      <div className="flex justify-center items-center h-screen">
+      <div className="flex justify-center items-center mt-20 ">
         <LoadingSpinner />
       </div>
     )
