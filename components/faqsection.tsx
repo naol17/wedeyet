@@ -41,7 +41,7 @@ const FAQSection = () => {
       {faqs.map((faq, index) => (
         <div
           key={index}
-          className="bg-white rounded-lg shadow-md p-4 mb-4 dark:bg-inherit text-white dark:shadow-slate-700 border-white"
+          className="bg-white rounded-lg shadow-md p-4 mb-4 dark:bg-inherit dark:text-white dark:shadow-slate-700 border-white"
         >
           <div
             className="flex items-center justify-between cursor-pointer"
