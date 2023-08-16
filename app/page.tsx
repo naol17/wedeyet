@@ -51,6 +51,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import FAQSection from "@/components/faqsection"
 import MapAutoComplete from "@/components/mapAutoComplete"
 
 const categories = [
@@ -484,6 +485,7 @@ export default function IndexPage() {
             </Card>
           ))}
         </div>
+        <FAQSection />
       </section>
     </>
   )
