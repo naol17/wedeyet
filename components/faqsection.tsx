@@ -5,6 +5,11 @@ const FAQSection = () => {
 
   const faqs = [
     {
+      question: "What is Wedeyet?",
+      answer:
+        "Simplifying Addis Ababa's navigation with ease. Discover, explore, and navigate the city hassle-free. Your go-to app for finding shops, cafes, hospitals, and more.",
+    },
+    {
       question: "What is Tailwind CSS?",
       answer:
         "Tailwind CSS is a utility-first CSS framework that allows you to rapidly build custom user interfaces.",
@@ -19,11 +24,7 @@ const FAQSection = () => {
       answer:
         "You can install Tailwind CSS via npm or yarn by following the installation instructions in the official documentation.",
     },
-    {
-      question: "How do I install Tailwind CSS?",
-      answer:
-        "You can install Tailwind CSS via npm or yarn by following the installation instructions in the official documentation.",
-    },
+
     // Add more FAQ objects as needed
   ]
 
