@@ -56,11 +56,11 @@ import MapAutoComplete from "@/components/mapAutoComplete"
 
 const categories = [
   {
-    name: "Universities",
+    name: "Education",
     icon: BookOpen,
   },
   {
-    name: "Shops",
+    name: "Shopping",
     icon: ShoppingBag,
   },
   {
@@ -68,55 +68,32 @@ const categories = [
     icon: Utensils,
   },
   {
-    name: "Cafes",
+    name: "Accomodation and Recreation",
     icon: Coffee,
   },
   {
-    name: "Parks",
+    name: "Tourism and Sightseeing",
     icon: TreePine,
   },
-]
-
-const nearbyPlaces = [
   {
-    name: "Birr",
-    description: "Ethiopian Restaurant",
-    image: "https://source.unsplash.com/random/300x300",
+    name: "Transportation",
+    icon: TreePine,
   },
   {
-    name: "Abyssinia",
-    description: "Ethiopian Restaurant",
-    image: "https://source.unsplash.com/random/300x300",
+    name: "Health and Emergency",
+    icon: TreePine,
   },
   {
-    name: "Birr",
-    description: "Ethiopian Restaurant",
-    image: "https://source.unsplash.com/random/300x300",
+    name: "Entertainment",
+    icon: TreePine,
   },
   {
-    name: "Abyssinia",
-    description: "Ethiopian Restaurant",
-    image: "https://source.unsplash.com/random/300x300",
+    name: "Professional Services",
+    icon: TreePine,
   },
   {
-    name: "Birr",
-    description: "Ethiopian Restaurant",
-    image: "https://source.unsplash.com/random/300x300",
-  },
-  {
-    name: "Abyssinia",
-    description: "Ethiopian Restaurant",
-    image: "https://source.unsplash.com/random/300x300",
-  },
-  {
-    name: "Birr",
-    description: "Ethiopian Restaurant",
-    image: "https://source.unsplash.com/random/300x300",
-  },
-  {
-    name: "Abyssinia",
-    description: "Ethiopian Restaurant",
-    image: "https://source.unsplash.com/random/300x300",
+    name: "Religious Place",
+    icon: TreePine,
   },
 ]
 
@@ -127,10 +104,6 @@ export default function IndexPage() {
     lng: number
   }>(null)
 
-  // const [selectedCoordinates, setSelectedCoordinates] = useState({
-  //   lat: null,
-  //   lng: null,
-  // })
   // Fetch api
   const [places, setPlaces] = useState<any[]>([])
   const [caplaces, setCaPlaces] = useState<any[]>([])
@@ -155,7 +128,7 @@ export default function IndexPage() {
     }
     axios
       .get(
-        `https://wedeyet.herokuapp.com/api/place/search?subCategory=${categoryName}`,
+        `https://wedeyet.herokuapp.com/api/place/search?category=${categoryName}`,
         {
           headers,
         }
