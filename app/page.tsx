@@ -225,24 +225,13 @@ export default function IndexPage() {
       <section className="container grid items-center gap-6 pt-6 pb-8 md:py-10">
         <div className="flex gap-10 pb-2 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max mt-3 lg:ml-24 lg:mr-10">
           {categories.map((category, i) => (
-            <Card key={i} className="shadow-md">
+            <Card key={i} className="shadow-md dark:shadow-slate-800">
               <CardContent
                 className="flex items-center justify-center gap-4 px-4 py-2 rounded group-hover:bg-primary group-hover:bg-opacity-40 "
                 onClick={() => handleCategoryClick(category.name)}
               >
                 <category.icon className="w-6 h-6 text-primary" />
-                <p className="font-normal ">{category.name}</p>
-              </CardContent>
-            </Card>
-          ))}
-          {categories.map((category, i) => (
-            <Card key={i}>
-              <CardContent
-                className="flex items-center justify-center gap-4 px-4 py-2 rounded group-hover:bg-primary group-hover:bg-opacity-40"
-                onClick={() => handleCategoryClick(category.name)}
-              >
-                <category.icon className="w-6 h-6 text-primary" />
-                <p className="font-semibold ">{category.name}</p>
+                <p className="font-light ">{category.name}</p>
               </CardContent>
             </Card>
           ))}
@@ -356,7 +345,7 @@ export default function IndexPage() {
           </p>
         </div>
       </section>
-      <section className="bg-gray-100 dark:bg-slate-900">
+      <section className="bg-gray-100 dark:bg-inherit">
         <div className="container flex gap-6 py-6 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max">
           {places.map(
             (

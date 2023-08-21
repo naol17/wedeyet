@@ -223,7 +223,7 @@ const page = () => {
         )}
       </div>
 
-      <section className=" mt-5 dark:bg-slate-950 ">
+      <section className=" mt-5 dark:bg-inherit ">
         <div className="flex items-center justify-center lg:ml-40 lg:mr-14">
           <div
             className="flex overflow-x-auto hide-scroll-bar  py-6  gap-5 w-"

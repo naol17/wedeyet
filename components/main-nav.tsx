@@ -48,31 +48,31 @@ export function MainNav({ items }: MainNavProps) {
           isOpen ? "block" : "hidden"
         }`}
       >
-        <div className="ml-10 mt-[-26rem] bg-green-300  pl-3  pt-[22rem] text-sm  lg:mt-0 lg:flex lg:bg-inherit lg:pt-0 dark:bg-slate-800 dark:text-white ">
+        <div className="ml-10 mt-[-26rem] bg-green-300  pl-3  pt-[22rem] text-sm  lg:mt-0 lg:flex lg:bg-inherit lg:pt-0  dark:text-white ">
           <a
             href="/"
-            className="block mt-1 pt-7 lg:pt-0 lg:inline-block lg:mt-0 text-white-200 mr-4 border-white "
+            className="block mt-1 pt-7 lg:pt-0 lg:inline-block lg:mt-0 text-white-200 mr-4 border-white dark:hover:bg-slate-800 "
           >
             Home
           </a>
 
           <a
             href="/pages"
-            className="mt-1lg:inline-block text-white-200 mr-4 block lg:mt-0"
+            className="mt-1lg:inline-block text-white-200 mr-4 block lg:mt-0 dark:hover:bg-slate-800"
           >
             place
           </a>
 
           <a
             href="about"
-            className="text-white-200 mr-4 mt-1 block lg:mt-0 lg:inline-block"
+            className="text-white-200 mr-4 mt-1 block lg:mt-0 lg:inline-block dark:hover:bg-slate-800"
           >
             About
           </a>
 
           <a
             href="contact"
-            className="block mt-1 lg:inline-block lg:mt-0 text-white-200 mr-4"
+            className="block mt-1 lg:inline-block lg:mt-0 text-white-200 mr-4 dark:hover:bg-slate-800"
           >
             Contact
           </a>
