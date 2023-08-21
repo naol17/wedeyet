@@ -36,11 +36,11 @@ import {
   ShoppingBag,
   TreePine,
   Utensils,
+  Cross,
+  Waves,Car,Palmtree,Clapperboard  ,Siren,Haze,Pencil
+  
 } from "lucide-react"
-import usePlacesAutocomplete, {
-  getGeocode,
-  getLatLng,
-} from "use-places-autocomplete"
+
 
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -69,31 +69,31 @@ const categories = [
   },
   {
     name: "Accomodation and Recreation",
-    icon: Coffee,
+    icon: Palmtree,
   },
   {
     name: "Tourism and Sightseeing",
-    icon: TreePine,
+    icon: Haze,
   },
   {
     name: "Transportation",
-    icon: TreePine,
+    icon: Car,
   },
   {
     name: "Health and Emergency",
-    icon: TreePine,
+    icon: Siren,
   },
   {
     name: "Entertainment",
-    icon: TreePine,
+    icon: Clapperboard,
   },
   {
     name: "Professional Services",
-    icon: TreePine,
+    icon: Pencil,
   },
   {
     name: "Religious Place",
-    icon: TreePine,
+    icon: Cross,
   },
 ]
 
