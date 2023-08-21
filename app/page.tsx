@@ -27,20 +27,24 @@ import {
 import axios from "axios"
 import {
   BookOpen,
+  Car,
   ChevronLeft,
   ChevronRight,
+  Clapperboard,
   Coffee,
+  Cross,
+  Haze,
   LucideIcon,
   MoreHorizontal,
   MoreVertical,
+  Palmtree,
+  Pencil,
   ShoppingBag,
+  Siren,
   TreePine,
   Utensils,
-  Cross,
-  Waves,Car,Palmtree,Clapperboard  ,Siren,Haze,Pencil
-  
+  Waves,
 } from "lucide-react"
-
 
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -227,7 +231,7 @@ export default function IndexPage() {
                 onClick={() => handleCategoryClick(category.name)}
               >
                 <category.icon className="w-6 h-6 text-primary" />
-                <p className="font-semibold ">{category.name}</p>
+                <p className="font-normal ">{category.name}</p>
               </CardContent>
             </Card>
           ))}
