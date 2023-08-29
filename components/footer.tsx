@@ -44,6 +44,12 @@ const Footer = () => {
   }
   console.log(feedback, text, followUp)
 
+  const [selectedRating, setSelectedRating] = useState<string>("")
+
+  const handleRatingClick = (rating: string) => {
+    setFeedback(rating)
+  }
+
   return (
     <>
       {showModal ? (
@@ -68,42 +74,42 @@ const Footer = () => {
                   <p className="mt-3">What do you think of our service?</p>
                   <div className="flex flex-row align-middle justify-center space-x-1 m-3">
                     <button
-                      className="p-2 bg-green-200 w-16 h-16 active:bg-primary rounded-full"
-                      onClick={() => {
-                        setFeedback("1")
-                      }}
+                      className={`p-2 bg-green-200 w-16 h-16 active:bg-primary rounded-full ${
+                        feedback === "1" ? "bg-primary" : ""
+                      }`}
+                      onClick={() => handleRatingClick("1")}
                     >
                       <img src="/uf.png" alt="" />
                     </button>
                     <button
-                      className="p-2 bg-green-200 w-16 h-16 active:bg-primary rounded-full"
-                      onClick={() => {
-                        setFeedback("2")
-                      }}
+                      className={`p-2 bg-green-200 w-16 h-16 active:bg-primary rounded-full ${
+                        feedback === "2" ? "bg-primary" : ""
+                      }`}
+                      onClick={() => handleRatingClick("2")}
                     >
                       <img src="/nf.png" alt="" />
                     </button>
                     <button
-                      className="p-2 bg-green-200 w-16 h-16 active:bg-primary rounded-full"
-                      onClick={() => {
-                        setFeedback("3")
-                      }}
+                      className={`p-2 bg-green-200 w-16 h-16 active:bg-primary rounded-full ${
+                        feedback === "3" ? "bg-primary" : ""
+                      }`}
+                      onClick={() => handleRatingClick("3")}
                     >
                       <img src="/sm.png" alt="" />
                     </button>
                     <button
-                      className="p-2 bg-green-200 w-16 h-16 active:bg-primary rounded-full"
-                      onClick={() => {
-                        setFeedback("4")
-                      }}
+                      className={`p-2 bg-green-200 w-16 h-16 active:bg-primary rounded-full ${
+                        feedback === "4" ? "bg-primary" : ""
+                      }`}
+                      onClick={() => handleRatingClick("4")}
                     >
                       <img src="/kf.png" alt="" />
                     </button>
                     <button
-                      className="p-2 bg-green-200 w-16 h-16 active:bg-primary rounded-full"
-                      onClick={() => {
-                        setFeedback("5")
-                      }}
+                      className={`p-2 bg-green-200 w-16 h-16 active:bg-primary rounded-full ${
+                        feedback === "5" ? "bg-primary" : ""
+                      }`}
+                      onClick={() => handleRatingClick("5")}
                     >
                       <img src="/ss.png" alt="" />
                     </button>
@@ -275,9 +281,9 @@ const Footer = () => {
 
                   <li>
                     <Link
-                      href="#"
+                      href="/#faq-section"
                       className="text-gray-500 transition hover:opacity-75"
-                      onClick={() => setShowModal(true)}
+                      // onClick={() => setShowModal(true)}
                     >
                       FAQs
                     </Link>
