@@ -58,6 +58,11 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import FAQSection from "@/components/faqsection"
 import MapAutoComplete from "@/components/mapAutoComplete"
 
+const categoriesall = [
+  {
+    name: "Show All",
+  },
+]
 const categories = [
   {
     name: "Education",
@@ -124,12 +129,15 @@ export default function IndexPage() {
       })
       .catch((error) => alert("Please Check That You are Connected to Network"))
   }
+  const [showModal, setShowModal] = useState<boolean>(false)
+  const [successMessage, setSuccessMessage] = useState<string>("")
 
   const handleCategoryClick = (categoryName: any) => {
     const headers: any = {
       Authorization:
         "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjRkNmFhZmZiODkwMDE2YjRiZmQzOTY2IiwiZW1haWwiOiJyZWRAZ21haWwuY29tIiwiaWF0IjoxNjkzMDc5MjUzLCJleHAiOjE2OTM1MTEyNTN9.KPKkOCAKTClnaKUPd-SthDj7-vYNraFWHPij7nE9fTM ",
     }
+
     axios
       .get(
         `https://wedeyet.herokuapp.com/api/place/search?category=${categoryName}`,
@@ -141,11 +149,17 @@ export default function IndexPage() {
         setPlaces(response.data.Place)
         console.log("caplace", response.data)
       })
-      .catch((error) => alert("Sorry! Can't find place for that Category"))
+      .catch((error) => {
+        setSuccessMessage("Sorry! Can't find a place for that Category")
+        setShowModal(true)
+      })
+
     console.log("inside handler ", places)
     console.log("heaf", categoryName)
   }
-
+  const closeModal = () => {
+    setShowModal(false)
+  }
   useEffect(() => {
     fetchData()
   }, [])
@@ -224,6 +238,16 @@ export default function IndexPage() {
     <>
       <section className="container grid items-center gap-6 pt-6 pb-8 md:py-10">
         <div className="flex gap-10 pb-2 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max mt-3 lg:ml-24 lg:mr-10">
+          {categoriesall.map((category, i) => (
+            <Card key={i} className="shadow-md dark:shadow-slate-800">
+              <CardContent
+                className="flex items-center justify-center gap-4 px-4 py-2 rounded group-hover:bg-primary group-hover:bg-opacity-40 "
+                onClick={() => fetchData()}
+              >
+                <p className="font-light ">{category.name}</p>
+              </CardContent>
+            </Card>
+          ))}
           {categories.map((category, i) => (
             <Card key={i} className="shadow-md dark:shadow-slate-800">
               <CardContent
@@ -345,7 +369,7 @@ export default function IndexPage() {
           </p>
         </div>
       </section>
-      <section className="bg-gray-100 dark:bg-inherit">
+      <section className="bg-gray-100 dark:bg-inherit lg:mr-16 lg:ml-40 ">
         <div className="container flex gap-6 py-6 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max">
           {places.map(
             (
@@ -390,7 +414,7 @@ export default function IndexPage() {
           )}
         </div>
       </section>
-      <section className="container grid  gap-6 pt-6 pb-8 md:py-10">
+      <section className="container grid  gap-6 pt-6 pb-8 md:py-10 ">
         <div className=" gap-6 mx-auto">
           <p className="mb-6 lg:ml-24 lg:mr-14">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. A illum
@@ -412,7 +436,7 @@ export default function IndexPage() {
           </p>
         </div>
       </section>
-      <section>
+      <section className="lg:mr-16 lg:ml-40">
         <div className="container flex gap-10 py-6 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max">
           {places.map((place: any, i: any) => (
             <Card className="max-w-sm shadow-lg mb-5 lg:max-w-sm">
@@ -451,8 +475,26 @@ export default function IndexPage() {
             </Card>
           ))}
         </div>
-        <FAQSection />
+        <div id="faq-section">
+          <FAQSection />
+        </div>
       </section>
+      {showModal && (
+        <div className="fixed inset-0 flex items-center justify-center z-10 shadow-lg border-green-400 bg-slate-400 bg-opacity-25 dark:bg-gray-400 dark:bg-opacity-25">
+          <div className="bg-white rounded-lg p-6">
+            <h2 className="text-2xl font-bold mb-4 dark:text-black">Sorry!</h2>
+            <p className="dark:text-black">
+              Unable to find place for that category.
+            </p>
+            <button
+              className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4"
+              onClick={closeModal}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </>
   )
 }

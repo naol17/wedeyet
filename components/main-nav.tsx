@@ -56,12 +56,12 @@ export function MainNav({ items }: MainNavProps) {
             Home
           </a>
 
-          <a
+          {/* <a
             href="/pages"
             className="mt-1lg:inline-block text-white-200 mr-4 block lg:mt-0 dark:hover:bg-slate-800"
           >
             place
-          </a>
+          </a> */}
 
           <a
             href="about"
