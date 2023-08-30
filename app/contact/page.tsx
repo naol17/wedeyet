@@ -75,7 +75,6 @@ const Contact: React.FC = () => {
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 justify-center items-center  ">
         <div className="lg:col-span-1 md:col-span-1 w-full p-6">
-          {/* Add your image related to Contact Us page here */}
           <img
             src="./contact_us.svg"
             alt="Contact Us"
