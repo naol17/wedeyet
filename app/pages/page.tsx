@@ -485,7 +485,7 @@ const page = () => {
                       </p>
                     </div>
                     <Badge className="absolute left-5 top-3 px-4 text-lg md:top-3 md:left-3 md:text-sm sm:text-xs sm:left-2 sm:top-1">
-                      Add
+                      Ad
                     </Badge>
                   </CardContent>
                 </Link>

@@ -369,7 +369,7 @@ export default function IndexPage() {
           </p>
         </div>
       </section>
-      <section className="bg-gray-100 dark:bg-inherit lg:mr-16 lg:ml-40 ">
+      {/* <section className="bg-gray-100 dark:bg-inherit lg:mr-16 lg:ml-40 ">
         <div className="container flex gap-6 py-6 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max">
           {places.map(
             (
@@ -413,7 +413,7 @@ export default function IndexPage() {
             )
           )}
         </div>
-      </section>
+      </section> */}
       <section className="container grid  gap-6 pt-6 pb-8 md:py-10 ">
         <div className=" gap-6 mx-auto">
           <p className="mb-6 lg:ml-24 lg:mr-14">
