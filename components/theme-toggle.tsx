@@ -12,7 +12,7 @@ export function ThemeToggle() {
       variant="ghost"
       size="sm"
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-      className="mt-8 sm:mt-16 lg:mt-5"
+      className="mt-2 sm:ml-5 "
       lang="en" // Set the default language to English
     >
       <Icons.sun className="rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />

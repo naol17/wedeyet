@@ -23,7 +23,7 @@ export function SiteHeader() {
   const fetchData = () => {
     const headers: any = {
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjRkNmFhZmZiODkwMDE2YjRiZmQzOTY2IiwiZW1haWwiOiJyZWRAZ21haWwuY29tIiwiaWF0IjoxNjkzMDc5MjUzLCJleHAiOjE2OTM1MTEyNTN9.KPKkOCAKTClnaKUPd-SthDj7-vYNraFWHPij7nE9fTM ",
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjRkNmFhZmZiODkwMDE2YjRiZmQzOTY2IiwiZW1haWwiOiJyZWRAZ21haWwuY29tIiwiaWF0IjoxNjkzNTExNTExLCJleHAiOjE2OTM5NDM1MTF9.zjpj69SSdLuthvfY2BwVOV95ztoWz1ntdF1KGCNEUo8",
     }
     axios
       .get("https://wedeyet.herokuapp.com/api/place/all", { headers })
@@ -175,69 +175,65 @@ export function SiteHeader() {
           )}
         </div>
       </nav> */}
-      <nav className="bg-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+      <nav className="sticky border-b-black dark:border-b-white  mb-5 shadow-md dark:shadow-md dark:shadow-gray-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-5">
+          <div className="flex items-center justify-between h-16 ml-5">
             <div className="flex-shrink-0 flex items-center">
               <a href="#" className="text-white font-bold text-xl">
-                Logo
+                <img src="/logo.png" className="w-100 h-10 mr-2" alt="Logo" />
               </a>
             </div>
             <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-4">
+              <div className="ml-10 flex items-baseline space-x-4 mt-5">
                 <a
-                  href="#"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  href="/"
+                  className=" hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Home
                 </a>
                 <a
-                  href="#"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  href="about"
+                  className=" hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
                   About
                 </a>
+
                 <a
-                  href="#"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                >
-                  Services
-                </a>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  href="contact"
+                  className=" hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                 >
                   Contact
                 </a>
               </div>
             </div>
-            <div className="ml-4">
-              <input
+            <div className="ml-4 mt-5">
+              <Input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search for a place"
-                className="bg-inherit border-primary rounded-md px-4 py-2 focus:outline-none"
+                className="bg-gray-100 rounded-md px-4 py-2 text-black dark:text-black md:w-28 lg:w-72 "
               />
             </div>
-            <div className="md:hidden">
+            <ThemeToggle />
+
+            <div className="md:hidden sm:ml-5">
               <button
                 type="button"
-                className="dark:text-white hover:text-gray-400 focus:outline-none focus:text-white"
+                className="text-black dark:text-white focus:text-black dark:focus:text-white mt-5"
                 onClick={toggleMenu}
               >
-                <svg className="h-6 w-6 fill-current" viewBox="0 0 24 24">
+                <svg
+                  className="h-6 w-6 fill-current"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
                   {showMenu ? (
-                    <path
-                      className="hidden"
-                      fillRule="evenodd"
-                      d="M4 6h16M4 12h16M4 18h16"
-                    />
+                    <path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z" />
                   ) : (
                     <path
                       className="block"
-                      fillRule="evenodd"
-                      d="M6 18L18 6M6 6l12 12"
+                      d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"
                     />
                   )}
                 </svg>
@@ -246,28 +242,23 @@ export function SiteHeader() {
           </div>
           {showMenu && (
             <div className="md:hidden">
-              <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+              <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 mr-5">
                 <a
-                  href="#"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                  href="/"
+                  className=" hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                 >
                   Home
                 </a>
                 <a
-                  href="#"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                  href="about"
+                  className=" hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                 >
                   About
                 </a>
+
                 <a
-                  href="#"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                >
-                  Services
-                </a>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                  href="contact"
+                  className=" hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                 >
                   Contact
                 </a>
