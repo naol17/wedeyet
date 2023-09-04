@@ -2,7 +2,6 @@
 
 import { ChangeEvent, FormEvent, useEffect, useState } from "react"
 import { Mail, Send, User } from "lucide-react"
-import Modal from "react-modal"
 
 const Contact: React.FC = () => {
   interface FormData {
