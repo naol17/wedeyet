@@ -181,7 +181,7 @@ export default function IndexPage() {
   const mapOptions = useMemo<google.maps.MapOptions>(
     () => ({
       disableDefaultUI: true,
-      clickableIcons: true,
+      clickableIcons: false,
       scrollwheel: false,
     }),
     []

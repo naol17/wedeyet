@@ -109,6 +109,36 @@ const page = () => {
     fetchData()
   }, [])
 
+  // ****************************************************
+  // ***************                      ***************
+  // ***************  Ad fetching Section ***************
+  // ***************                      ***************
+  // ****************************************************
+  const [Ads, setAds] = useState<any[]>([])
+  const AdsData = () => {
+    const headers: any = {
+      Authorization:
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjRkNmFhZmZiODkwMDE2YjRiZmQzOTY2IiwiZW1haWwiOiJyZWRAZ21haWwuY29tIiwiaWF0IjoxNjkzNTExNTExLCJleHAiOjE2OTM5NDM1MTF9.zjpj69SSdLuthvfY2BwVOV95ztoWz1ntdF1KGCNEUo8",
+    }
+    axios
+      .get("https://wedeyet.herokuapp.com/api/banner/all", { headers })
+      .then((response) => {
+        setAds(response.data.Banner)
+      })
+      .catch((error) => alert("Please Check banner"))
+  }
+
+  useEffect(() => {
+    AdsData()
+  }, [])
+  console.log("banner", Ads)
+
+  // ****************************************************
+  // ********                                ************
+  // ******** Similar place fetching Section ************
+  // ********                                ************
+  // ****************************************************
+
   const [similarplace, setSimilarPlaces] = useState<any[]>([])
   const SimilarfetchData = () => {
     const params = new URLSearchParams(window.location.search)
@@ -429,8 +459,8 @@ const page = () => {
           dolore itaque illum possimus quisquam iure.
         </p>
       </div>
-      <section>
-        {/* <div className="container flex gap-6 py-6 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max">
+      {/* <section> */}
+      {/* <div className="container flex gap-6 py-6 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max">
           <div className="grid grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
             {placeImages.map((place, i) => (
               <Card key={i} className="shadow-lg group bg-gray-100 ">
@@ -443,7 +473,7 @@ const page = () => {
                       alt={place.name}
                     />
                     <Badge className="absolute left-5 top-3 px-4 text-lg md:top-3 md:left-3 md:text-sm sm:text-xs xsm:left-2 sm:top-1">
-                      Add
+                      Ad
                     </Badge>
                   </CardContent>
                 </Link>
@@ -455,40 +485,43 @@ const page = () => {
             ))}
           </div>
         </div> */}
-      </section>
-      <section>
-        <div className="container  flex gap-5 py-5 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max">
-          {similarplace.map(
+      {/* </section> */}
+      <section className="bg-gray-100 dark:bg-inherit lg:mr-16 lg:ml-40 ">
+        <div className="container flex gap-6 py-6 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max">
+          {Ads.map(
             (
-              place,
+              place: {
+                [x: string]: any
+                image: string | undefined
+                name: any
+                _id: any
 
-              i
+                description: any
+              },
+              i: Key | null | undefined
             ) => (
-              <Card key={i} className="max-w-sm shadow-lg">
-                <Link
-                  href={`/pages?id=${place._id}&subCategory=${place.subCategory.name}`}
-                  className="group-hover:animate-pulse"
-                >
-                  <CardContent className="flex flex-col justify-center p-0">
-                    <img
-                      src="https://source.unsplash.com/random/250x250"
-                      className="max-w-sm rounded-md rounded-b-none"
-                      alt="placeholder"
-                    />
-                    <div className="flex flex-col gap-2 p-4">
-                      <h3>{place.name}</h3>
-                      <h2 className="ml-5 mb-5 mt-5">Description</h2>
-                      <p className="ml-5 mb-4">
-                        {place.description.length > 30
-                          ? place.description.slice(0, 30) + "..."
-                          : place.description}
-                      </p>
-                    </div>
-                    <Badge className="absolute left-5 top-3 px-4 text-lg md:top-3 md:left-3 md:text-sm sm:text-xs sm:left-2 sm:top-1">
-                      Ad
-                    </Badge>
-                  </CardContent>
-                </Link>
+              <Card key={i} className="shadow-lg group ">
+                <CardContent className="relative p-0 ">
+                  <img
+                    // src={place.image}
+                    src="https://source.unsplash.com/random/250x250"
+                    className="rounded-md !max-w-[500px]"
+                    alt={place.title}
+                  />
+                  <div className="absolute flex flex-col gap-2 text-white bottom-5 left-4 bg-black bg-opacity-20">
+                    <h3 className="w-full text-xl font-semibold border border-gray-500 p-1 ">
+                      {place.title}
+                    </h3>
+                    <p className="border-b border-b-gray-700 p-1">
+                      {place.description.length > 50
+                        ? place.description.slice(0, 50) + "..."
+                        : place.description}
+                    </p>
+                  </div>
+                  <Badge className="absolute px-4 text-lg top-3 left-5 dark:text-white">
+                    Ad
+                  </Badge>
+                </CardContent>
               </Card>
             )
           )}
