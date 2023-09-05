@@ -120,7 +120,7 @@ export default function IndexPage() {
   const fetchData = () => {
     const headers: any = {
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjRkNmFhZmZiODkwMDE2YjRiZmQzOTY2IiwiZW1haWwiOiJyZWRAZ21haWwuY29tIiwiaWF0IjoxNjkzNTExNTExLCJleHAiOjE2OTM5NDM1MTF9.zjpj69SSdLuthvfY2BwVOV95ztoWz1ntdF1KGCNEUo8",
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjRkNmFhZmZiODkwMDE2YjRiZmQzOTY2IiwiZW1haWwiOiJyZWRAZ21haWwuY29tIiwiaWF0IjoxNjkzOTQ3MTcyLCJleHAiOjE2OTQzNzkxNzJ9.cbSpwqbKOi0PIBzaAaJvW_AWHb4SMSYx4hWju-nspOA",
     }
     axios
       .get("https://wedeyet.herokuapp.com/api/place/all", { headers })
@@ -135,7 +135,7 @@ export default function IndexPage() {
   const handleCategoryClick = (categoryName: any) => {
     const headers: any = {
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjRkNmFhZmZiODkwMDE2YjRiZmQzOTY2IiwiZW1haWwiOiJyZWRAZ21haWwuY29tIiwiaWF0IjoxNjkzNTExNTExLCJleHAiOjE2OTM5NDM1MTF9.zjpj69SSdLuthvfY2BwVOV95ztoWz1ntdF1KGCNEUo8",
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjRkNmFhZmZiODkwMDE2YjRiZmQzOTY2IiwiZW1haWwiOiJyZWRAZ21haWwuY29tIiwiaWF0IjoxNjkzOTQ3MTcyLCJleHAiOjE2OTQzNzkxNzJ9.cbSpwqbKOi0PIBzaAaJvW_AWHb4SMSYx4hWju-nspOA",
     }
 
     axios
@@ -183,7 +183,16 @@ export default function IndexPage() {
       disableDefaultUI: true,
       clickableIcons: false,
       scrollwheel: false,
+
+      styles: [
+        {
+          featureType: "poi",
+          elementType: "labels",
+          stylers: [{ visibility: "off" }],
+        },
+      ],
     }),
+
     []
   )
   const LoadingSpinner = () => {
@@ -291,17 +300,16 @@ export default function IndexPage() {
               {places.map((place: any, i: any) => (
                 <MarkerF
                   position={{
-                    lat: place.location.coordinates[0] - 0.0001, // Adjust the latitude slightly
-                    lng: place.location.coordinates[1] - 0.0001, // Adjust the longitude slightly
+                    lat: place.location.coordinates[0] - 0.0001,
+                    lng: place.location.coordinates[1] - 0.0001,
                   }}
                   onClick={handleMarker}
-                  //
                   icon={{
-                    url: place.category.image || place.subCategory.name, // Use the API image if available, otherwise use a default marker image
-                    scaledSize: new google.maps.Size(20, 20), // Set the size of the image
-                    anchor: new google.maps.Point(7, 38), // Adjust the anchor point to move the marker upward
+                    url: place.category.image || place.subCategory.name,
+                    scaledSize: new google.maps.Size(20, 20),
+                    anchor: new google.maps.Point(7, 38),
                   }}
-                  // label={place.subCategory.name}
+                  label={place.name}
                 />
               ))}
 
@@ -417,15 +425,6 @@ export default function IndexPage() {
       <section className="container grid  gap-6 pt-6 pb-8 md:py-10 ">
         <div className=" gap-6 mx-auto">
           <p className="mb-6 lg:ml-24 lg:mr-14">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. A illum
-            soluta optio repellendus ullam aliquam nisi. Laborum necessitatibus
-            nobis soluta, eum consequatur dolor quidem dolore itaque illum
-            possimus quisquam iure. Lorem ipsum dolor sit amet, consectetur
-            adipisicing elit. A illum soluta optio repellendus ullam aliquam
-            nisi. Laborum necessitatibus nobis soluta, eum consequatur dolor
-            quidem dolore itaque illum possimus quisquam iure.
-          </p>
-          <p className="lg:ml-24 lg:mr-14">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. A illum
             soluta optio repellendus ullam aliquam nisi. Laborum necessitatibus
             nobis soluta, eum consequatur dolor quidem dolore itaque illum
