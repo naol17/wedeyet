@@ -3,19 +3,17 @@
 "use client"
 
 import {
-  JSX,
-  JSXElementConstructor,
+  // JSX,
+  // JSXElementConstructor,
   Key,
-  PromiseLikeOfReactNode,
-  ReactElement,
-  ReactFragment,
-  ReactPortal,
+  // PromiseLikeOfReactNode,
+  // ReactElement,
+  // ReactFragment,
+  // ReactPortal,
   useEffect,
   useMemo,
   useState,
 } from "react"
-import dynamic from "next/dynamic"
-import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import {
@@ -120,7 +118,7 @@ export default function IndexPage() {
   const fetchData = () => {
     const headers: any = {
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjRkNmFhZmZiODkwMDE2YjRiZmQzOTY2IiwiZW1haWwiOiJyZWRAZ21haWwuY29tIiwiaWF0IjoxNjkzOTQ3MTcyLCJleHAiOjE2OTQzNzkxNzJ9.cbSpwqbKOi0PIBzaAaJvW_AWHb4SMSYx4hWju-nspOA",
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjUwZTg4OWI0NmIxNjExNmYyN2Y2MzMyIiwiZW1haWwiOiJhZG1pbkBudW5hLmNvbSIsImlhdCI6MTY5NTYyOTM5OSwiZXhwIjoxNjk2MDYxMzk5fQ.8x8Ir4Cd1nqzYNH9vR4l1mZpj-Dr3g4eIVjlmTL5Rfw",
     }
     axios
       .get("https://wedeyet.herokuapp.com/api/place/all", { headers })
@@ -135,7 +133,7 @@ export default function IndexPage() {
   const handleCategoryClick = (categoryName: any) => {
     const headers: any = {
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjRkNmFhZmZiODkwMDE2YjRiZmQzOTY2IiwiZW1haWwiOiJyZWRAZ21haWwuY29tIiwiaWF0IjoxNjkzOTQ3MTcyLCJleHAiOjE2OTQzNzkxNzJ9.cbSpwqbKOi0PIBzaAaJvW_AWHb4SMSYx4hWju-nspOA",
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjUwZTg4OWI0NmIxNjExNmYyN2Y2MzMyIiwiZW1haWwiOiJhZG1pbkBudW5hLmNvbSIsImlhdCI6MTY5NTYyOTM5OSwiZXhwIjoxNjk2MDYxMzk5fQ.8x8Ir4Cd1nqzYNH9vR4l1mZpj-Dr3g4eIVjlmTL5Rfw",
     }
 
     axios
