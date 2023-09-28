@@ -118,7 +118,7 @@ export default function IndexPage() {
   const fetchData = () => {
     const headers: any = {
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjUwZTg4OWI0NmIxNjExNmYyN2Y2MzMyIiwiZW1haWwiOiJhZG1pbkBudW5hLmNvbSIsImlhdCI6MTY5NTkzNDUzMSwiZXhwIjoxNjk2MzY2NTMxfQ.EnKmIkogp_gC2QLCtgX5emMLq6JjtLQckQCaO0jLiJM",
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY4NTUxNDEwMiwiZXhwIjoxNjg1NjAwNTAyfQ.KCl65pxQv0NhLnFSHiBaNjMU9KdMI9GUafjWLHzLP9A",
     }
     axios
       .get("https://wedeyet.herokuapp.com/api/place/all", { headers })
@@ -133,7 +133,7 @@ export default function IndexPage() {
   const handleCategoryClick = (categoryName: any) => {
     const headers: any = {
       Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjUwZTg4OWI0NmIxNjExNmYyN2Y2MzMyIiwiZW1haWwiOiJhZG1pbkBudW5hLmNvbSIsImlhdCI6MTY5NTkzNDUzMSwiZXhwIjoxNjk2MzY2NTMxfQ.EnKmIkogp_gC2QLCtgX5emMLq6JjtLQckQCaO0jLiJM",
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjQ0YTFiMTU3ODUyODRlYmEwNjYyOTY5IiwiZW1haWwiOiJudW5hQGdtYWlsLmNvbSIsImlhdCI6MTY4NTUxNDEwMiwiZXhwIjoxNjg1NjAwNTAyfQ.KCl65pxQv0NhLnFSHiBaNjMU9KdMI9GUafjWLHzLP9A",
     }
 
     axios
@@ -251,7 +251,9 @@ export default function IndexPage() {
                 className="flex items-center justify-center gap-4 px-4 py-2 rounded group-hover:bg-primary group-hover:bg-opacity-40 "
                 onClick={() => fetchData()}
               >
-                <p className="font-light ">{category.name}</p>
+                <button className="font-light hover:cursor-pointer ">
+                  {category.name}
+                </button>
               </CardContent>
             </Card>
           ))}
@@ -262,7 +264,7 @@ export default function IndexPage() {
                 onClick={() => handleCategoryClick(category.name)}
               >
                 <category.icon className="w-6 h-6 text-primary" />
-                <p className="font-light ">{category.name}</p>
+                <button className="font-light ">{category.name}</button>
               </CardContent>
             </Card>
           ))}
