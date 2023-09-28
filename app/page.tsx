@@ -244,7 +244,7 @@ export default function IndexPage() {
   return (
     <>
       <section className="container grid items-center gap-6 pt-6 pb-8 md:py-10">
-        <div className="flex gap-10 pb-2 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max mt-3 lg:ml-24 lg:mr-10">
+        <div className="flex gap-10 pb-2 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max mt-3 lg:ml-24 lg:mr-10 hover:cursor-pointer">
           {categoriesall.map((category, i) => (
             <Card key={i} className="shadow-md dark:shadow-slate-800">
               <CardContent
