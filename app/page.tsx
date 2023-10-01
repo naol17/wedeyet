@@ -435,7 +435,7 @@ export default function IndexPage() {
           </p>
         </div>
       </section>
-      <section className="lg:mr-16 lg:ml-40">
+      <section className="lg:mr-16 lg:ml-30">
         <div className="container flex gap-10 py-6 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max">
           {places.map((place: any, i: any) => (
             <Card className="max-w-sm shadow-lg mb-5 lg:max-w-sm">
@@ -462,9 +462,9 @@ export default function IndexPage() {
 
                   <button
                     className="flex w-full flex-row rounded-t-none rounded-b-md  bg-primary text-lg text-white align-center pl-24 p-3  text-bold "
-                    onClick={() => {
-                      alert("buttoncicked ")
-                    }}
+                    // onClick={() => {
+                    //   alert("buttoncicked ")
+                    // }}
                   >
                     Go
                     <ChevronRight />
