@@ -435,7 +435,7 @@ export default function IndexPage() {
           </p>
         </div>
       </section>
-      <section className="lg:mr-16 lg:ml-30">
+      <section className="lg:mr-16 lg:ml-32">
         <div className="container flex gap-10 py-6 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max">
           {places.map((place: any, i: any) => (
             <Card className="max-w-sm shadow-lg mb-5 lg:max-w-sm">
