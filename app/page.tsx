@@ -377,51 +377,7 @@ export default function IndexPage() {
           </p>
         </div>
       </section>
-      {/* <section className="bg-gray-100 dark:bg-inherit lg:mr-16 lg:ml-40 ">
-        <div className="container flex gap-6 py-6 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max">
-          {places.map(
-            (
-              place: {
-                [x: string]: any
-                image: string | undefined
-                name: any
-                _id: any
 
-                description: any
-              },
-              i: Key | null | undefined
-            ) => (
-              <Card key={i} className="shadow-lg group ">
-                <Link
-                  href={`/pages?id=${place._id}&subCategory=${place.subCategory.name}`}
-                >
-                  <CardContent className="relative p-0 ">
-                    <img
-                      // src={place.image}
-                      src="https://source.unsplash.com/random/250x250"
-                      className="rounded-md !max-w-[500px]"
-                      alt={place.name}
-                    />
-                    <div className="absolute flex flex-col gap-2 text-white bottom-5 left-4">
-                      <h3 className="w-full text-xl font-semibold border border-gray-500 p-1 ">
-                        {place.name}
-                      </h3>
-                      <p className="border-b border-b-gray-700 p-1">
-                        {place.description.length > 50
-                          ? place.description.slice(0, 50) + "..."
-                          : place.description}
-                      </p>
-                    </div>
-                    <Badge className="absolute px-4 text-lg top-3 left-5 dark:text-white">
-                      Ad
-                    </Badge>
-                  </CardContent>
-                </Link>
-              </Card>
-            )
-          )}
-        </div>
-      </section> */}
       <section className="container grid  gap-6 pt-6 pb-8 md:py-10 ">
         <div className=" gap-6 mx-auto">
           <p className="mb-6 lg:ml-24 lg:mr-14">
@@ -435,7 +391,7 @@ export default function IndexPage() {
           </p>
         </div>
       </section>
-      <section className="lg:mr-16 lg:ml-36">
+      <section className="lg:mr-36 lg:ml-44">
         <div className="container flex gap-10 py-6 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max">
           {places.map((place: any, i: any) => (
             <Card className="max-w-sm shadow-lg mb-5 lg:max-w-sm">
