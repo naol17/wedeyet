@@ -4,7 +4,7 @@ const About = () => {
       <div className="flex items-center justify-center w-full h-full mt-5">
         <h1 className="text-4xl">Wel-come</h1>
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 justify-center items-center  mt-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 justify-center items-center  mt-8 lg:mr-28 lg:ml-36 mr-12 ml-16">
         <div className="lg:col-span-1 md:col-span-1 w-full p-6">
           <img src="./hello.svg" alt="Contact Us" className="w-full h-auto" />
         </div>
@@ -24,7 +24,7 @@ const About = () => {
           </p>
         </div>
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 justify-center items-center  mt-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 justify-center items-center  mt-8 lg:mr-28 lg:ml-36 mr-12 ml-16">
         <div className="lg:col-span-1 md:col-span-1 w-full p-6">
           <h1 className="justify-center text-2xl">About us</h1>
           <p>
