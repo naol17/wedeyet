@@ -23,7 +23,7 @@ export function SiteHeader() {
   const fetchData = () => {
     const headers: any = {
       Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjUwZTg4OWI0NmIxNjExNmYyN2Y2MzMyIiwiZW1haWwiOiJhZG1pbkBudW5hLmNvbSIsImlhdCI6MTY5NjQwOTgyNCwiZXhwIjoxNjk2ODQxODI0fQ.cwRBuk3jJ6bzs34EbqrzCWEtk98UMPuYr99BjKh-I5w",
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjUwZTg4OWI0NmIxNjExNmYyN2Y2MzMyIiwiZW1haWwiOiJhZG1pbkBudW5hLmNvbSIsImlhdCI6MTY5NjQwOTgyNCwiZXhwIjoxNjk2ODQxODI0fQ.cwRBuk3jJ6bzs34EbqrzCWEtk98UMPuYr99BjKh-I5w",
     }
     axios
       .get("https://wedeyet.herokuapp.com/api/place/all", { headers })
@@ -241,7 +241,15 @@ export function SiteHeader() {
       {/* ********************************************
        ************************************************ */}
       {searchQuery !== "" ? (
-        <div className=" ml-8 md:mr-10 lg:mr-10 mr-4">
+        <div
+          className="ml-8 md:mr-10 lg:mr-10 mr-4"
+          style={{
+            overflowY: "scroll",
+            maxHeight: "200px",
+            scrollbarWidth: "none",
+            msOverflowStyle: "none",
+          }}
+        >
           {filteredPlaces.map((place) => (
             <a
               href={`/pages?id=${place._id}&subCategory=${place.subCategory.name}`}
