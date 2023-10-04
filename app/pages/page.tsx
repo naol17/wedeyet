@@ -440,7 +440,7 @@ const page = () => {
         </div>
       </section>
       <div className="flex flex-col w-11/12 gap-6 mx-auto">
-        <p className="lg:ml-36 lg:mr-14">
+        <p className="lg:ml-28 lg:mr-0">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. A illum
           soluta optio repellendus ullam aliquam nisi. Laborum necessitatibus
           nobis soluta, eum consequatur dolor quidem dolore itaque illum
@@ -449,7 +449,7 @@ const page = () => {
           Laborum necessitatibus nobis soluta, eum consequatur dolor quidem
           dolore itaque illum possimus quisquam iure.
         </p>
-        <p className="lg:ml-36 lg:mr-14">
+        <p className="lg:ml-28 mb-8 lg:mr-0">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. A illum
           soluta optio repellendus ullam aliquam nisi. Laborum necessitatibus
           nobis soluta, eum consequatur dolor quidem dolore itaque illum
@@ -459,33 +459,7 @@ const page = () => {
           dolore itaque illum possimus quisquam iure.
         </p>
       </div>
-      {/* <section> */}
-      {/* <div className="container flex gap-6 py-6 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max">
-          <div className="grid grid-cols-4 md:grid-cols-3 sm:grid-cols-2">
-            {placeImages.map((place, i) => (
-              <Card key={i} className="shadow-lg group bg-gray-100 ">
-                <Link href="/" className="group-hover:animate-pulse">
-                  <CardContent className="relative p-0">
-                    <img
-                      // src={place.image}
-                      src="https://source.unsplash.com/random/300x300"
-                      className="rounded-md lg:!max-w-[700px] md:!max-w-[500px] sm:!max-w-[500px]"
-                      alt={place.name}
-                    />
-                    <Badge className="absolute left-5 top-3 px-4 text-lg md:top-3 md:left-3 md:text-sm sm:text-xs xsm:left-2 sm:top-1">
-                      Ad
-                    </Badge>
-                  </CardContent>
-                </Link>
-                <div className="">
-                  <h2 className="ml-5 mb-5 mt-5">Descriptionss</h2>
-                  <p className="ml-5 mb-4">{place.description}</p>
-                </div>
-              </Card>
-            ))}
-          </div>
-        </div> */}
-      {/* </section> */}
+
       <section className="bg-gray-100 dark:bg-inherit lg:mr-16 lg:ml-40 ">
         <div className="container flex gap-6 py-6 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max">
           {Ads.map(
