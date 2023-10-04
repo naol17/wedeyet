@@ -118,7 +118,7 @@ export default function IndexPage() {
   const fetchData = () => {
     const headers: any = {
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjUwZTg4OWI0NmIxNjExNmYyN2Y2MzMyIiwiZW1haWwiOiJhZG1pbkBudW5hLmNvbSIsImlhdCI6MTY5NTkzNDUzMSwiZXhwIjoxNjk2MzY2NTMxfQ.EnKmIkogp_gC2QLCtgX5emMLq6JjtLQckQCaO0jLiJM",
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjUwZTg4OWI0NmIxNjExNmYyN2Y2MzMyIiwiZW1haWwiOiJhZG1pbkBudW5hLmNvbSIsImlhdCI6MTY5NjQwOTgyNCwiZXhwIjoxNjk2ODQxODI0fQ.cwRBuk3jJ6bzs34EbqrzCWEtk98UMPuYr99BjKh-I5w",
     }
     axios
       .get("https://wedeyet.herokuapp.com/api/place/all", { headers })
@@ -133,7 +133,7 @@ export default function IndexPage() {
   const handleCategoryClick = (categoryName: any) => {
     const headers: any = {
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjUwZTg4OWI0NmIxNjExNmYyN2Y2MzMyIiwiZW1haWwiOiJhZG1pbkBudW5hLmNvbSIsImlhdCI6MTY5NTkzNDUzMSwiZXhwIjoxNjk2MzY2NTMxfQ.EnKmIkogp_gC2QLCtgX5emMLq6JjtLQckQCaO0jLiJM",
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjUwZTg4OWI0NmIxNjExNmYyN2Y2MzMyIiwiZW1haWwiOiJhZG1pbkBudW5hLmNvbSIsImlhdCI6MTY5NjQwOTgyNCwiZXhwIjoxNjk2ODQxODI0fQ.cwRBuk3jJ6bzs34EbqrzCWEtk98UMPuYr99BjKh-I5w",
     }
 
     axios
