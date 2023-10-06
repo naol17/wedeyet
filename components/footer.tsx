@@ -19,7 +19,8 @@ const Footer: React.FC = () => {
   const [showModal, setShowModal] = useState(false)
   const [email, setEmail] = useState<string>("")
 
-  // ///////////////////////////////////////////////////
+  // //////////////////////////////////////////////////////////////////////
+
   const [showModall, setShowModall] = useState(false)
 
   const [text, setText] = useState("")
@@ -96,7 +97,7 @@ const Footer: React.FC = () => {
     }
     return false
   }
-  // //////////////////////////////////////////////////
+  // //////////////////////////////////////////////////////////////////////
 
   return (
     <>
