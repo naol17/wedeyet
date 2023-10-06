@@ -320,12 +320,28 @@ const page = () => {
                     lat: place.location.coordinates[0],
                     lng: place.location.coordinates[1],
                   }}
+                  onClick={() => {
+                    const lat = place.location.coordinates[0]
+                    const lng = place.location.coordinates[1]
+                    window.open(
+                      `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`,
+                      "_blank"
+                    )
+                  }}
                   //
                 />
                 <MarkerF
                   position={{
                     lat: place.location.coordinates[0] - 0.0001, // Adjust the latitude slightly
                     lng: place.location.coordinates[1] - 0.0001, // Adjust the longitude slightly
+                  }}
+                  onClick={() => {
+                    const lat = place.location.coordinates[0]
+                    const lng = place.location.coordinates[1]
+                    window.open(
+                      `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`,
+                      "_blank"
+                    )
                   }}
                   //
                   icon={{
