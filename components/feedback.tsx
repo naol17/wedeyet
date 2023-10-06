@@ -5,6 +5,8 @@ import React, { useState } from "react"
 
 function Feedback() {
   const [showModal, setShowModal] = useState(false)
+  const [showModall, setShowModall] = useState(false)
+
   const [text, setText] = useState("")
   const [inputEmail, setIemail] = useState("")
   const [emailError, setEmailError] = useState<string>("")
@@ -45,17 +47,18 @@ function Feedback() {
       )
 
       if (response.ok) {
-        setShowModal(true) // Show the modal on successful form submission
+        setShowModall(true) // Show the modal on successful form submission
         console.log("hodhukana", data)
       } else {
         console.error("Form submission failed! isakana rakkoon")
       }
     } catch (error) {
       console.error("Form submission failed!", error)
+      setShowModall(true)
     }
 
     console.log(data)
-    alert("Thank you for your feedback! ")
+    // alert("Thank you for your feedback! ")
     setText("")
     setFeedback("")
     setIemail("")
@@ -193,8 +196,8 @@ function Feedback() {
             <button
               className="text-white shadow-md bg-primary active:bg-green-700 font-bold uppercase text-sm px-6 py-3 rounded  hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
               type="button"
-              onClick={() => setShowModal(false)}
-              onClickCapture={handleSubmit}
+              onClick={handleSubmit}
+              // onClickCapture={() => setShowModall(true)}
             >
               Send
             </button>
@@ -208,6 +211,32 @@ function Feedback() {
           </div>
         </div>
       </div>
+      {showModall && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none">
+          <div className="relative w-auto my-6 mx-auto max-w-3xl ">
+            {/* Modal content */}
+            <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white p-10 outline-none focus:outline-none">
+              <div className="flex items-start justify-between p-5 border-b border-solid border-gray-300 rounded-t">
+                <h3 className="text-3xl font-semibold">Thank You!</h3>
+              </div>
+              <div className="relative p-6 flex-auto">
+                <p className="my-4 text-gray-600 text-lg leading-relaxed">
+                  Thank you for your feedback!
+                </p>
+              </div>
+
+              <button
+                className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4"
+                onClick={() => setShowModall(false)}
+              >
+                <span className="opacity-7 h-8  text-2xl block align-middle text-center ml">
+                  Ok
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
