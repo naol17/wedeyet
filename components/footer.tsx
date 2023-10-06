@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { ChangeEvent, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import {
@@ -13,10 +13,13 @@ import {
   Twitter,
 } from "lucide-react"
 
-const Footer = () => {
+const Footer: React.FC = () => {
   const [showModal, setShowModal] = useState(false)
   const [text, setText] = useState("")
-  const [email, setEmail] = useState("")
+  const [email, setEmail] = useState<string>("")
+  const [inputEmail, setIemail] = useState("")
+  const [emailError, setEmailError] = useState<string>("")
+
   const [feedback, setFeedback] = useState("")
   const [followUp, setFollowUp] = useState(true)
   const [data, setData] = useState("")
@@ -25,17 +28,36 @@ const Footer = () => {
     e.preventDefault()
     const data = { feedback, text, email, followUp }
 
-    fetch("https://wedeyet.herokuapp.com", {
-      method: "POST",
-      body: JSON.stringify({ data }),
-      headers: { "Content-Type": "application/json" },
-    })
-      .then((res) => res.json())
-      .then((json) => setData(json.data))
-      .catch((error) => {
-        console.log(error?.message)
-        setData(`Error: ${error?.message}`)
-      })
+    if (!handleEmailChange) {
+      setEmailError("Please enter a valid email address.")
+      return
+    }
+
+    setEmailError("")
+
+    try {
+      const response = await fetch(
+        "https://wedeyet.herokuapp.com/api/feedback/create",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjRkNmFhZmZiODkwMDE2YjRiZmQzOTY2IiwiZW1haWwiOiJyZWRAZ21haWwuY29tIiwiaWF0IjoxNjkzMDc5MjUzLCJleHAiOjE2OTM1MTEyNTN9.KPKkOCAKTClnaKUPd-SthDj7-vYNraFWHPij7nE9fTM",
+          },
+          body: JSON.stringify(data),
+        }
+      )
+
+      if (response.ok) {
+        setShowModal(true) // Show the modal on successful form submission
+        console.log("hodhukana", data)
+      } else {
+        console.error("Form submission failed! isakana rakkoon")
+      }
+    } catch (error) {
+      console.error("Form submission failed!", error)
+    }
     console.log(data)
     alert("Thank you for your feedback! ")
     setText("")
@@ -49,6 +71,17 @@ const Footer = () => {
   const handleRatingClick = (rating: string) => {
     setFeedback(rating)
   }
+  const handleEmailChange = (): void => {
+    // Email validation using regular expression
+    const emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (emailRegex.test(inputEmail)) {
+      setEmail(inputEmail)
+    }
+  }
+
+  // ///////////////////////////////////////////////////
+
+  // //////////////////////////////////////////////////
 
   return (
     <>
@@ -121,14 +154,17 @@ const Footer = () => {
                     onChange={(e) => setText(e.target.value)}
                   ></textarea>
                 </div>
-                <div className="mb-2 ">
-                  <input
-                    className="ml-5 ml-5 p-3 border border-primary rounded-md  w-[90%] "
-                    type="text"
-                    placeholder="Enter Your Email address "
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
+                <div className="mb-2">
+                  <form action="">
+                    <input
+                      className="ml-5 p-3 border border-primary rounded-md w-[90%]"
+                      type="text"
+                      placeholder="Enter Your Email address"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                    {emailError && <p>{emailError}</p>}
+                  </form>
                 </div>
                 <div className="ml-5 mb-3">
                   <p>May we follow you up on your feedback?</p>
@@ -298,7 +334,8 @@ const Footer = () => {
                   <li>
                     <Link
                       className="flex items-center justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end"
-                      href="/"
+                      href="mailto:info@wedeyet.com"
+                      target="blank"
                     >
                       <Mail className="h-5 w-5 shrink-0" />
 
@@ -311,7 +348,9 @@ const Footer = () => {
                   <li>
                     <Link
                       className="flex items-center justify-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end"
-                      href="/"
+                      href={`tel:${+251917846893}`}
+                      target="blank"
+
                     >
                       <Phone className="h-5 w-5 shrink-0" />
 
