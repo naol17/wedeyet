@@ -345,7 +345,7 @@ const Footer: React.FC = () => {
 
                   <li>
                     <Link
-                      href="#"
+                      href="/contact"
                       className="text-gray-500 transition hover:opacity-75"
                     >
                       Meet the Team

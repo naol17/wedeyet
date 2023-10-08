@@ -155,7 +155,7 @@ export function SiteHeader() {
               </a>
             </div>
             <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-4 mt-5">
+              <div className=" flex items-baseline space-x-4 mt-5">
                 <a
                   href="/"
                   className=" hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
@@ -183,7 +183,7 @@ export function SiteHeader() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search for a place"
-                className="bg-gray-100 rounded-md px-4 py-2 text-black dark:text-black md:w-28 lg:w-72 "
+                className="bg-gray-100 rounded-md px-4 py-2 text-black dark:text-black sm:w-72 md:w-64 lg:w-72 "
               />
             </div>
             <ThemeToggle />
