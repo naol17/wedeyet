@@ -118,7 +118,7 @@ export default function IndexPage() {
   const fetchData = () => {
     const headers: any = {
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjUwZTg4OWI0NmIxNjExNmYyN2Y2MzMyIiwiZW1haWwiOiJhZG1pbkBudW5hLmNvbSIsImlhdCI6MTY5Njc5NzcwMywiZXhwIjoxNjk3MjI5NzAzfQ.khcTLOGPejYdO92VIbFaWJ1pbsazObz7BZBYuWZCxhY",
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjUwZTg4OWI0NmIxNjExNmYyN2Y2MzMyIiwiZW1haWwiOiJhZG1pbkBudW5hLmNvbSIsImlhdCI6MTY5NzcxNzQxOCwiZXhwIjoxNjk4MTQ5NDE4fQ.3iOtLZ0A1B55my3elCl-_ZxmS773wYuaEI3oEHrf0Qo",
     }
     axios
       .get("https://wedeyet.herokuapp.com/api/place/all", { headers })
@@ -133,7 +133,7 @@ export default function IndexPage() {
   const handleCategoryClick = (categoryName: any) => {
     const headers: any = {
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjUwZTg4OWI0NmIxNjExNmYyN2Y2MzMyIiwiZW1haWwiOiJhZG1pbkBudW5hLmNvbSIsImlhdCI6MTY5Njc5NzcwMywiZXhwIjoxNjk3MjI5NzAzfQ.khcTLOGPejYdO92VIbFaWJ1pbsazObz7BZBYuWZCxhY",
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjUwZTg4OWI0NmIxNjExNmYyN2Y2MzMyIiwiZW1haWwiOiJhZG1pbkBudW5hLmNvbSIsImlhdCI6MTY5NzcxNzQxOCwiZXhwIjoxNjk4MTQ5NDE4fQ.3iOtLZ0A1B55my3elCl-_ZxmS773wYuaEI3oEHrf0Qo",
     }
 
     axios
@@ -241,10 +241,33 @@ export default function IndexPage() {
 
   // search
 
+  const container = document.querySelector(".flex.gap-10.pb-2.overflow-x-auto")
+
+  // Function to scroll the category list to the left
+  function scrollLeft() {
+    if (container !== null) {
+      container.scrollLeft -= 100
+    }
+  }
+
+  // Function to scroll the category list to the right
+  function scrollRight() {
+    if (container !== null) {
+      container.scrollLeft += 100
+    }
+  }
+
   return (
     <>
       <section className="container grid items-center gap-6 pt-6 pb-8 md:py-10">
-        <div className="flex gap-10 pb-2 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max mt-3 lg:ml-24 lg:mr-10 hover:cursor-pointer">
+        <button
+          className="hidden lg:flex lg:ml-24 lg:-mb-32"
+          onClick={() => scrollLeft()}
+        >
+          &lt;
+        </button>
+        {/* </div> */}
+        <div className="flex gap-10 pb-2 overflow-x-auto overflow-y-hidden hide-scroll-bar max-w-max mt-3 lg:ml-32 lg:mr-16 hover:cursor-pointer">
           {categoriesall.map((category, i) => (
             <Card key={i} className="shadow-md dark:shadow-slate-800">
               <CardContent
@@ -269,7 +292,9 @@ export default function IndexPage() {
             </Card>
           ))}
         </div>
-
+        <div className="hidden lg:flex lg:items-end justify-end lg:-mt-36 mr-9 ml-auto  p-2">
+          <button onClick={() => scrollRight()}>&gt;</button>
+        </div>
         {/* <div className="grid h-[450px] grid-cols-4 gap-5 md:bg-red-600 sm:bg-green-500 sm:grid-cols-1 lg:bg-yellow-400 "> */}
         <div className="h-[700px]  md:grid md:grid-cols-4 md:gap-2 md:h-[450px] lg:grid-cols-4 lg:ml-24 lg:mr-10">
           <div className="md:col-span-2 pb-2 h-[430px] md:pb-0 lg:col-span-3 lg:pb-0  ">
