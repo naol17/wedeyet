@@ -112,7 +112,7 @@ export default function IndexPage() {
   }>(null)
 
   // Fetch api
-  const [place, setPlaces] = useState<any[]>([])
+  const [places, setPlaces] = useState<any[]>([])
   const [caplaces, setCaPlaces] = useState<any[]>([])
 
   const fetchData = () => {
