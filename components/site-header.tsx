@@ -23,7 +23,7 @@ export function SiteHeader() {
   const fetchData = () => {
     const headers: any = {
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjUwZTg4OWI0NmIxNjExNmYyN2Y2MzMyIiwiZW1haWwiOiJhZG1pbkBudW5hLmNvbSIsImlhdCI6MTY5OTEyNDkwMCwiZXhwIjoxNjk5NTU2OTAwfQ.3YwYsZK2M08R12FdVS-UdKg8w7N_6gbB1E9YgyuRj_A",
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjUwZTg4OWI0NmIxNjExNmYyN2Y2MzMyIiwiZW1haWwiOiJhZG1pbkBudW5hLmNvbSIsImlhdCI6MTcwMDU5OTE1MSwiZXhwIjoxNzAxMDMxMTUxfQ.zUVOViChrV_8QiWYCCkqP0C82X0GHpxkHntr1Dn1hvo",
     }
     axios
       .get("https://wedeyet.herokuapp.com/api/place/all", { headers })
