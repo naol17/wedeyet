@@ -41,7 +41,7 @@ const Contact: React.FC = () => {
           headers: {
             "Content-Type": "application/json",
             Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjUwZTg4OWI0NmIxNjExNmYyN2Y2MzMyIiwiZW1haWwiOiJhZG1pbkBudW5hLmNvbSIsImlhdCI6MTcwMjY3MDcwNiwiZXhwIjoxNzAzMTAyNzA2fQ.Ge9F7us9mXdBDeAAV1kbom9Y106y4jDpYa22_Jy6mF4",
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjUwZTg4OWI0NmIxNjExNmYyN2Y2MzMyIiwiZW1haWwiOiJhZG1pbkBudW5hLmNvbSIsImlhdCI6MTcwMzQ1MjE3MSwiZXhwIjoxNzAzODg0MTcxfQ.Sk7vBc2r98ZCne7BCku9WKMOahLHKKm3JROX3133c3E",
           },
           body: JSON.stringify(formData),
         }
@@ -49,9 +49,9 @@ const Contact: React.FC = () => {
 
       if (response.ok) {
         setShowModal(true) // Show the modal on successful form submission
-        console.log("hodhukana", formData)
+        console.log(formData)
       } else {
-        console.error("Form submission failed! isakana rakkoon")
+        console.error("Form submission failed!")
       }
     } catch (error) {
       console.error("Form submission failed!", error)
