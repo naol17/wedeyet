@@ -56,7 +56,7 @@ const Footer: React.FC = () => {
           headers: {
             "Content-Type": "application/json",
             Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjUwZTg4OWI0NmIxNjExNmYyN2Y2MzMyIiwiZW1haWwiOiJhZG1pbkBudW5hLmNvbSIsImlhdCI6MTcwMzQ1MjE3MSwiZXhwIjoxNzAzODg0MTcxfQ.Sk7vBc2r98ZCne7BCku9WKMOahLHKKm3JROX3133c3E",
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjUwZTg4OWI0NmIxNjExNmYyN2Y2MzMyIiwiZW1haWwiOiJhZG1pbkBudW5hLmNvbSIsImlhdCI6MTcwNTIyMjQ0MywiZXhwIjoxNzA1NjU0NDQzfQ._oNJctllOAjy86228iUP2oDSYeXImF6W1U8QqsSf9lk",
           },
           body: JSON.stringify(data),
         }

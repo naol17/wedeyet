@@ -93,7 +93,7 @@ const page = () => {
     console.log("inside fetch", id)
     const headers: any = {
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjUwZTg4OWI0NmIxNjExNmYyN2Y2MzMyIiwiZW1haWwiOiJhZG1pbkBudW5hLmNvbSIsImlhdCI6MTcwMzQ1MjE3MSwiZXhwIjoxNzAzODg0MTcxfQ.Sk7vBc2r98ZCne7BCku9WKMOahLHKKm3JROX3133c3E",
+      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjUwZTg4OWI0NmIxNjExNmYyN2Y2MzMyIiwiZW1haWwiOiJhZG1pbkBudW5hLmNvbSIsImlhdCI6MTcwNTIyMjQ0MywiZXhwIjoxNzA1NjU0NDQzfQ._oNJctllOAjy86228iUP2oDSYeXImF6W1U8QqsSf9lk",
     }
     axios
       .get(`https://wedeyet.herokuapp.com/api/place/get/${id}`, { headers })
@@ -118,7 +118,7 @@ const page = () => {
   const AdsData = () => {
     const headers: any = {
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjUwZTg4OWI0NmIxNjExNmYyN2Y2MzMyIiwiZW1haWwiOiJhZG1pbkBudW5hLmNvbSIsImlhdCI6MTcwMzQ1MjE3MSwiZXhwIjoxNzAzODg0MTcxfQ.Sk7vBc2r98ZCne7BCku9WKMOahLHKKm3JROX3133c3E",
+      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjUwZTg4OWI0NmIxNjExNmYyN2Y2MzMyIiwiZW1haWwiOiJhZG1pbkBudW5hLmNvbSIsImlhdCI6MTcwNTIyMjQ0MywiZXhwIjoxNzA1NjU0NDQzfQ._oNJctllOAjy86228iUP2oDSYeXImF6W1U8QqsSf9lk",
     }
     axios
       .get("https://wedeyet.herokuapp.com/api/banner/all", { headers })
@@ -146,7 +146,7 @@ const page = () => {
     console.log("inside subCategory", subCategory)
     const headers: any = {
       Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjUwZTg4OWI0NmIxNjExNmYyN2Y2MzMyIiwiZW1haWwiOiJhZG1pbkBudW5hLmNvbSIsImlhdCI6MTcwMzQ1MjE3MSwiZXhwIjoxNzAzODg0MTcxfQ.Sk7vBc2r98ZCne7BCku9WKMOahLHKKm3JROX3133c3E",
+      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjUwZTg4OWI0NmIxNjExNmYyN2Y2MzMyIiwiZW1haWwiOiJhZG1pbkBudW5hLmNvbSIsImlhdCI6MTcwNTIyMjQ0MywiZXhwIjoxNzA1NjU0NDQzfQ._oNJctllOAjy86228iUP2oDSYeXImF6W1U8QqsSf9lk",
     }
     axios
       .get(
